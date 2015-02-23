@@ -60,7 +60,7 @@ ggplot(summary.AA, aes(x=ratio, y=cosine_similality, colour=type, group=type, fi
         legend.text = element_text(size = rel(1.5)),
         legend.title = element_text(size = rel(1.5)));
 
-ggsave("../../result/fig_3_f.eps", width=7.5, height=5.5, units = "in");
+ggsave("../../result/UTUC_downsampling_AA.eps", width=7.5, height=5.5, units = "in");
 
 
 summary.APOBEC <- summary_UTUC.downsampling %>% filter(signature=="APOBEC");
@@ -85,7 +85,7 @@ ggplot(summary.APOBEC, aes(x=ratio, y=cosine_similality, colour=type, group=type
         legend.text = element_text(size = rel(1.5)),
         legend.title = element_text(size = rel(1.5)));
 
-ggsave("../../result/fig_3_e.eps", width=7.5, height=5.5, units = "in");
+ggsave("../../result/UTUC_downsampling_APOBEC.eps", width=7.5, height=5.5, units = "in");
 
 
 
