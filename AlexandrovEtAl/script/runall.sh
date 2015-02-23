@@ -20,12 +20,13 @@ fi
 
 while read type 
 do 
-    echo "perl ../../common_script/convertToMPFormat.pl ../data/AlexandrovEtAl_raw/${type}_clean_somatic_mutations_for_signature_analysis.txt > ../result/MPFormat/${type}.mp.txt"
-    perl ../../common_script/convertToMPFormat.pl ../data/AlexandrovEtAl_raw/${type}_clean_somatic_mutations_for_signature_analysis.txt > ../result/MPFormat/${type}.mp.txt
-done < ../data/AlexandrovEtAl_raw/cancer_types.txt
+    echo "zcat ../data/${type}_clean_somatic_mutations_for_signature_analysis.txt.gz | perl ../../common_script/convertToMPFormat.pl - | gzip - > ../result/MPFormat/${type}.mp.txt.gz"
+    zcat ../data/${type}_clean_somatic_mutations_for_signature_analysis.txt.gz | perl ../../common_script/convertToMPFormat.pl - | gzip - > ../result/MPFormat/${type}.mp.txt.gz
+done < ../data/cancer_types.txt
 
 _COMMENT_OUT_
 
+# :<<_COMMENT_OUT_
 
 cd ../result
 RESULTDIR=`pwd`
@@ -39,8 +40,8 @@ do
 
     for K in `seq 2 6`
     do
-        echo "qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10"
-        qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10
+        echo "qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt.gz ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10"
+        qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt.gz ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10
 
         if [ ${type} == Lung-Adeno ]
         then 
@@ -53,5 +54,7 @@ do
 
     done
 
-done < ${DATADIR}/AlexandrovEtAl_raw/cancer_types.txt
+done < ${DATADIR}/cancer_types.txt
+
+# _COMMENT_OUT_
 
