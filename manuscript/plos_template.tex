@@ -1,0 +1,1087 @@
+% Template for PLoS
+% Version 2.0 July 2014
+%
+% To compile to pdf, run:
+% latex plos.template
+% bibtex plos.template
+% latex plos.template
+% latex plos.template
+% dvipdf plos.template
+%
+% % % % % % % % % % % % % % % % % % % % % %
+%
+% -- IMPORTANT NOTE
+%
+% Be advised that this is merely a template 
+% designed to facilitate accurate translation of manuscript content 
+% into our production files. 
+%
+% This template contains extensive comments intended 
+% to minimize problems and delays during our production 
+% process. Please follow the template 
+% whenever possible.
+%
+% % % % % % % % % % % % % % % % % % % % % % % 
+%
+% Once your paper is accepted for publication and enters production, 
+% PLEASE REMOVE ALL TRACKED CHANGES in this file and leave only
+% the final text of your manuscript.
+%
+% DO NOT ADD EXTRA PACKAGES TO THIS TEMPLATE unless absolutely necessary.
+% Packages included in this template are intentionally
+% limited and basic in order to reduce the possibility
+% of issues during our production process.
+%
+% % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- FIGURES AND TABLES
+%
+% DO NOT INCLUDE GRAPHICS IN YOUR MANUSCRIPT
+% - Figures should be uploaded separately from your manuscript file. 
+% - Figures generated using LaTeX should be extracted and removed from the PDF before submission. 
+% - Figures containing multiple panels/subfigures must be combined into one image file before submission.
+% See http://www.plosone.org/static/figureGuidelines for PLOS figure guidelines.
+%
+% Tables should be cell-based and may not contain:
+% - tabs/spacing/line breaks within cells to alter layout
+% - vertically-merged cells (no tabular environments within tabular environments, do not use \multirow)
+% - colors, shading, or graphic objects
+% See http://www.plosone.org/static/figureGuidelines#tables for table guidelines.
+%
+% For sideways tables, use the {rotating} package and use \begin{sidewaystable} instead of \begin{table} in the appropriate section. PLOS guidelines do not accomodate sideways figures.
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+%
+% -- EQUATIONS, MATH SYMBOLS, SUBSCRIPTS, AND SUPERSCRIPTS
+%
+% IMPORTANT
+% Below are a few tips to help format your equations and other special characters according to our specifications. For more tips to help reduce the possibility of formatting errors during conversion, please see our LaTeX guidelines at http://www.plosone.org/static/latexGuidelines
+%
+% Please be sure to include all portions of an equation in the math environment, and for any superscripts or subscripts also include the base number/text. For example, use $mathrm{mm}^2$ instead of mm$^2$ (do not use \textsuperscript command).
+%
+% DO NOT USE the \rm command to render mathmode characters in roman font, instead use $\mathrm{}$
+% For bolding characters in mathmode, please use $\mathbf{}$ 
+%
+% Please add line breaks to long equations when possible in order to fit our 2-column layout. 
+%
+% For inline equations, please do not include punctuation within the math environment unless this is part of the equation.
+%
+% For spaces within the math environment please use the \; or \: commands, even within \text{} (do not use smaller spacing as this does not convert well).
+%
+%
+% % % % % % % % % % % % % % % % % % % % % % % %
+
+
+
+\documentclass[10pt]{article}
+
+% amsmath package, useful for mathematical formulas
+\usepackage{amsmath}
+% amssymb package, useful for mathematical symbols
+\usepackage{amssymb}
+
+% cite package, to clean up citations in the main text. Do not remove.
+\usepackage{cite}
+\usepackage{bm}
+\usepackage{hyperref}
+
+% line numbers
+\usepackage{lineno}
+
+% ligatures disabled
+\usepackage{microtype}
+% \DisableLigatures[f]{encoding = *, family = * }
+
+% rotating package for sideways tables
+%\usepackage{rotating}
+
+% If you wish to include algorithms, please use one of the packages below. Also, please see the algorithm section of our LaTeX guidelines (http://www.plosone.org/static/latexGuidelines) for important information about required formatting.
+%\usepackage{algorithmic}
+%\usepackage{algorithmicx}
+
+% Use doublespacing - comment out for single spacing
+% \usepackage{setspace} 
+% \doublespacing
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+
+% Text layout
+\topmargin 0.0cm
+\oddsidemargin 0.5cm
+\evensidemargin 0.5cm
+\textwidth 16cm 
+\textheight 21cm
+
+% Bold the 'Figure #' in the caption and separate it with a period
+% Captions will be left justified
+\usepackage[labelfont=bf,labelsep=period,justification=raggedright]{caption}
+
+% Use the PLoS provided BiBTeX style
+\bibliographystyle{plos2009}
+
+% Remove brackets from numbering in List of References
+\makeatletter
+\renewcommand{\@biblabel}[1]{\quad#1.}
+\makeatother
+
+
+% Leave date blank
+\date{}
+
+\pagestyle{myheadings}
+
+%% Include all macros below. Please limit the use of macros.
+
+%% END MACROS SECTION
+
+
+\begin{document}
+
+
+% Title must be 150 characters or less
+\begin{flushleft}
+{\Large
+\textbf{Extraction of Latent Probabilistic Mutational Signature in Cancer Genomes}
+}
+% Insert Author names, affiliations and corresponding author email.
+\\
+Yuichi Shiraishi$^{1,\ast}$, 
+Georg Tremmel$^{1}$, 
+Satoru Miyano$^{1}$, 
+Matthew Stephens$^{2,3}$
+\\
+\bf{1} Laboratory of DNA Information Analysis, Human Genome Center, Institute of Medical Science, The University of Tokyo, Tokyo, Japan
+\\
+\bf{2} Dept. of Human Genetics, University of Chicago, Chicago, Illinois, United States of America
+\\
+\bf{3} Dept. of Statistics, University of Chicago, Chicago, Illinois, United States of America
+% \bf{3} Author3 Dept/Program/Center, Institution Name, City, State, Country
+\\
+$\ast$ E-mail: yshira@hgc.jp
+\end{flushleft}
+
+% Please keep the abstract between 250 and 300 words
+\section*{Abstract}
+
+Thanks to the advances in  recent high throughput sequencing technologies,
+a massive amount of somatic mutations from cancer genome sequencing data become available.
+Accordingly, it becomes possible to detect characteristic patterns of somatic mutations or ``mutation signatures'' 
+at an unprecedented resolution with the expectations of revealing novel causes and mechanisms of tumorigenesis.
+
+Several statistical approaches for extracting characteristic mutation signatures have been proposed.
+However, in previous approaches,
+since the number of parameters increases exponentially as more contextual factors are taken into account,
+we could not treat many contextual factors all together because of instability of estimation results.
+Furthermore, interpretation of mutations signatures of huge dimensional vectors is often troublesome.
+
+
+In this paper, we propose a novel approach based on hierarchical probabilistic modeling.
+The proposed approach reduces the number of parameters by the independence assumption on each factor 
+so that we can obtain more robust and interpretable estimates.
+Using synthetic and real data, we demonstrate that the proposed approach can not only give highly robust estimates,
+but also capture novel characteristics such as base frequency at the two base 5' to the mutated sites.
+In addition, we clarify the relationships between the proposed approach and the ``mixed-membership models'', 
+that have been actively studied in statistical machine learning and statistical genetics community.
+Recognizing these relationships will help us to develop a grasp of mutation signature extraction problems,
+and will allow us to utilize a lot of techniques accumulated on other fields to further improve the statistical methods.
+
+Finally, we have prepared an R package of the proposed approach (probabilistic mutation signature, pmsignature),
+which is available at \url{https://github.com/friend1ws/pmsignature}.
+
+
+% Use first person. PLOS ONE authors please skip this step. 
+% Author Summary not valid for PLOS ONE submissions.   
+\section*{Author Summary}
+
+It is known that the pattern of somatic mutations depends on cancer types and even individuals within the same caner type.
+For example, C $>$ A mutations are frequent in lung caner
+whereas C $>$ T and CC $>$ TT mutations are frequent in skin cancer,
+and their patterns are usually associated to some kinds of carcinogens.
+However, since the cost and throughput of sequencing technologies were limited, 
+high-resolution analysis of mutation patterns was not possible.
+
+With the coming of high-throughput sequencing technologies, we can now obtain a massive amount of somatic mutation data from cancer genomes,
+and there is a great possibility of detecting novel mutation patterns leading to identification of novel carcinogens
+and obtaining better classification of cancer genomes based on mutation patterns differences.
+On the other hand, there is an increasing need for novel statistical method for mutation patterns analysis 
+from vast amount of somatic mutation data.
+
+In this paper, we provide a novel statistical tools for clarifying characteristic mutation patterns
+from massive amounts of cancer somatic mutation data, 
+which will give us more robust and interpretable mutation patterns compared to previous approaches.
+We demonstrate the efficiency of our method using simulated and real data.
+
+
+
+
+\section*{Introduction}
+
+Cancer is a genomic disease. 
+As we lead a life, DNAs within the cells throughout our body acquire a number of random somatic mutations
+mainly caused by DNA replication errors and exposures to mutagens such as chemical substances, radioactivities and inflammatory reactions.  
+Although most mutations are harmless (called ``passenger mutations''), 
+a small portions of mutations at some specific sites in cancer genes (called ``driver mutations'') 
+confer growth activities to the cells having them over other cells,
+allowing such as autonomous proliferation and tissue invasion,
+and contribute to oncogenesis \cite{stratton2009cancer}.
+The main goal in cancer genome study has been to find the driver mutations to understand the mechanism of cancer development.
+On the other hand,  even passenger mutations can also give us an important information, 
+because they often show specific mutation patterns, or ``mutation signatures'', which reflect driving forces causing somatic mutations.
+Classical analyses of mutation patterns have revealed a number of relationships between mutation patterns and carcinogens.
+For example, C $>$ A mutations at CpG sites are abundant in lung cancers with smoking history,
+and these are caused by benzo(a)pyrene included in tobacco smoke \cite{pmid12379884}.
+Also, C $>$ T and CC $>$ TT  mutations are abundant in ultraviolet-light-associated skin cancers, 
+and these are caused by pyrimidine dimers as a result of ultraviolet radiation \cite{pmid15748635}. 
+
+There were several problems in these classical studies \cite{pmid12379884, pmid15748635}.
+Due to limited sequencing throughput, 
+they mostly aggregated mutations collected from each individuals over the same cancer types focusing on a few cancer genes such as TP53
+where high mutation frequencies could be expected,
+and compared mutation patten profiles among different cancer types.
+However, many of those mutations in those cancer genes are considered to be driver mutations adding selective activities to the cells,
+which can give biased mutation profiles from those purely reflect driving forces of mutations.
+Furthermore, the mutation pattern profile not for each cancer type but for each individual could not be explored in the above approach.
+
+Nowadays, recent advancement in high-throughput sequencing technologies provides vast amounts of passenger mutations
+and great chances for not only identification of novel driver mutations but also investigation of sample-by-sample mutation patterns in an unbiased way. 
+A study using 21 breast cancer samples identified the association between C $>$ [GT] mutations at TpC sites, 
+which is later proved to be caused by APOBEC proteins, and the novel phenomenon called {\it kataegis} \cite{pmid22608084}. 
+Moreover, the recent landmark study revealed a landscape of mutation signatures using from 7,034 primary cancer samples of 30 different classes \cite{pmid23945592}. 
+Furthermore, it is expected that detection of novel mutation signatures and associated mutagens can lead to identification of novel mutagens and prevention of cancer.
+
+
+At the same time, for extracting prominent mutation signatures from vast amounts of somatic mutation data,
+there is an increasing need for novel latent variable modeling approaches.
+Currently, only a few approaches have been proposed. 
+In \cite{pmid23318258}, nonnegative matrix factorization (NMF, \cite{pmid10548103}) is used for the matrix whose elements represent frequencies of mutation patterns for each sample. 
+In \cite{pmid23628380}, the number of each mutation patterns is assumed to be generated by Poisson distribution whose parameters are linear combinations of latent mutational signatures. 
+
+
+One of the major problems of the previous approach is that 
+the number of parameters in the model grows exponentially 
+with the number of contextual factors to take into account.
+Many of recent approaches take into account just immediate 5' and 3' bases as contextual factors in addition to substitution patterns.
+However, when considering two 5' and 3' bases to the mutated sites,
+the estimated mutation signatures often become unstable due to the curse of high dimensionality, 
+despite there is a potential need to observe two base 5' and 3' positions to the mutated sites \cite{pmid9683596}.
+Also, it is often very hard to interpret and extract important characteristics from the estimate with high-dimensional parameters.
+Furthermore, considering that latent variable modeling have enormous number of researches in statistics and machine learning, 
+there is a great possibility that we can further elaborate statistical methods for mutational signature extraction problems.
+
+In this paper, we present a novel probabilistic approach.
+To avoid the problem of the exponential increase of the number of parameters,
+we assumed independence among contextual factors, which can give more interpretable and robust estimation.
+We demonstrate that independence assumption can robustly capture known mutational signatures with additional contextual informations.
+
+In addition, even though it has not been widely discussed, 
+the problem of identifying mutation signatures is closely related to "mixed-membership models'' in other fields, 
+such as ``population admixture'' models \cite{pmid10835412} in the analysis of population structure, 
+and the ``latent dirichlet allocation'' (LDA) model for document clustering \cite{Blei:2003}.
+In this paper, we explicitly show the relationships between the proposed model and the mixed-membership models and discuss the relationships,
+which we believe will be highly helpful for future elaboration of the statistical method for mutation signature extraction problems.
+
+The R package for the proposed method,  {\bf pmsignature} ({\bf p}robabilistic {\bf m}utational signature),
+is available at \url{https://github.com/friend1ws/pmsignature}).
+The core part of the estimation process is implemented in C++ by way of the Rcpp package \cite{eddelbuettel2011rcpp},
+which enables us to handle millions of somatic mutations from thousands of cancer genomes using standard desktop computers.
+
+
+
+
+
+% You may title this section "Methods" or "Models". 
+% "Models" is not a valid title for PLoS ONE authors. However, PLoS ONE
+% authors may use "Analysis" 
+\section*{Methods}
+
+
+\subsection*{Independence assumption in mutation signatures}
+
+The term ``mutation signature'' is used to describe a characteristic mutational pattern observed in cancer genomes, 
+that is often related to some carcinogens
+(e.g., significantly frequent C $>$ A mutations in lung cancers with smoking histories).
+Mathematically, mutation signatures have been characterized as frequencies or probabilities over mutation pattern \cite{pmid23318258,pmid23628380}. 
+
+Typically, mutation patterns are categorized 
+by 6 substitution patterns (C$>$A, C$>$G, C$>$T, T$>$A, T$>$C, T$>$G, the original base is usually fixed to C or T for removing the redundancy of taking complementary strands),
+or 96 (6 $\times$ 4 $\times$ 4) patterns by considering immediate 5' and 3' flanking bases as well as 6 substitution patterns.
+Furthermore, taking account of the transcription direction (plus or minus), 
+categorization by 192 mutation patterns is sometimes used \cite{pmid23945592, pmid23318258}.
+In this paper, we call the factors composing mutation patterns (such as substitution patterns, adjacent bases and transcriptional strand) 
+as ``mutation features.''
+
+One of the major problems is that 
+total number of mutation patterns exponentially increases
+as we increase the number of mutation features to take into account.
+For example, if we want to take account of up to $n$ bases 5' and 3' to the mutated site 
+(which we call $-n$ site and $+n$ site, respectively, in this paper) as well as 6 substitution patterns, 
+the number of parameters becomes $6 \times 4^{2n} - 1$. 
+On the other hand, the mutation rates are mostly below 10 per Mb \cite{pmid23945592},
+(where about 30,000 mutations are expected in entire genomic regions).
+Therefore, considering even $\pm 2$ sites and substitution patterns (1535 parameters)
+is often difficult because of instability of parameter estimation. 
+
+
+On the other hand, observing the mutation signatures observed in the previous studies (see Figure \ref{APOBEC_example}), 
+many mutation signatures had clear characteristics such as:
+\begin{itemize}
+\item 
+A certain value of mutation features is often dominant in many known mutation signatures. 
+For example, the base T is highly dominant at the $-1$ site in the APOBEC signature, 
+and C $>$ T substitution is highly dominant in the ultraviolet signature \cite{pmid23945592}. 
+
+\item
+Proportional relationships among mutation features are often observed in many signatures. 
+For example, in the APOBEC signature, 
+the frequencies of bases at the $+1$ site are largely proportional across 3 major substitution patterns C$>$T, C$>$G and C$>$A,
+and show consistent tendencies (A and T bases are more frequent than C and G bases).
+
+\end{itemize} 
+
+These characteristics imply that the parameter spaces of mutation signatures can be degenerated to lower dimensional spaces in many cases, 
+and we can potentially reduce the number of parameters by imposing additional restrictions. 
+
+In this paper, we propose to represent mutation signatures with independent multiple multi-nominal distributions
+on each mutation feature. 
+By doing this, we can reduce the number of parameters from exponential to linear with respect to the number of mutation features. 
+When we consider up to $\pm n$ sites as well as 6 substitution patterns, 
+the required number of parameters becomes $5 + 6n$. 
+For example, when considering $\pm 2$ sites and substitution patterns,
+the number of parameters becomes 17, which is far less compared to 1535 in the previous approach.
+Furthermore, independence assumption enables us to come up with fairly interpretable representation for mutation signatures.
+
+It may be argued that the independence assumption does not conform to real mechanisms of mutational processes 
+because it is highly unlikely that mutagens independently choose each mutation feature such as flanking bases and substitution patterns. 
+However, we would like to present the following justifications for the independence assumption: 
+
+\begin{enumerate}
+\item
+For representing the transcription factor binding motifs, the position specific weight matrix (PSWM), 
+which is equivalent to independent multiple multinomial distributions, 
+has been quite successfully utilized 
+even though it is never likely that transcription factors independently choose the bases of their binding sites. 
+This is probably because PSWM can capture important characteristics of transcription factor binding sites 
+in spite of the independence assumption,
+and can be represented in an intuitively interpretable way via sequencing logos \cite{pmid2172928}.
+
+\item
+As we demonstrate in later sections, 
+the proposed approach can robustly extract most of previously-collected mutation signatures even independence assumption is imposed.
+
+\item
+Although most mutation signatures show proportional relationships among mutation features, 
+a few signatures seem to violate proportional relationships and cannot be explained by independent models. 
+For example, the pol $\epsilon$ mutation signature \cite{pmid23945592} puts strong probability masses 
+on just two pattern TpCpT $>$ TpApT and TpCpG $>$ TpTpG, 
+and the frequencies of substitution patterns and $+1$ bases are not proportional unlike the APOBEC signature.
+However,  by using multiple mutation signatures, we can represent this phenomenon even with independence assumption.
+\end{enumerate}
+
+
+
+
+
+
+\subsection*{Mathematical representation of mutation signatures} 
+
+In this subsection, 
+we show how to mathematically describe mutations collected from genome sequencing studies and mutational signatures.
+First, let $\Delta^S = \{ (t_1, \cdots, t_S) |\ t_s \geq 0 (\forall s = 1, \cdots, S), \sum_{s=1}^S t_s = 1 \}$ denote S-dimensional simplex,
+which is used to represent nonnegative vectors summing to $1$ throughout the paper.
+
+Suppose each somatic mutation has $L$ mutation features, $\bm{m} = (m_1, m_2, \cdots, m_L)$, 
+where each $m_l$ can take $M_l$ discrete values. Also, we set $\bm{M} = (M_1, \cdots, M_L)$.
+Let $\bm{x}_{i, j} = (x_{i, j, 1}, \cdots, x_{i, j, L}), (i = 1, \cdots, I, j = 1, \cdots, J_i)$ denote the mutation feature vector for the $j$-th mutation of $i$-th cancer genome,
+where $x_{i, j, l} \in \{1, \cdots, M_l \}$, $I$ is the number of available cancer genomes and $J_i$ is the number of mutations in the $i$-th cancer genome.
+When taking account of 6 substitution patterns and $\pm 2$ sites,
+$\bm{M} = (6, 4, 4, 4, 4)$.
+See Table \ref{tab_rep} for other representation example.
+
+Suppose that there are $K$ mutation signatures,
+Let  $\bm{f}_{k, l} = (f_{k, l, 1}, \cdots, f_{k, l, M_l }) \in \Delta^{M_l}$ denote 
+the multinomial distribution parameter of $k$-th mutation signature and the $l$-th mutation feature, 
+then the probabilistic distribution of $k$-th signature corresponds to $\{ \bm{f}_{k, l} \}_{l=1, \cdots, L}$.
+ 
+Therefore, each probabilistic mutation signature, in general, consists of multiple multinomial distribution parameters.
+We give a way of visualizing probabilistic mutation signature (see Fig. \ref{mutSig_example}), 
+which is reminiscent of sequencing logos \cite{pmid2172928}. 
+
+
+
+\subsection*{Non-independent model as a special case of the proposed method}
+
+
+The previous approaches, 
+where each mutation signature is not a set multiple multinomial distributions but one high-dimensional multinomial distribution,
+can be considered as a special case of the above framework.
+
+Suppose each mutation feature vector (such as substitution patterns, adjacent bases, and so on) 
+is re-labeled as a single-valued mutation feature by some lexicographical order (see Table \ref{tab_rep}),
+then each mutation signature becomes one multinomial distribution. 
+We call this representation and mutational process modeling as ``full representation,'' and ``full model.''
+In this case, when taking account of 6 substitution patterns and $\pm 2$ sites,
+$\bm{M} = (1536)$.
+On the other hand, the usual representation, where each mutation feature has its corresponding value and individual multinomial distribution,
+is called as ``independent representation,'' and ``independent model.''
+
+The full representation model potentially represent complicated mutational processes
+(e.g., a situation where C $>$ A is frequent at ApCpG sites and C $>$ T is frequent at TpCpA sites) with one signature.
+However, when many mutation contextual factors are taken into account and the number of free parameters get huge,
+estimated results tend to be unstable and unreliable.
+Furthermore, there is a great risk that we over-interpreting the seemingly complex estimated results.
+
+
+\subsection*{Generative model of mutation features for each cancer genome}
+
+Each cancer genome naturally has multiple mutation signatures,
+because we are living exposed to a variety of carcinogens. 
+Also, the strength of each mutation signature varies among cancer samples, 
+depending on lifestyles, genetic difference and so on.
+We represent the distribution of mutation signatures for the $i$-the cancer genome 
+by $\bm{q}_i = (q_{i,1}, q_{i,2}, \cdots, q_{i, K}) \in \Delta^K,  (i = 1, \cdots, I)$.
+
+We adopt a two step model for a generative model of mutations.
+First, one of the contributing mutation signature is chosen for each mutation 
+depending on the signature distribution parameter of the corresponding cancer genome $\{ \bm{q}_i \}$.
+Then, according to the probability distribution of the selected mutation signature, 
+mutation features such as substitution patterns and flanking base pairs are generated.
+
+The detailed description of generative process of $\{ \bm{x}_{i,j} \}$ is as follows:
+For the $j$-th mutation in the $i$-th cancer genome, 
+\begin{enumerate}
+\item
+Generate $z_{i,j} \sim \text{Multinomial} (\bm{q}_m)$, where $z_{i,j} \in \{1,\cdots,K \}$ is the underlying mutation signature causing that mutation.
+\item 
+For each $l (= 1, \cdots, L)$, generate the values of each mutation feature $x_{i,j,l} \sim \text{Multinomial}(\bm{f}_{z_{i,j},l})$.
+\end{enumerate}
+
+
+
+
+\subsection*{Relationship with mixed-membership models}
+
+The two step generative model described in the previous subsection has close relationships with
+the mixed-membership models that have been adopted in many other applications, 
+such as document classification and population structure inference problems. 
+In this subsection, we show the relationships between the proposed method and mixed-membership models,
+slightly abusing notations to contrast the relationships with the proposed method. 
+
+In topic models \cite{Hofmann:1999,Blei:2003},
+which is a form of mixed-membership models frequently used in document classification problems,
+each document is assumed to have $K$ different ``topics'' in varying proportions ($\bm{q}_i \in \Delta^K$),
+where each topic is characterized by a word frequency (a multinomial distribution on a set of words $W$ ($\bm{f}_k \in \Delta^W$).
+And each word is assumed to be generated by one of $K$ multinomial distributions (topics).
+The detailed generative process of the $j$-th word in the $i$-th document $x_{i,j}$ is:  
+\begin{enumerate}
+\item
+Generate the underlying topic for the $j$-th word, $z_{i,j} \sim \text{Multinomial} (\bm{q}_i)$., where $z_{i,j} \in \{1,\cdots,K \}$.
+\item
+Generate $x_{i,j} \sim \text{Multinomial} (\bm{f}_{z_{i,j}})$, where $x_{i,j} \in \{1, \cdots, W \}$.
+\end{enumerate}
+Actually, the proposed model in case of $L = 1$ or ``full representation''  is mostly the same as topic models. 
+
+On the other hand, in population structure inference problems \cite{pmid10835412, pmid19648217}, 
+each individual is assumed to be an admixture of $K$ ancestries in varying proportions, 
+where each ancestry is characterized by the allele frequency at each SNP locus,
+and each SNP genotype of an individual are assumed to be generated by the two step model:
+first, one of the ancestries are chosen by the admixture ratio of ancestries given for each individual,
+and then the SNP genotype is generated according to the allele frequency of the selected ancestry at that locus.
+The relationships among the mutation signature model, topic models and population structure models are summarized in the Table \ref{tab_pop}.
+
+
+
+Furthermore, close relationships between mixed-membership models and nonnegative matrix factorization,
+which has been successfully used in the previous studies for mutational signature problems \cite{pmid22608084, pmid23318258, pmid23945592},
+have been pointed out \cite{ding2008equivalence}.
+In fact, the proposed method can be seen as non-negative matrix factorization with additional restrictions.
+See Supplementary Materials for the detail of the relationships between the proposed approach and nonnegative matrix factorization.
+
+
+
+\subsection*{Estimating parameters}
+
+The parameters $\{ \bm{f}_{k, l} \}$ and $\{ \bm{q}_i \}$
+are not given and have to be estimated from the available mutation data $\{ \bm{x}_{i,j} \}$.
+On estimating the parameters for mixed-membership models, a number of approaches have been proposed.
+
+After realizing the relationships with mixed-membership models, 
+a number of  past parameter estimation techniques proposed for mixed-membership models can be tailored for the proposed model.
+EM-algorithm (or its variant, called tempered EM algorithm) have been adopted in classical topic models 
+for document classification (\cite{Hofmann:1999}) and population structure estimation (\cite{tang2005estimation}).
+In the population structure estimation problem, \cite{pmid19648217} has proposed 
+a fast block relaxation scheme using sequential quadratic programming for block updates
+with a quasi-Newton acceleration of convergence \cite{zhou2011quasi}, demonstrating a great improvement over EM-algorithm.
+Similar techniques are used in \cite{taddy2011estimation} for the document classification.
+For the estimation of Bayesian mixed-membership models, 
+(collapsed) Gibbs sampling \cite{pmid10835412,pmid14872004} and 
+variational method \cite{Blei:2003,teh2006collapsed,raj2014variational} have been proposed. 
+
+In this paper, we adopt a relatively simple approach that uses EM-algorithm.
+However, there is a great possibility that we can devise far more efficient approach based on past experiences.
+Let $g_{i, \bm{m}}$ denote the number of the $i$-th sample's mutations with the mutation feature vector $\bm{m}$.
+
+Introducing the auxiliary variables $\theta_{i, k, \bm{m}}$, 
+we update these auxiliary variables in the E-step as
+
+\begin{equation*}
+\theta_{i, k, \bm{m}} = \frac{  q_{i,k} \prod_{l=1}^L f_{k,l,m_l} }{ \sum_{k^{\prime} = 1}^K q_{i, k^{\prime} } \prod_{l=1}^L f_{k^{\prime}, l, m_l } }.
+\end{equation*}
+
+Then, in the M-step, we update the parameters $\{ f_{k, \bm{m} } \}$ and $\{ q_{i, k} \}$ as
+
+\begin{equation*}
+f_{k, l, p} = \frac{ \sum_{\bm{m} : m_l = p} g_{i, \bm{m}} \theta_{i, k, \bm{m}} }{ \sum_{p^{\prime} } 
+\sum_{\bm{m} : m_l = p^{\prime}}  g_{i, \bm{m}}\theta_{i, k, \bm{m}} },
+\end{equation*}
+\begin{equation*}
+q_{i, k} = \frac{ \sum_{\bm{m}} g_{i, \bm{m}} \theta_{i, k, \bm{m} } }{  \sum_{k^{\prime} }\sum_{\bm{m}} g_{i, \bm{m}} \theta_{i, k^{\prime}, \bm{m} } }.
+\end{equation*}
+
+In addition, we use SQUAREM \cite{varadhan2008simple},
+which is a general framework for accelerating the convergence of any fixed-point iteration such as EM algorithm. 
+Furthermore, to reduce problems with convergence to local minima, 
+we performe EM-algorithm several times (10 times in this paper) changing the initial points,
+and adopt the estimate with the maximum log-likelihood.
+For the derivation of EM-algorithm, please see Supplementary Material.
+
+
+\subsection*{Adding background signatures}
+
+There may be a possibility that the intrinsic composition of the genome sequence influences the estimated mutation signatures.
+For example, the number of observed C $>$ T transitions at CpG sites may increase at promoter regions,
+just because CpG dinucleotides are more frequent in those regions.
+In the previous research \cite{pmid23628380}, this background problem was dealt 
+by explicitly incorporating mutation ``opportunity'' coefficients into the model.
+
+Here, to offset the influences of intrinsic sequence composition, we add background signatures 
+$\{ \bm{f}_{0, \bm{m}} \} \in \Delta^{M_1 \times  \cdots \times M_L}$.
+For example, when obtaining the background signatures in case of considering substitution patterns and up to $\pm 2$ bases, 
+we first calculate the frequencies of 5-mers where complement sequences are taken when the central bases are A or G,
+and then the frequencies divided by 3 was give on each mutation feature vectors $\bm{m}$
+considering the alternated bases are equally likely.
+Since we mainly deal with mutation data from exome sequencing,
+background signatures were calculated on entire exonic regions.
+
+
+\subsection*{Estimating standard errors}
+
+The standard errors for the parameter estimates are calculated using bootstrap, 
+where somatic mutations are resampled according to the empirical distribution of the original data $\{ \bm{x}_{i,j} \}$ for each cancer genome.
+For each bootstrap resample, we performed the re-estimation using parameters obtained for the original data as initial points,
+and calculated sample standard errors of the inferred mutational signatures as estimates of parameter standard errors.
+In this paper, we performed 100 bootstrap resampling.
+
+
+\subsection*{Selecting the number of signatures}
+
+Determining the number of mutation signatures $K$ is an important and challenging task. 
+One approach is to utilize some statistical information criteria such as AIC \cite{akaike1974new}, BIC \cite{schwarz1978estimating}.
+In the population structure problems, for example, 
+the Bayesian deviance \cite{pmid10835412}, 
+and cross-validation \cite{alexander2011enhancements} have been suggested.
+One previous study on mutation signature problems \cite{pmid23628380} utilized BIC.
+The problem of using these statistical information criteria is that most of them are based on the likelihood,
+where slight deviations between the specified probabilistic models and the reality sometimes lead to 
+larger number of mutation signatures for compensating those deviations,
+and produce results with a risk of over-interpretation.
+
+In this paper, instead of utilizing statistical information criteria,
+we adopt following strategies:
+
+\begin{itemize}
+\item
+After calculating the likelihood and standard errors of parameters for a range of $K$,
+the value of $K$ is determined at the point where the likelihood is sufficiently high, 
+and the standard errors are sufficiently low \cite{pmid23318258}.
+
+\item
+When, for $k_1$-th and $k_2$-th mutation signatures, 
+we could detect strong correlations between the estimated membership parameters 
+for each cancer genome
+($(q_{1,k_1}, q_{2,k_1}, \cdots, q_{I,k_1})$ and $(q_{1,k_2}, q_{2,k_2}, \cdots, q_{I,k_2})$),
+and the two mutation signatures ($\{ f_{k_1, \bm{m} } \}$ and $\{ f_{k_2, \bm{m} } \}$ ) show similar patterns,
+then it is likely that an excess amount of $K$ forced to split one mutation signature into two.
+We stop increasing $K$ before these pairs of mutation signatures are observed.
+
+\end{itemize}
+
+The strategies listed above are probably not exhaustive, 
+and we should add other practical strategies observing various situations.
+In addition, it would be nice is we could devise automated and practical approaches for choosing $K$,
+which is a possible future challenges.
+
+
+
+% Results and Discussion can be combined.
+\section*{Results}
+
+\subsection*{Experiments on synthetic data}
+
+First, we would like to investigate whether the proposed approach can extract ``true'' mutation signatures or not.
+Since we can not know the true mutation signatures in real biological data, we resorted to simulation studies.
+
+Here, we generated a set of mutations changing the number of cancer genomes (10, 25, 50, 100), 
+and the number of mutations for each cancer genome (10, 25, 50, 100, 250, 500, 1000).
+The number of mutation signatures were set to 5 including background mutation ratio.
+The mutation feature parameters and signature distribution parameters were generated by Dirichlet distribution,
+
+\begin{equation*}
+ f_{k,l,m_l} \sim \text{Dir} (\alpha \bm{1} ),\ k = 1, \cdots, K,\  l = 1, \cdots, L.
+\end{equation*}
+ \begin{equation*}
+ q_{i, k} \sim \text{Dir} (\gamma \bm{1} ),\ i = 1, \cdots, I,
+ \end{equation*}
+where the $\alpha$ and $\gamma$ represent the amounts of dispersion 
+for the mutation features parameters and signature distribution parameters, respectively.
+When these values are smaller, only a fewer components can have larger probability masses.
+and the rest will have much smaller masses.  
+When these are large, all the components tend to have evenly-distributed probability masses.
+ 
+Overall, we could estimate the mutation signatures very accurately.
+For example, when the number of cancer genomes and mutations for each cancer genome is 25 and 100, respectively,
+we could recover the true signatures very accurately in most cases (see Supplementary Figure 1 as an example).
+Furthermore, in most cases, the log-likelihood stopped increasing at five mutation signatures, 
+whereas the standard error of the estimated parameters started increasing past five mutation signatures (see Supplementary Figure 2),
+indicating that true number of mutation signatures can be recovered by observing the trade-off between likelihood and standard-errors.
+
+As expected, as we increase the number of either cancer genomes or mutations, the accuracy of the estimates increased.
+Also, as we increase the value of $\alpha$, then the accuracy of the estimated signatures got worse.
+However, even we increase the value of $\gamma$, the accuracy of the estimate signatures did not changed much.
+Therefore, the dispersion of mutation feature parameters influences the accuracy of mutation signatures
+more sensitively than signature distribution parameters.
+
+
+\subsection*{Experiments using cancer genomes from urothelial carcinoma of the upper urinary tract}
+
+In this section, we compare the ``full representation'' and the ``independent representation'' by examining mutation signatures obtained by the two approaches,
+and investigate the robustness by downsampling experiments.
+The dataset used here is a list of 14717 somatic substitutions 
+collected from the study of 26 urothelial carcinomas of the upper urinary tract (UTUC) \cite{pmid23926200},
+where they found a novel mutation signature: 
+T $>$ A substitutions at CpTpG sites with a strong strand specificity caused by aristolochic acids (AAs).
+
+First, we performed the proposed method,
+considering substitution patterns, up to $\pm 2$ sites and strand directions as mutation features.
+For the full representations, we assign one integer for each combination of these features, and thus $L = 1, \bm{M} = (3072)$.
+For the independent representation, $L = 6, \bm{M} = (6, 4, 4, 4, 4, 2)$.
+
+First, performed on various number of mutation signatures $K$, we observed how the detected mutation signatures changes (See Supplementary Figure 3).
+See Supplementary Figure 4 for the values of likelihood and bootstrap-errors.
+For $K = 2$ including a back-ground signatures., a mutation signature which seem to correspond to AA  (T $>$ A substitutions at CpTpG sites with strong transcription direction) was observed.
+For $K = 3$, an additional mutation signature corresponding APOBEC enzyme (C $>$ Y at TpCpN sites) was observed
+in addition to the AA mutation signature.
+For $K = 4$, an additional signature (T $>$ A at NpTpN sites with strong transcription direction) 
+that is similar to the AA signature was observed. 
+When we check the correlation of estimated membership parameter for each cancer genome, 
+strong correlation between the AA signature (CpTpG $>$ CpApG) can be observed ($R = 0.77$, see Supplementary Figure 5). 
+This additional signature may be just making up for the residual of the AA signature 
+which the original AA signature could not explain due to a slight deviance of probabilistic model.
+Similar results were obtained when using full the representation model ($L = 1, \bm{M} = (3072)$).
+Therefore, $K = 3$ seems to be one reasonable choice in terms of the interpretability
+(Fig. \ref{UTUC:APOBEC_full5_sig}, \ref{UTUC:AA_full5_sig}).
+
+For the independent representation model, we could observed the depletion of G base at the $-2$ sites,
+which is consistent to the previous study \cite{pmid23318258} and the result in the next subsection.
+On the other hand, for the full representation model, this tendency was rather mild.
+Inferred AA mutation signature had no clear characteristics at two bases 5' and 3' to the mutated site 
+compared to the APOBEC mutation signature.
+
+
+Next, setting the number of mutation signatures $K = 3$, assuming that the mutation signatures obtained using whole 14717 substitutions as a gold standard, 
+we performed the proposed method on down-sampled data (1\%, 2.5\%, 5\%, 10\%, 25\%, 50\%), 
+and compared obtained signatures with the gold standard.
+For measuring the deviations of the mutation signature, the cosine distance is used on the $\prod_{l=1}^L M_l$ dimensional vector space $f_{i, \bm{m}} = \prod_{l=1}^L f_{k,l,m_l}$,
+so that the comparison between the full representation and the independent representation become possible for the same number of adjacent bases.
+Trials for downsampling experiment for each ratio and model were repeated for 100 times.
+
+As the Fig. \ref{UTUC:APOBEC_downsampling} shows,  the independent representation could recover the original signatures even when about 90 \% of the data was removed.
+In this experiment, the AA signature was more robust than the APOBEC signature.
+This is because the number of T $>$ A substitutions at GpTpC sites are more frequent in this dataset.
+These results indicate that while both the estimation under the full representation and the independent representation could efficiently extract known mutation signatures,
+and the estimation under the independent representation is more robust than the full representation.
+
+
+
+\subsection*{Application to pan-cancer somatic mutation data}
+
+Finally, we have applied the proposed method for the pan-cancer somatic mutation data \cite{pmid23945592}.
+For each cancer type, the proposed method was applied separately.
+By changing the number of mutation signatures and calculating values of the log-likelihood and bootstrap errors,
+we have chosen the number of mutation signatures for each cancer type.
+The estimated mutation signatures across cancer types were clustered by Frobenius Distance.
+ % (see Supplementary Material for the values of the log-likelihoods and bootstrap errors for each cancer type).
+
+
+
+The Figure \ref{nature2013_sig_summary},  \ref{nature2013_sig_member} shows the summary of the obtained mutation signatures.
+In total, 27 mutation signatures were extracted.
+The signature 1 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and related to deamination of 5-methyl-cytosine.
+The signature 2 (T $>$ [GT] at TpCpN sites) was observed in 12 cancer types, and related to the activity of APOBEC family.
+The signature 6 and the signature 7 (C $>$ T at TpCpG and C $>$ A at TpCpT, respectively) were observed in colorectal and uterine cancers,
+and associated with deregulated activity of the error-prone polymerase Pol $\epsilon$.
+Interestingly, for representing the signature for the Pol $\epsilon$ dysfunction, which was represented by one signature in the previous study,
+the proposed method utilized two mutation signatures for compensating simplified representation powers.
+The signature 10 (C $>$ T at NpCp[CT]) were observed in melanomas and glioblastomas, 
+and seems to be associated with temozolomide, an anticancer drug.
+The signature 13 (C $>$T at [CT]pCpC) were observed in head and neck cancers and melanomas, and probably related to ultraviolet light.
+The signature 19 (C $>$ T at GpCp[CG]) were observed in small-cell lung cancers and stomach cancers,
+and seems to be the same with the ``signature 15'' in the previous study, whose function is still not clear.
+
+
+Furthermore, a number of prominent mutation signatures observed in one cancer type 
+had common characteristics with those observed in the previous study:
+the signature 9 (T $>$ G at CpTpT) observed in oesophagus cancers, 
+the signature 11 (C $>$ A at [CT]pCpT) observed in low grade gliomas,
+the signature 16 (T $>$ C at NpTpA) observed in liver cancers, 
+the signature 22 (C $>$ A at NpCp[AT]) observed in neuroblastomas,
+the signature 24 (C $>$ T at [CG]pCp[CT]) observed in pilocytic astrocytomas, 
+and the signature 26 (T $>$ C at GpTpN) in stomach cancers.
+These results indicate that the proposed method can capture 
+many of prominent mutation signatures detected in the previous study.
+
+
+Many of the signatures captured in this study 
+had prominent features at the two bases 5' and 3' to the mutated sites.
+For the signature 2, the signatures captured different cancer types are highly consistent (Supplementary Figrue 6),
+and they consistently showed depletion of G base at two bases 5' to the mutated site,
+backing up the result obtained from UCUT data in the previous subsection and the previous study  \cite{pmid23318258}.
+For the signature 6 and signature 7 (Supplementary Figrue 7, 8), 
+signatures for the two different cancer types consistently showed abundance of T base at two bases 5' to the mutated site,
+and abundance of T bases at two bases 5' and 3' to the mutated site, respectively.
+For the signature 19, depletion of C base at two bases 5' to the mutated site is consistently observed (Supplementary Figrue 9).
+Therefore, the proposed method can capture the characteristic features at the two bases 5' and 3' to the mutated sites.
+
+
+
+\section*{Discussion}
+
+
+In this paper, we proposed a novel framework for extracting mutation signatures from a set of somatic point substitutions.
+We have shown close relationships with mixed membership models, 
+that have been deeply investigated in statistical genetics and machine learning fields, as well as nonnegative matrix factorization.
+We have demonstrated that the proposed method could capture meaningful characteristics of mutational patterns.
+
+There is a lot of room for improvement by learning from past experiences and knowledge.
+First, introducing certain prior distributions or penalty terms can lead more efficiency in terms of both accuracy and interpretation,
+considering the success in machine learning and statistical genetics communities.
+\cite{hoyer2004non, engelhardt2010analysis}.
+In the documentation classification problem, 
+adopting determinantal point process priors \cite{kulesza2012determinantal, kwok2012priors}
+is demonstrated to be helpful for obtaining more diverse and intuitively interpretable topics,
+avoiding over fine-tuning for frequent groups of words with multiple similar topics.
+Second, utilizing other metrics than Euclidean distance and Kullback-Leibler Divergence might be worth investigating.
+For nonnegative matrix factorization, 
+the metric called $\beta$ divergence \cite{basu1998robust, eguchi2001robustifying}, 
+has been successfully utilized in many research fields (reviewed in \cite{fevotte2011algorithms}).
+Third, for avoiding the problem of determining the number of latent variables, 
+introducing Hierarchical dirichlet processes \cite{teh2006hierarchical}, 
+which is a natural extension of topic models to nonparametric Bayesian frameworks, might be helpful.
+
+
+In this paper, we have demonstrated that the independent representations could obtain more robust estimates than the full representations.
+Also, even in the independent representations, more complex mutational process could be represented by utilizing multiple mutation signatures.
+However, we still do not know about the exact mechanisms of mutational processes and 
+there might be those that should be represented by the full representations or somewhere between the full representations and the independent representations.
+We should keep exploring appropriate representations of mutation signature with expertise from biology and chemistry.
+
+
+We have just focused on somatic substitutions in this paper.
+However, there are a variety of mutations in cancer genomes, 
+such as insertions, deletions, double nucleotides substitutions, structural variations and copy number alterations.
+Our framework can potentially treat those mutations by considering appropriate mutation features.
+For example, for deletions, potential mutation features can be the lengths of deletions, adjacent bases, and so on.
+However, detailed investigation on what mutation features are practical is a future problem.
+
+
+
+
+% Do NOT remove this, even if you are not including acknowledgments.
+
+\section*{Acknowledgments}
+
+The first author would like to thank to Dr. Daichi Mochihashi for helpful discussion and comments on earlier version on the proposed method.
+Many of the contents in this paper is deeply influenced by what was going on at Matthew Stephens Laboratory,
+when the first author stayed at the University of Chicago as a visiting scholar.
+The first author would like to thank to the members in Matthew Stephens and John Novembre Laboratory, especially Dr. John Novembre,
+Dr. Jacob Degner for helpful discussion and comments.
+
+% \section*{References}
+
+% Either type in your references using
+% \begin{thebibliography}{}
+% \bibitem{}
+% Text
+% \end{thebibliography}
+%
+% OR
+%
+% Compile your BiBTeX database using our plos2009.bst
+% style file and paste the contents of your .bbl file
+% here.
+% 
+
+% \bibliographystyle{plos2009}
+
+\bibliography{plos_template}
+
+
+% \section*{Figure Legends}
+% This section is for figure legends only, do not include
+% graphics in your manuscript file.
+%
+%\begin{figure}
+%\caption{
+%{\bf Bold the first sentence.}  Rest of figure caption.  
+%}
+%\label{Figure_label}
+%\end{figure}
+
+\newpage
+
+ \section*{Tables}
+% 
+% See introductory notes if you wish to include sideways tables.
+%
+% NOTE: Please look over our table guidelines at http://www.plosone.org/static/figureGuidelines#tables to make sure that your tables meet our requirements. Certain types of spacing, cell merging, and other formatting tricks may have unintended results and will be returned for revision.
+%
+%\begin{table}[!ht]
+%\caption{
+%\bf{Table title}}
+%\begin{tabular}{|c|c|c|}
+%table information
+%\end{tabular}
+%\begin{flushleft}Table caption
+%\end{flushleft}
+%\label{tab:label}
+% \end{table}
+
+
+
+
+\begin{table}[!ht]
+\caption{
+{\bf Example of representation for mutation patterns (substitution patterns and one 5' and 3' bases)}
+In the independent representation, the elements of vector show substitution patterns, 5' adjacent bases and 3' adjacent bases, respectively.
+For the substitution pattens, 1 to 6 values are assigned to C$>$A, C$>$G, C$>$T, T$>$A, T$>$C and T$>$G in this order.
+For 5' and 3' adjacent bases, 1to 4 values are assigned to A, C, G and T.
+Note that the original base is fixed to C or T to remove the redundancy of complement sequences.
+}
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+mutation pattern & full representation & independent representation  \\ \hline
+$L$ & 1  & 3  \\
+$\bm{M}$ & (96)  & (6, 4, 4) \\  \hline
+ApCpA $\to$ ApCpA & (1)  & (1, 1, 1)  \\ 
+ApCpC $\to$ ApApC & (2)  & (1, 1, 2)  \\ 
+ApCpG $\to$ ApApG & (3)  & (1, 1, 3)  \\
+ApCpT $\to$ ApApT & (4)  & (1, 1, 4)  \\
+CpCpA $\to$ CpApA & (5)  & (1, 2, 1) \\
+$\cdots$ & $\cdots$ & $\cdots$ \\
+ApCpA $\to$ ApGpA & (17)  & (2, 1, 1) \\
+$\cdots$ & $\cdots$ & $\cdots$ \\
+TpTpT $\to$ TpGpT & (96)  & (6, 4, 4) \\ \hline
+\end{tabular}
+\end{center}
+\label{tab_rep}
+\end{table}
+
+
+
+\clearpage
+
+\begin{table}[!ht]
+\caption{
+{\bf Relationships among mutation signature model, topic models, and population structure models.}
+}
+\begin{center}
+\begin{tabular}{|l|l|l|l|} \hline
+problem & $\bm{x}_{i,j}$ & $\bm{f}_{k}$ & $\bm{q}_{i}$  \\ \hline
+mutation signature model & the $j$-th mutation  & the feature dist.  & the signature dist.  \\
+& in the $i$-th cancer genome & for the $k$-th signature & for the $i$-th cancer genome \\ \hline
+topic model &  the $j$-th word & the word dist. & the topic dist. \\ 
+& in the $i$-th document & for the $k$-th topic & for the $i$-th document \\ \hline
+population structure model & the $j$-th locus genotype & the allele freq.  & the admixture dist. \\
+& of the individual $i$  & for the ancestry $k$ & for the individual $i$ \\
+\hline 
+\end{tabular}
+\end{center}
+\label{tab_pop}
+\end{table}
+
+
+\clearpage
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=15cm,height=4cm]{APOBEC_example.eps}
+\caption{The APOBEC signature extracted in the previous study (Signature 2 in \cite{pmid23945592}).
+The barplot is divided by 6 substitution patterns.
+In each division, 16 bars shows joint probability of 16 patterns of immediate 5' and 3' bases combinations 
+(ApNpA, ApNpC, ApNpG, ApNpT, CpNpA, $\cdots$, TpTpT) and substitution patterns.
+The strong intensities of the last four bars for the substitution patterns with original base C 
+indicates that the immediate 5' base is mostly confined to T in this signature.
+}
+\label{APOBEC_example}
+\end{figure*}
+
+\clearpage
+
+\begin{figure*}
+
+\begin{minipage}{0.45\textwidth}
+\begin{center}
+\includegraphics[width=8cm,height=5cm]{pancreas_4_2.eps}
+
+\end{center}
+\end{minipage}
+\begin{minipage}{0.55\textwidth}
+
+\begin{center}
+\makeatletter
+ \def\@captype{table}
+\makeatother
+
+\subtable[substitution pattern]{\label{tab:tab11}
+\small
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+C$>$A & C$>$G & C$>$T & T$>$A & T$>$C & T$>$G \\
+\hline
+0.061 & 0.020 & 0.514 & 0.000 & 0.405 & 0.000 \\
+\hline
+\end{tabular}
+}
+
+\subtable[adjacent bases]{\label{tab:tab12}
+\small
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+positions to the mutated site & A & C &  G & T \\
+\hline
+-2 & 0.146 & 0.257 & 0.128 & 0.469 \\
+-1 & 0.183 & 0.389 & 0.331 & 0.096 \\
++1 & 0.161 & 0.107 & 0.013 & 0.719 \\
++2 & 0.019 & 0.265 & 0.367 & 0.350 \\
+\hline
+\end{tabular}
+}
+
+
+\subtable[strand direction]{\label{tab:tab13}
+\small
+\begin{tabular}{|c|c|}
+\hline
+plus strand & minus strand  \\
+\hline
+0.375 & 0.625 \\
+\hline
+\end{tabular}
+}
+
+% \caption{sample}
+% \label{label 2}
+\end{center}
+\end{minipage}
+\caption{An example of a mutation signature and its visualization in the proposed approach.
+Here, mutation features (substitution patterns, two 5' and 3' bases and strand direction) 
+are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).}
+\label{mutSig_example}
+
+\end{figure*}
+
+
+
+\begin{figure*}[ht]
+\centering
+
+\subfigure[APOBEC signature for the full model]{%
+  \includegraphics[height=4cm,width=7.5cm,clip]{APOBEC_full5_dir_sig.eps}
+  \label{UTUC:APOBEC_full5_sig}}
+\quad
+\subfigure[AA signature for the full model]{%
+  \includegraphics[height=4cm,width=7.5cm,clip]{AA_full5_dir_sig.eps}
+  \label{UTUC:AA_full5_sig}}
+  
+\subfigure[APOBEC signature for the independent model]{%
+  \includegraphics[height=4cm,width=7.5cm,clip]{APOBEC_ind5_dir_sig.eps}
+  \label{UTUC:APOBEC_ind5_sig}}
+\quad
+\subfigure[AA signature for the independent model]{%
+  \includegraphics[height=4cm,width=7.5cm,clip]{AA_ind5_dir_sig.eps}
+  \label{UTUC:AA_ind5_sig}}
+  
+  
+\subfigure[APOBEC signature stability]{%
+  \includegraphics[height=5.5cm,width=7.5cm,clip]{APOBEC_downsampling.eps}
+  \label{UTUC:APOBEC_downsampling}}
+\quad
+\subfigure[AA signature stability]{%
+  \includegraphics[height=5.5cm,width=7.5cm,clip]{AA_downsampling.eps}
+  \label{UTUC:AA_downsampling}}
+%
+\caption{The mutation signatures for UTUC data, and the results of downsampling experiments. 
+A total of 3072 elements in the full model mutation signatures were shown divided by substitution patterns and strand directions.}
+\label{UTUC}
+\end{figure*}
+
+
+\clearpage
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=15cm,height=6cm]{facet_result.eps}
+\caption{The accuracy of the proposed approach for the simulated data when changing
+the number of samples and mutations, 
+and the amounts of dispersion parameters for the mutation features and signature distribution parameters.
+}
+\label{sim_facet}
+\end{figure*}
+
+
+\clearpage
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=16cm,height=16cm, angle=270]{signature_summary.eps}
+\caption{The summary of mutation signatures obtained using the proposed method,
+where the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features.
+}
+\label{nature2013_sig_summary}
+\end{figure*}
+
+\clearpage
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=15cm,height=15cm]{membership_summary.eps}
+\caption{The summary of membership of each mutation signature across cancer types.}
+\label{nature2013_sig_member}
+\end{figure*}
+
+
+
+\clearpage
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=15cm,height=15cm]{APOBEC.eps}
+\caption{The intensities at two 5' base to the mutated site for 14 mutation signatures categorized as signature 2}
+\label{nature2013_sig_apobec}
+\end{figure*}
+
+
+% \section*{Supporting Information Legends}
+%
+% Please enter your Supporting Information captions below in the following format:
+%\item{\bf Figure SX. Enter mandatory title here.} Enter optional descriptive information here.
+% 
+%\begin{description}
+%\item {\bf}
+%\item {\bf}
+%\end{description}
+
+
+\end{document}
+
