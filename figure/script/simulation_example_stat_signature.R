@@ -66,7 +66,7 @@ ggplot(simulation_stat, aes(x = sigNum, y = value)) +
         panel.grid.minor.x = element_line(colour="grey60", linetype="dashed"),
         strip.text = element_text(face="bold", size=rel(1.2)));
 
-ggsave("../../result/simulation_stat.eps", width=15, height=5, units = "in");
+ggsave("../../supp/simulation_stat.eps", width=15, height=5, units = "in");
 
 
 
@@ -116,6 +116,6 @@ for (i in 1:length(relvect)) {
 }
 
 
-dev.copy2eps(file="../../result/simulation_signature_example.eps", height = 5.5, width = 15);
+dev.copy2eps(file="../../supp/simulation_signature_example.eps", height = 5.5, width = 15);
 
 

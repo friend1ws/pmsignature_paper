@@ -7,7 +7,7 @@ type <- c();
 
 
 for(K in 2:6) {
-  fileName <- paste("../../../UTUC/result/Param_ind/", K, ".Rdata", sep="");
+  fileName <- paste("../../UTUC/result/Param_ind/", K, ".Rdata", sep="");
   load(fileName);
   
   sigNum <- c(sigNum, K, K, K);
@@ -53,6 +53,6 @@ ggplot(UTUC_stat, aes(x = sigNum, y = value)) +
         panel.grid.major.x = element_line(colour="grey60", linetype="dashed"),
         strip.text = element_text(face="bold", size=rel(1.2)));
 
-ggsave("../../result/UTUC_stat.eps", width=15, height=5, units = "in");
+ggsave("../../supp/UTUC_stat.eps", width=15, height=5, units = "in");
 
 

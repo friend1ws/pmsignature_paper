@@ -306,6 +306,16 @@ for (i in 1:length(Fs)) {
 }
 
 
+if (i < ceiling(length(Fs) / 4) * 4) {
+  i <- i + 1;
+  for (j in i:(ceiling(length(Fs) / 4) * 4)) {
+    plot.new();
+    plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+    polygon(c(-0.25, 6.6, 6.6, -0.25), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);
+  }
+}
+
+
 outputName <- "../../manuscript/AlexandrovEtAl_mergedSignature.eps";
 dev.copy2eps(file=outputName, height = ceiling(length(Fs) / 4) * 2.5, width = 16, pointsize = 18);
 par(.pardefault);

@@ -1,0 +1,14 @@
+*.Rhistory
+*/result
+manuscript/*.pdf
+manuscript/*.aux
+manuscript/*.bbl
+manuscript/*.blg
+manuscript/*.log
+manuscript/*.out
+manuscript/*.synctex.gz
+manuscript/*
+supp/*.pdf
+supp/*.aux
+supp/*.log
+supp/*.synctex.gz
