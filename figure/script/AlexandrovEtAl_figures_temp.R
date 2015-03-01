@@ -277,42 +277,112 @@ for (i in 1:length(removeList)) {
 }
 
 
+####################
+# change the order of the signature
+remainInd <- 1:length(Fs);
+newOrder <- c();
+
+for (k in remainInd) {
+  if (Fs[[k]][1,1] > 0.6) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+for (k in remainInd) {
+  if (Fs[[k]][1,2] > 0.6) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+for (k in remainInd) {
+  if (Fs[[k]][1,3] > 0.6) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+for (k in remainInd) {
+  if (sum(Fs[[k]][1,1:3]) > 0.75) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+
+for (k in remainInd) {
+  if (sum(Fs[[k]][1,4]) > 0.6) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+for (k in remainInd) {
+  if (sum(Fs[[k]][1,5]) > 0.6) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+for (k in remainInd) {
+  if (sum(Fs[[k]][1,6]) > 0.6) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+
+for (k in remainInd) {
+  if (sum(Fs[[k]][1,4:6]) > 0.75) {
+    newOrder <- c(newOrder, k);
+    remainInd <- remainInd[-which(remainInd == k)];
+  }
+}
+
+newOrder <- c(newOrder, remainInd)
+##########
+
+
 #' generate the figure of mutation signatures
 
 par(mar=c(0, 0, 0, 0));
 par(bg = rgb(0.9, 0.9, 0.9));
 par(xaxs = "i", yaxs = "i");
 par(mfrow=c(ceiling(length(Fs) / 4), 4));
-# myOrder <- c(7, 11, 12, 15, 21,  # C > A
-             1, 6, 10, 13, 18, 20, 23, # C > T
-             2, 8, 14, 22, #C > any
-             9, 16, 19, 24, #T > any
-             3, 4, 5, 17, 25, 26)
 
-# for (i in myOrder) {
-for (i in 1:length(Fs)) {
+curSig <- 1;
+for (i in newOrder) {
+# for (i in 1:length(Fs)) {
   plot.new();
   plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
   polygon(c(-0.25, 6.25, 6.25, -0.25), c(-0.25, -0.25, 3.75, 3.75), col = "white", border = FALSE);
   visPMS_ind(Fs[[i]], numBases = 5, trDir = FALSE, charSize = 1);
   # visPMS_ind5_mod3(Fs[[i]], 1 / 100000);
-  mtext(paste("signature", i),
+  mtext(paste("signature", curSig),
         outer = FALSE,      # 作図領域の外の余白に書く
         side = 3,          # 上の余白に書く
         cex = 1,         # 字の大きさ
         line = -1.5,          # 外に向かって 0.5行離れたところに書く．
-        col = "black")      
+        col = "black")    
+  curSig <- curSig + 1;
 
 }
 
-
+i <- max(newOrder);
+edgeFlag <- 1;
 if (i < ceiling(length(Fs) / 4) * 4) {
   i <- i + 1;
   for (j in i:(ceiling(length(Fs) / 4) * 4)) {
     plot.new();
     plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
-    polygon(c(-0.25, 6.6, 6.6, -0.25), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);
-  }
+    if (edgeFlag == 1) {
+      polygon(c(-0.25, 6.3, 6.3, -0.25), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);
+      edgeFlag <- 0;
+    } else {
+      polygon(c(-0.3, 6.3, 6.3, -0.3), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);      
+    }
+ }
 }
 
 
@@ -338,16 +408,27 @@ for (i in 1:length(Fs)) {
 
 #########
 #' generate the table showing the relationships between signatures and cancer types
-sig2type <- matrix(0, length(typeVec), length(type2sigNum[,1]));
-for (i in 1:length(typeVec)) {
+
+sig2type <- matrix(0, 0, length(type2sigNum[,1]));
+sigNames <- c();
+curSig <- 1;
+
+for (i in newOrder) {
+# for (i in 1:length(typeVec)) {
   types <- strsplit(typeVec[i], split=",")[[1]];
+  tempSig2type <- rep(0, length(type2sigNum[,1]));
   for (j in 1:length(types)) {
     tempType <- substring(types[j], 1, nchar(types[j]) - 2);
-    sig2type[i, which(tempType == type2sigNum[,1])] <- 1;
+    # sig2type[i, which(tempType == type2sigNum[,1])] <- 1;
+    tempSig2type[which(tempType == type2sigNum[,1])] <- 1;
   }
+  sig2type <- rbind(sig2type, tempSig2type);
+  sigNames <- c(sigNames, paste("signature", curSig));
+  curSig <- curSig + 1;
 }
 
-rownames(sig2type) <- paste("signature", 1:length(typeVec));
+# rownames(sig2type) <- paste("signature", 1:length(typeVec));
+rownames(sig2type) <- sigNames;
 colnames(sig2type) <- type2sigNum[,1];
 
 myCol <- colorRampPalette(c("#F8F8FF", "#F8F8FF", "#F8F8FF", "#6B8E23"));
@@ -360,6 +441,149 @@ dev.copy2eps(file=outputName, height = 15, width = 15, pointsize = 18);
 par(.pardefault);
 
 ##########
+
+
+# get the index for important signature
+for (k in 1:length(Fs)) {
+  # APOBEC
+  if (Fs[[k]][1,2] > 0.35 & Fs[[k]][1,3] > 0.4 & Fs[[k]][3,4] > 0.85) {
+    APOBEC_ind <- k;
+  }
+  
+  if (Fs[[k]][1,1] > 0.6 & Fs[[k]][3,4] > 0.6 & Fs[[k]][4,4] > 0.6) {
+    POLE1_ind <- k;
+  }
+  
+  if (Fs[[k]][1,3] > 0.7 & Fs[[k]][3,4] > 0.7 & Fs[[k]][4,3] > 0.6) {
+    POLE2_ind <- k;
+  }
+
+  if (Fs[[k]][1,3] > 0.8 & Fs[[k]][3,2] > 0.3 & Fs[[k]][3,4] > 0.35 & Fs[[k]][4,2] > 0.3) {
+    UV_ind <- k;
+  }
+  
+  if (Fs[[k]][1,3] > 0.8 & Fs[[k]][3,3] > 0.7 & Fs[[k]][4,3] > 0.5) {
+    LMST_ind <- k;
+  }
+}
+
+
+importantSigs <- c(APOBEC_ind, POLE1_ind, POLE2_ind, UV_ind, LMST_ind);
+names(importantSigs) <- c("APOBEC", "POLE1", "POLE2", "UV", "LMST");
+
+# generate figures for each signature group
+
+#' Export eps, width=800, height=600 (sig2) 
+
+for (i in 1:length(importantSigs)) {
+  
+  # outputName <- paste("sig_group/signature_", i, ".png", sep="");
+  # png(outputName, height = ceiling(length(types) / 3) * 300, width = 1200, pointsize = 32);
+  
+  par(mar=c(0, 0, 0, 0));
+  par(bg = rgb(0.9, 0.9, 0.9));
+  par(xaxs = "i", yaxs = "i");
+  types <- strsplit(typeVec[importantSigs[i]], split=",")[[1]];
+  
+  if (length(types) > 4) {
+    par(mfrow=c(ceiling(length(types) / 4), 4));
+  } else {
+    par(mfrow = c(1, length(types)));
+  }
+  
+
+  # plot.new();
+  for (j in 1:length(types)) {
+    
+    typeName <- as.character(strsplit(types[j], split="_")[[1]][1]);
+    typeSigNum <- type2sigNum[type2sigNum == typeName, 2];
+    sigInd <- as.integer(strsplit(types[j], split="_")[[1]][2]);
+    F <- getF(typeName, typeSigNum, fdim, sigInd);
+
+    plot.new();
+    plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+    polygon(c(-0.25, 6.25, 6.25, -0.25), c(-0.25, -0.25, 3.75, 3.75), col = "white", border = FALSE);
+    
+    visPMS_ind(F, numBases = 5, trDir = FALSE, charSize = 1);
+    mtext(types[j],
+          outer = FALSE,      # 作図領域の外の余白に書く
+          side = 3,          # 上の余白に書く
+          cex = 1,         # 字の大きさ
+          line = -1.5,          # 外に向かって 0.5行離れたところに書く．
+          col = "black")        
+    
+  }
+  
+  j <- length(types);
+  edgeFlag <- 1;
+  if (length(types) > 4 & j < ceiling(length(types) / 4) * 4) {
+    j <- j + 1;
+    for (jj in j:(ceiling(length(types) / 4) * 4)) {
+      plot.new();
+      plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+      if (edgeFlag == 1) {
+        polygon(c(-0.25, 6.3, 6.3, -0.25), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);
+        edgeFlag <- 0;
+      } else {
+        polygon(c(-0.3, 6.3, 6.3, -0.3), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);      
+      }
+    }
+  }
+  
+  
+  
+  outputName <- paste("../../manuscript/signatureList_", names(importantSigs)[i], ".eps", sep="");
+  
+  if (length(types) > 4) {
+    dev.copy2eps(file=outputName, height = ceiling(length(types) / 4) * 2.5, width = 16, pointsize = 18);
+  } else {
+    dev.copy2eps(file=outputName, height = 2.5, width = 4 * length(types), pointsize = 18);    
+  }
+  
+  
+}
+par(.pardefault);
+
+
+##########
+# two 5' bases from the mutated site for APOBEC mutation signature
+types <- strsplit(typeVec[2], split=",")[[1]];
+
+vtype <- c();
+vbase <- c();
+vint <- c();
+twoFivePrimeSig <- data.frame();
+for (j in 1:length(types)) {
+  
+  typeName <- as.character(strsplit(types[j], split="_")[[1]][1]);
+  typeSigNum <- type2sigNum[type2sigNum == typeName, 2];
+  sigInd <- as.integer(strsplit(types[j], split="_")[[1]][2]);
+  F <- getF(typeName, typeSigNum, fdim, sigInd);
+  
+  vtype <- c(vtype, rep(types[j], 4));
+  vbase <- c(vbase, c("A", "C", "G", "T"));
+  vint <- c(vint, F[2,1:4]);
+  
+}
+
+twoFivePrimeSig <- data.frame(type =vtype, base = vbase, intensity = vint);
+
+
+ggplot(twoFivePrimeSig, aes(x=type, y=intensity, fill=base)) +
+  geom_bar(stat="identity") +
+  # scale_fill_brewer(palette="Set2") + 
+  theme_bw() +
+  theme(text = element_text(size=20)) +
+  theme(axis.text.x= element_text(angle=60,hjust=1));
+
+ggsave("../../manuscript/APOBEC_two5prime.eps", width=6, height=6, units="in");
+
+
+
+
+
+##########
+# additional script....
 
 # generate figures for each signature group
 
@@ -402,40 +626,5 @@ for (i in 1:length(typeVec)) {
   
 }
 par(.pardefault);
-
-
-##########
-# two 5' bases from the mutated site for APOBEC mutation signature
-types <- strsplit(typeVec[2], split=",")[[1]];
-
-vtype <- c();
-vbase <- c();
-vint <- c();
-twoFivePrimeSig <- data.frame();
-for (j in 1:length(types)) {
-  
-  typeName <- as.character(strsplit(types[j], split="_")[[1]][1]);
-  typeSigNum <- type2sigNum[type2sigNum == typeName, 2];
-  sigInd <- as.integer(strsplit(types[j], split="_")[[1]][2]);
-  F <- getF(typeName, typeSigNum, fdim, sigInd);
-  
-  vtype <- c(vtype, rep(types[j], 4));
-  vbase <- c(vbase, c("A", "C", "G", "T"));
-  vint <- c(vint, F[2,1:4]);
-  
-}
-
-twoFivePrimeSig <- data.frame(type =vtype, base = vbase, intensity = vint);
-
-
-ggplot(twoFivePrimeSig, aes(x=type, y=intensity, fill=base)) +
-  geom_bar(stat="identity") +
-  # scale_fill_brewer(palette="Set2") + 
-  theme_bw() +
-  theme(text = element_text(size=20)) +
-  theme(axis.text.x= element_text(angle=60,hjust=1));
-
-ggsave("../../manuscript/APOBEC_two5prime.eps", width=8, height=8, units="in");
-
 
 
