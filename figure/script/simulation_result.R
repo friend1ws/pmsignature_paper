@@ -19,7 +19,7 @@ for (i1 in 1:7) {
   for (i2 in 1:4) {
     for (i3 in 1:3) {
       for (i4 in 1:3) {
-        a <- read.table(paste("../../../simulation/result/cosineDist/", mutNum[i1], "_", sampleNum[i2], "_", alpha[i3], "_", gamma[i4], ".txt", sep=""), sep="\t", header=FALSE);
+        a <- read.table(paste("../../simulation/result/cosineDist/", mutNum[i1], "_", sampleNum[i2], "_", alpha[i3], "_", gamma[i4], ".txt", sep=""), sep="\t", header=FALSE);
 
         Dist[Ind] <- rowSums(a) / 4;
         MutNum[Ind] <- mutNum[i1];
@@ -64,5 +64,5 @@ ggplot(summary_simulation.result, aes(x=factor(mutNum), y=cosine_similality, yma
         panel.grid.major.x = element_line(colour="grey60", linetype="dashed"),
         strip.text= element_text(face="bold", size=rel(1.2)));
 
-ggsave("../../result/simulation_result.eps", width=15, height=6);
+ggsave("../../manuscript/simulation_result.eps", width=15, height=6);
 

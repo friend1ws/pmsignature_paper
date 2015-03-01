@@ -915,7 +915,14 @@ population structure model & the $j$-th locus genotype & the allele freq.  & the
 
 \begin{figure*}[b]
 \centering
-\includegraphics[width=15cm,height=4cm]{APOBEC_example.eps}
+\subfigure[APOBEC signature in the previous study]{%
+  \includegraphics[width=15cm,height=4cm]{example96_APOBEC.eps}
+  \label{UTUC:APOBEC_full5_sig}}
+  
+\subfigure[POLE signature in the previous study]{%
+  \includegraphics[width=15cm,height=4cm]{example96_POLE.eps}
+  \label{UTUC:AA_full5_sig}}
+  
 \caption{The APOBEC signature extracted in the previous study (Signature 2 in \cite{pmid23945592}).
 The barplot is divided by 6 substitution patterns.
 In each division, 16 bars shows joint probability of 16 patterns of immediate 5' and 3' bases combinations 
@@ -930,13 +937,13 @@ indicates that the immediate 5' base is mostly confined to T in this signature.
 
 \begin{figure*}
 
-\begin{minipage}{0.45\textwidth}
+\begin{minipage}{0.6\textwidth}
 \begin{center}
-\includegraphics[width=8cm,height=5cm]{pancreas_4_2.eps}
+\includegraphics[width=10cm,height=6.66cm]{example_signature.eps}
 
 \end{center}
 \end{minipage}
-\begin{minipage}{0.55\textwidth}
+\begin{minipage}{0.4\textwidth}
 
 \begin{center}
 \makeatletter
@@ -944,33 +951,33 @@ indicates that the immediate 5' base is mostly confined to T in this signature.
 \makeatother
 
 \subtable[substitution pattern]{\label{tab:tab11}
-\small
+\footnotesize
 \begin{tabular}{|c|c|c|c|c|c|}
 \hline
 C$>$A & C$>$G & C$>$T & T$>$A & T$>$C & T$>$G \\
 \hline
-0.061 & 0.020 & 0.514 & 0.000 & 0.405 & 0.000 \\
+0.201 & 0.080 & 0.314 & 0.000 & 0.405 & 0.000 \\
 \hline
 \end{tabular}
 }
 
 \subtable[adjacent bases]{\label{tab:tab12}
-\small
+\footnotesize
 \begin{tabular}{|c|c|c|c|c|}
 \hline
-positions to the mutated site & A & C &  G & T \\
+position  & A & C &  G & T \\
 \hline
 -2 & 0.146 & 0.257 & 0.128 & 0.469 \\
--1 & 0.183 & 0.389 & 0.331 & 0.096 \\
+-1 & 0.183 & 0.389 & 0.331 & 0.097 \\
 +1 & 0.161 & 0.107 & 0.013 & 0.719 \\
-+2 & 0.019 & 0.265 & 0.367 & 0.350 \\
++2 & 0.019 & 0.265 & 0.366 & 0.350 \\
 \hline
 \end{tabular}
 }
 
 
 \subtable[strand direction]{\label{tab:tab13}
-\small
+\footnotesize
 \begin{tabular}{|c|c|}
 \hline
 plus strand & minus strand  \\
@@ -997,28 +1004,28 @@ are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).}
 \centering
 
 \subfigure[APOBEC signature for the full model]{%
-  \includegraphics[height=4cm,width=7.5cm,clip]{APOBEC_full5_dir_sig.eps}
+  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_APOBEC_full.eps}
   \label{UTUC:APOBEC_full5_sig}}
 \quad
 \subfigure[AA signature for the full model]{%
-  \includegraphics[height=4cm,width=7.5cm,clip]{AA_full5_dir_sig.eps}
+  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_AA_full.eps}
   \label{UTUC:AA_full5_sig}}
   
 \subfigure[APOBEC signature for the independent model]{%
-  \includegraphics[height=4cm,width=7.5cm,clip]{APOBEC_ind5_dir_sig.eps}
+  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_APOBEC_ind.eps}
   \label{UTUC:APOBEC_ind5_sig}}
 \quad
 \subfigure[AA signature for the independent model]{%
-  \includegraphics[height=4cm,width=7.5cm,clip]{AA_ind5_dir_sig.eps}
+  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_AA_ind.eps}
   \label{UTUC:AA_ind5_sig}}
   
   
 \subfigure[APOBEC signature stability]{%
-  \includegraphics[height=5.5cm,width=7.5cm,clip]{APOBEC_downsampling.eps}
+  \includegraphics[height=5.5cm,width=7.5cm,clip]{UTUC_downsampling_APOBEC.eps}
   \label{UTUC:APOBEC_downsampling}}
 \quad
 \subfigure[AA signature stability]{%
-  \includegraphics[height=5.5cm,width=7.5cm,clip]{AA_downsampling.eps}
+  \includegraphics[height=5.5cm,width=7.5cm,clip]{UTUC_downsampling_AA.eps}
   \label{UTUC:AA_downsampling}}
 %
 \caption{The mutation signatures for UTUC data, and the results of downsampling experiments. 
@@ -1031,7 +1038,7 @@ A total of 3072 elements in the full model mutation signatures were shown divide
 
 \begin{figure*}[b]
 \centering
-\includegraphics[width=15cm,height=6cm]{facet_result.eps}
+\includegraphics[width=16cm,height=6cm]{simulation_result.eps}
 \caption{The accuracy of the proposed approach for the simulated data when changing
 the number of samples and mutations, 
 and the amounts of dispersion parameters for the mutation features and signature distribution parameters.
@@ -1044,7 +1051,7 @@ and the amounts of dispersion parameters for the mutation features and signature
 
 \begin{figure*}[b]
 \centering
-\includegraphics[width=16cm,height=16cm, angle=270]{signature_summary.eps}
+\includegraphics[width=16cm,height=17.5cm]{AlexandrovEtAl_mergedSignature.eps}
 \caption{The summary of mutation signatures obtained using the proposed method,
 where the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features.
 }
@@ -1055,7 +1062,7 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
 
 \begin{figure*}[b]
 \centering
-\includegraphics[width=15cm,height=15cm]{membership_summary.eps}
+\includegraphics[width=15cm,height=15cm]{corrplot.eps}
 \caption{The summary of membership of each mutation signature across cancer types.}
 \label{nature2013_sig_member}
 \end{figure*}
@@ -1066,7 +1073,7 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
 
 \begin{figure*}[b]
 \centering
-\includegraphics[width=15cm,height=15cm]{APOBEC.eps}
+\includegraphics[width=10cm,height=10cm]{APOBEC_two5prime.eps}
 \caption{The intensities at two 5' base to the mutated site for 14 mutation signatures categorized as signature 2}
 \label{nature2013_sig_apobec}
 \end{figure*}

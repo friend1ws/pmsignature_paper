@@ -152,7 +152,7 @@ convertFMatrixToVector <- function(Fmat, fdim) {
 # get the mutation signature of the specified cancer type and index
 getF <- function(type, K, fdim, ind) {
   
-  inputName <- paste("../../../AlexandrovEtAl/result/Param_ind5/", type, ".", as.character(K), ".Rdata", sep="");
+  inputName <- paste("../../AlexandrovEtAl/result/Param_ind5/", type, ".", as.character(K), ".Rdata", sep="");
   
   load(inputName);
   F <- Param@signatureFeatureDistribution;
@@ -165,7 +165,7 @@ getF <- function(type, K, fdim, ind) {
 # get the mutation signatures of the specified cancer type
 getSigMat <- function(type, K, fdim) {
   
-  inputName <- paste("../../../AlexandrovEtAl/result/Param_ind5/", type, ".", as.character(K), ".Rdata", sep="");
+  inputName <- paste("../../AlexandrovEtAl/result/Param_ind5/", type, ".", as.character(K), ".Rdata", sep="");
   
   load(inputName);
   F <- Param@signatureFeatureDistribution;
@@ -193,7 +193,7 @@ eps <- 0.6
 
 #' create the matrix showing the relationships between cancer type 
 #' and the specified numer of mutation signatures
-type2sigNum <- read.table("../../data/AlexandrovEtAl_sigNum.txt", sep=",", header=FALSE);
+type2sigNum <- read.table("../data/AlexandrovEtAl_sigNum.txt", sep=",", header=FALSE);
 
 #' reading and converting the mutation signatures for each cancer type
 for (i in 1:nrow(type2sigNum)) {
@@ -283,17 +283,17 @@ par(mar=c(0, 0, 0, 0));
 par(bg = rgb(0.9, 0.9, 0.9));
 par(xaxs = "i", yaxs = "i");
 par(mfrow=c(ceiling(length(Fs) / 4), 4));
-myOrder <- c(7, 11, 12, 15, 21,  # C > A
+# myOrder <- c(7, 11, 12, 15, 21,  # C > A
              1, 6, 10, 13, 18, 20, 23, # C > T
              2, 8, 14, 22, #C > any
              9, 16, 19, 24, #T > any
              3, 4, 5, 17, 25, 26)
 
-for (i in myOrder) {
-# for (i in 1:length(Fs)) {
+# for (i in myOrder) {
+for (i in 1:length(Fs)) {
   plot.new();
-  plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 4));
-  polygon(c(-0.25, 6.25, 6.25, -0.25), c(-0.25, -0.25, 3.95, 3.95), col = "white", border = FALSE);
+  plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+  polygon(c(-0.25, 6.25, 6.25, -0.25), c(-0.25, -0.25, 3.75, 3.75), col = "white", border = FALSE);
   visPMS_ind(Fs[[i]], numBases = 5, trDir = FALSE, charSize = 1);
   # visPMS_ind5_mod3(Fs[[i]], 1 / 100000);
   mtext(paste("signature", i),
@@ -306,14 +306,14 @@ for (i in myOrder) {
 }
 
 
-outputName <- "../../result/AlexandrovEtAl_mergedSignature.eps";
-dev.copy2eps(file=outputName, height = ceiling(length(Fs) / 4) * 2.7, width = 15, pointsize = 18);
+outputName <- "../../manuscript/AlexandrovEtAl_mergedSignature.eps";
+dev.copy2eps(file=outputName, height = ceiling(length(Fs) / 4) * 2.5, width = 16, pointsize = 18);
 par(.pardefault);
 
 
 ##########
 #' comparing with the signatures observed in the Alexandrov et al. Nature 2013
-nature2013_sig_raw <- read.table("../../data/AlexandrovEtAl_signatures.txt", header=T, sep="\t");
+nature2013_sig_raw <- read.table("../data/AlexandrovEtAl_signatures.txt", header=T, sep="\t");
 nature2013_sig <- t(nature2013_sig_raw[,4:30]);
 colnames(nature2013_sig) <- nature2013_sig_raw[,3];
 
@@ -343,10 +343,10 @@ colnames(sig2type) <- type2sigNum[,1];
 myCol <- colorRampPalette(c("#F8F8FF", "#F8F8FF", "#F8F8FF", "#6B8E23"));
 
 #' Export Width 800, Height 800
-corrplot(sig2type, is.corr=FALSE, bg="#F8F8FF", col=myCol(200), tl.col="black", tl.cex=0.7, tl.srt=90, cl.pos="n");
+corrplot(sig2type, is.corr=FALSE, bg="#F8F8FF", col=myCol(200), tl.col="black", tl.cex=1.2, tl.srt=90, cl.pos="n");
 
-outputName <- "../../result/corrplot.eps"
-dev.copy2eps(file=outputName, height = 12, width = 12, pointsize = 12);
+outputName <- "../../manuscript/corrplot.eps"
+dev.copy2eps(file=outputName, height = 15, width = 15, pointsize = 18);
 par(.pardefault);
 
 ##########
@@ -355,7 +355,7 @@ par(.pardefault);
 
 #' Export eps, width=800, height=600 (sig2) 
 
-dir.create("../../result/sig_group/");
+dir.create("../../supp/sig_group/");
 for (i in 1:length(typeVec)) {
   
   # outputName <- paste("sig_group/signature_", i, ".png", sep="");
@@ -425,7 +425,7 @@ ggplot(twoFivePrimeSig, aes(x=type, y=intensity, fill=base)) +
   theme(text = element_text(size=20)) +
   theme(axis.text.x= element_text(angle=60,hjust=1));
 
-ggsave("../../result/APOBEC_two5prime.eps", width=8, height=8, units="in");
+ggsave("../../manuscript/APOBEC_two5prime.eps", width=8, height=8, units="in");
 
 
 

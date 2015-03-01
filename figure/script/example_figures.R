@@ -8,7 +8,7 @@ G <- readMPFile(inputFile, numBases = 3, type = "full");
 Param <- getPMSignature(G, K = 2);
 
 # reading the signature from Alexandrov et al. Nature 2013
-nature2013_sig_raw <- read.table("../../data/AlexandrovEtAl_signatures.txt", header=T, sep="\t");
+nature2013_sig_raw <- read.table("../data/AlexandrovEtAl_signatures.txt", header=T, sep="\t");
 nature2013_sig <- t(nature2013_sig_raw[,4:30]);
 colnames(nature2013_sig) <- nature2013_sig_raw[,3];
 
@@ -16,10 +16,10 @@ Param@signatureFeatureDistribution[1,1,] <- nature2013_sig[3,];
 Param@signatureFeatureDistribution[2,1,] <- nature2013_sig[11,];
 
 visPMSignature(Param, 1)
-ggsave("../../result/example96_APOBEC.eps", width=12, height=3, units="in");
+ggsave("../../manuscript/example96_APOBEC.eps", width=12, height=3, units="in");
 
 visPMSignature(Param, 2)
-ggsave("../../result/example96_POLE.eps", width=12, height=3, units="in");
+ggsave("../../manuscript/example96_POLE.eps", width=12, height=3, units="in");
 ####################
 
 
@@ -37,10 +37,10 @@ Param@signatureFeatureDistribution[1,4,1:4] <- c(0.161, 0.107, 0.013, 0.719);
 Param@signatureFeatureDistribution[1,5,1:4] <- c(0.019, 0.265, 0.366, 0.350);
 Param@signatureFeatureDistribution[1,6,1:2] <- c(0.375, 0.625);
   
-visPMSignature(Param, 1);
+visPMSignature(Param, 1, charSize = 1.2);
 
-outputName <- "../../result/example_signature.eps";
-dev.copy2eps(file=outputName, height = 4, width = 8, pointsize = 18);
+outputName <- "../../manuscript/example_signature.eps";
+dev.copy2eps(file=outputName, height = 6.66, width = 10);
 par(.pardefault);
 
 
