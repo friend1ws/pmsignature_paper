@@ -64,7 +64,7 @@ if (sum(Param_full@signatureFeatureDistribution[1,1,(256 * 0 + 1):(256 * 3)]) + 
 
 
 
-ggplot(baseTwoFivePrime, aes(x=type, y=prob, fill=base)) +
+ggplot(baseTwoFivePrime, aes(x=model, y=prob, fill=base)) +
   geom_bar(stat="identity") +
   theme(legend.title = element_text(size = rel(1.5)),
         legend.text = element_text(size = rel(1.5)),
@@ -73,4 +73,4 @@ ggplot(baseTwoFivePrime, aes(x=type, y=prob, fill=base)) +
         axis.text.y = element_text(size=rel(1.5)),
         axis.title.y = element_text(size=rel(1.5)))
 
-ggsave("../../supp/UTUC_APOBEC_twoFivePrime.eps", width=2, height=8);
+ggsave("../../supp/UTUC_APOBEC_twoFivePrime.eps", width=4, height=8);
