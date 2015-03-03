@@ -535,9 +535,9 @@ for (i in 1:length(importantSigs)) {
   outputName <- paste("../../manuscript/signatureList_", names(importantSigs)[i], ".eps", sep="");
   
   if (length(types) > 4) {
-    dev.copy2eps(file=outputName, height = ceiling(length(types) / 4) * 2.5, width = 16, pointsize = 18);
+    dev.copy2eps(file=outputName, height = ceiling(length(types) / 4) * 2.4, width = 15);
   } else {
-    dev.copy2eps(file=outputName, height = 2.5, width = 4 * length(types), pointsize = 18);    
+    dev.copy2eps(file=outputName, height = 2.4, width = 3.75 * length(types));    
   }
   
   
