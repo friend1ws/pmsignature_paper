@@ -1,4 +1,5 @@
 *.Rhistory
+*/script/log
 */result
 manuscript/*.pdf
 manuscript/*.aux

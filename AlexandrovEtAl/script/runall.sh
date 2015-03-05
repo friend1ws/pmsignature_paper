@@ -28,28 +28,34 @@ _COMMENT_OUT_
 
 # :<<_COMMENT_OUT_
 
+if [ ! -d log ]
+then
+    mkdir log
+fi
+
+
+SCRIPTDIR=`pwd`
 cd ../result
 RESULTDIR=`pwd`
 cd ../data
 DATADIR=`pwd`
 cd ../../common_script
-SCRIPTDIR=`pwd`
 
 while read type
 do
 
     for K in `seq 2 6`
     do
-        echo "qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt.gz ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10"
-        qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt.gz ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10
+        echo "qsub -l s_vmem=2G,mem_req=2 -e ${SCRIPTDIR}/log -o ${SCRIPTDIR}/log perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt.gz ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10"
+        qsub -l s_vmem=2G,mem_req=2 -e ${SCRIPTDIR}/log -o ${SCRIPTDIR}/log perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt.gz ${RESULTDIR}/Param_ind5/${type}.${K}.Rdata ${K} FALSE 10
 
         if [ ${type} == Lung-Adeno ]
         then 
-            echo "qsub -l s_vmem=4G,mem_req=4 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10"
-            # qsub -l s_vmem=4G,mem_req=4 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10
+            echo "qsub -l s_vmem=4G,mem_req=4 -e ${SCRIPTDIR}/log -o ${SCRIPTDIR}/log perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10"
+            # qsub -l s_vmem=4G,mem_req=4 -e ${SCRIPTDIR}/log -o ${SCRIPTDIR}/log perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10
         else
-            echo "qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10"
-            # qsub -l s_vmem=2G,mem_req=2 perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10
+            echo "qsub -l s_vmem=2G,mem_req=2 -e ${SCRIPTDIR}/log -o ${SCRIPTDIR}/log perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10"
+            # qsub -l s_vmem=2G,mem_req=2 -e ${SCRIPTDIR}/log -o ${SCRIPTDIR}/log perform_pmsignature.sh ${RESULTDIR}/MPFormat/${type}.mp.txt ${RESULTDIR}/Param_ind5_dir/${type}.${K}.Rdata ${K} TRUE 10
         fi
 
     done
