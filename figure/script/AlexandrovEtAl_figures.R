@@ -507,7 +507,8 @@ for (i in 1:length(importantSigs)) {
     plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
     polygon(c(-0.25, 6.25, 6.25, -0.25), c(-0.25, -0.25, 3.75, 3.75), col = "white", border = FALSE);
     
-    visPMS_ind(F, numBases = 5, trDir = FALSE, charSize = 1);
+    # the setting of charSize is temporary... why the size changes by the number of rows.....
+    visPMS_ind(F, numBases = 5, trDir = FALSE, charSize = 0.6 + 0.1333 * ceiling(length(types) / 4));
     mtext(types[j],
           outer = FALSE,      # 作図領域の外の余白に書く
           side = 3,          # 上の余白に書く
@@ -579,7 +580,7 @@ ggplot(twoFivePrimeSig, aes(x=type, y=intensity, fill=base)) +
   theme(text = element_text(size=20)) +
   theme(axis.text.x= element_text(angle=60,hjust=1));
 
-ggsave("../../manuscript/APOBEC_two5prime.eps", width=6, height=6, units="in");
+ggsave("../../manuscript/APOBEC_two5prime.eps", width=8, height=5, units="in");
 
 
 
@@ -634,8 +635,9 @@ par(.pardefault);
 
 
 
-##########
+####################
 # change the scale
+# This might be not necessary for the paper
 ##########
 
 

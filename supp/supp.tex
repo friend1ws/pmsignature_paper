@@ -168,7 +168,10 @@ and $( \sum_{m} g_{i, m} ) \log \tilde{r}_i - \tilde{r}_i$ takes its maximum at 
 \begin{figure}
 \centering
 \includegraphics[width=15cm,height=5.5cm]{simulation_signature_example.eps}
-\caption{}
+\caption{An example of the relationship between true and estimated mutation signatures in the simulation.
+In this example, the numbers of cancer genomes and mutations for each cancer genome are 25 and 100, respectively,
+and the parameters $\alpha$ and $\gamma$ are both set to 1. 
+From this figure, we can see that fairly accurate estimation is possible even with moderate numbers of cancer genomes and mutations}
 \label{example_signature.pd}
 \end{figure}
 
@@ -178,7 +181,7 @@ and $( \sum_{m} g_{i, m} ) \log \tilde{r}_i - \tilde{r}_i$ takes its maximum at 
 \begin{figure}
 \centering
 \includegraphics[width=15cm,height=5cm]{simulation_stat.eps}
-\caption{}
+\caption{The log-likelihood, bootstrap-errors and maximum correlation values among estimated membership parameters for several numbers of signatures $K$ in the trial of the Supplementary Figure 1.}
 \label{example_summary.pd}
 \end{figure}
 
@@ -188,23 +191,23 @@ and $( \sum_{m} g_{i, m} ) \log \tilde{r}_i - \tilde{r}_i$ takes its maximum at 
 \begin{figure}
 \centering
 
-\subfigure[Estimated mutation signatures ($K = 2$)]{%
+\subfigure[$K = 2$]{%
   \includegraphics[height=6cm,width=15cm,clip]{UTUC_signature_K2.eps}
   \label{UTUC:sigK2_sig}}
   
   
-\subfigure[Estimated mutation signatures ($K = 3$)]{%
+\subfigure[$K = 3$]{%
   \includegraphics[height=6cm,width=15cm,clip]{UTUC_signature_K3.eps}
   \label{UTUC:sigK3_sig}}
   
 
-\subfigure[Estimated mutation signatures ($K = 4$)]{%
+\subfigure[$K = 4$]{%
   \includegraphics[height=6cm,width=15cm,clip]{UTUC_signature_K4.eps}
   \label{UTUC:sigK4_sig}}
 
   
 \caption{The result of estimated mutation signatures and membership parameters for UTUC data 
-when changing the number of mutation signatures ($K$).}
+when changing the number of mutation signatures $K$.}
 \label{UTUC_multiK}
 \end{figure}
 
@@ -213,8 +216,8 @@ when changing the number of mutation signatures ($K$).}
 \begin{figure}
 \centering
 \includegraphics[width=15cm,height=5cm]{UTUC_stat.eps}
-\caption{}
-\label{example_summary.pd}
+\caption{The log-likelihood, bootstrap-errors and maximum correlation values among estimated membership parameters for several numbers of signatures $K$ in UTUC data.}
+\label{UTUC_stat}
 \end{figure}
 
 \clearpage
@@ -222,47 +225,19 @@ when changing the number of mutation signatures ($K$).}
 \begin{figure}
 \centering
 \includegraphics[width=10cm,height=10cm]{UTUC_AA_AAlike_cor.eps}
-\caption{}
-\label{example_signature.pd}
+\caption{The relationships between the two membership parameters, AA (the first signature in the Supplementary Figure 3) and AA\_like (the second signature in the Supplementary Figure 3) signatures.}
+\label{UTUT_AA_AAlike}
 \end{figure}
 
 
 \clearpage
 
-
-% \begin{figure}
-% \centering
-% \includegraphics[width=15cm,height=15cm]{sig2_group.eps}
-% \caption{Mutation signatures obtained for several cancer types categorized as Signature 2}
-% \label{example_summary.pd}
-% \end{figure}
-
-% \clearpage
-
-% \begin{figure}
-% \centering
-% \includegraphics[width=15cm,height=3.5cm]{sig6_group.eps}
-% \caption{Mutation signatures obtained for several cancer types categorized as Signature 6}
-% \label{example_summary.pd}
-% \end{figure}
-
-% \clearpage
-
-% \begin{figure}
-% \centering
-% \includegraphics[width=15cm,height=3.5cm]{sig7_group.eps}
-% \caption{Mutation signatures obtained for several cancer types categorized as Signature 7}
-% \label{example_summary.pd}
-% \end{figure}
-
-% \clearpage
-
-% \begin{figure}
-% \centering
-% \includegraphics[width=15cm,height=3.5cm]{sig19_group.eps}
-% \caption{Mutation signatures obtained for several cancer types categorized as Signature 19}
-% \label{example_summary.pd}
-% \end{figure}
+\begin{figure}
+\centering
+\includegraphics[width=4cm,height=8cm]{UTUC_APOBEC_twoFivePrime.eps}
+\caption{The frequencies of bases at two 5' to the mutated site for the APOBEC mutation signatures obtained in UTUC data using the independent and full models.}
+\label{UTUC_APOBEC_twoFivePrime}
+\end{figure}
 
 
 \end{document}
