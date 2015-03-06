@@ -246,7 +246,7 @@ Furthermore, the mutation pattern profile not for each cancer type but for each 
 
 Nowadays, recent advancement in high-throughput sequencing technologies provides vast amounts of passenger mutations
 and great chances for not only identification of novel driver mutations but also investigation of sample-by-sample mutation patterns in an unbiased way. 
-A study using 21 breast cancer samples identified the association between C $>$ [GT] mutations at TpC sites, 
+A study using 21 breast cancer samples identified the association between C $>$ [AGT] mutations at TpC sites, 
 which is later proved to be caused by APOBEC proteins, and the novel phenomenon called {\it kataegis} \cite{pmid22608084}. 
 Moreover, the recent landmark study revealed a landscape of mutation signatures using from 7,034 primary cancer samples of 30 different classes \cite{pmid23945592}. 
 Furthermore, it is expected that detection of novel mutation signatures and associated mutagens can lead to identification of novel mutagens and prevention of cancer.
@@ -324,18 +324,17 @@ Therefore, considering even $\pm 2$ sites and substitution patterns (1535 parame
 is often difficult because of instability of parameter estimation. 
 
 
-On the other hand, observing the mutation signatures observed in the previous studies (see Figure \ref{APOBEC_example}), 
+On the other hand, observing the mutation signatures observed in the previous studies, 
 many mutation signatures had clear characteristics such as:
 \begin{itemize}
 \item 
 A certain value of mutation features is often dominant in many known mutation signatures. 
 For example, the base T is highly dominant at the $-1$ site in the APOBEC signature, 
-and C $>$ T substitution is highly dominant in the ultraviolet signature \cite{pmid23945592}. 
+and C $>$ T substitution is highly dominant in the ultraviolet signature \cite{pmid23945592} (see Figure \ref{APOBEC_nature2013_sig}). 
 
 \item
-Proportional relationships among mutation features are often observed in many signatures. 
-For example, in the APOBEC signature, 
-the frequencies of bases at the $+1$ site are largely proportional across 3 major substitution patterns C$>$T, C$>$G and C$>$A,
+Proportional relationships among mutation features are often observed in many signatures as shown in the APOBEC signature, 
+where the frequencies of bases at the $+1$ site are largely proportional across 3 major substitution patterns C$>$T, C$>$G and C$>$A,
 and show consistent tendencies (A and T bases are more frequent than C and G bases).
 
 \end{itemize} 
@@ -373,7 +372,7 @@ the proposed approach can robustly extract most of previously-collected mutation
 \item
 Although most mutation signatures show proportional relationships among mutation features, 
 a few signatures seem to violate proportional relationships and cannot be explained by independent models. 
-For example, the pol $\epsilon$ mutation signature \cite{pmid23945592} puts strong probability masses 
+For example, the pol $\epsilon$ mutation signature \cite{pmid23945592} (see Figure \ref{POLE_nature2013_sig}) puts strong probability masses 
 on just two pattern TpCpT $>$ TpApT and TpCpG $>$ TpTpG, 
 and the frequencies of substitution patterns and $+1$ bases are not proportional unlike the APOBEC signature.
 However,  by using multiple mutation signatures, we can represent this phenomenon even with independence assumption.
@@ -405,7 +404,7 @@ the multinomial distribution parameter of $k$-th mutation signature and the $l$-
 then the probabilistic distribution of $k$-th signature corresponds to $\{ \bm{f}_{k, l} \}_{l=1, \cdots, L}$.
  
 Therefore, each probabilistic mutation signature, in general, consists of multiple multinomial distribution parameters.
-We give a way of visualizing probabilistic mutation signature (see Fig. \ref{mutSig_example}), 
+We give a way of visualizing probabilistic mutation signature (see Figure \ref{mutSig_example}), 
 which is reminiscent of sequencing logos \cite{pmid2172928}. 
 
 
@@ -639,12 +638,11 @@ When these values are smaller, only a fewer components can have larger probabili
 and the rest will have much smaller masses.  
 When these are large, all the components tend to have evenly-distributed probability masses.
  
-Overall, we could estimate the mutation signatures very accurately.
-For example, when the number of cancer genomes and mutations for each cancer genome is 25 and 100, respectively,
-we could recover the true signatures very accurately in most cases (see Supplementary Figure 1 as an example).
-Furthermore, in most cases, the log-likelihood stopped increasing at five mutation signatures, 
+As Figure \ref{sim_facet} shows, we could estimate the mutation signatures very accurately overall.
+(see Supplementary Figure 1 for an example).
+In most cases, the log-likelihood stopped increasing at five mutation signatures, 
 whereas the standard error of the estimated parameters started increasing past five mutation signatures (see Supplementary Figure 2),
-indicating that true number of mutation signatures can be recovered by observing the trade-off between likelihood and standard-errors.
+indicating that true number of mutation signatures can be recovered by observing the trade-off between likelihood and standard-errors at least in an ideal case.
 
 As expected, as we increase the number of either cancer genomes or mutations, the accuracy of the estimates increased.
 Also, as we increase the value of $\alpha$, then the accuracy of the estimated signatures got worse.
@@ -655,53 +653,52 @@ more sensitively than signature distribution parameters.
 
 \subsection*{Experiments using cancer genomes from urothelial carcinoma of the upper urinary tract}
 
-In this section, we compare the ``full representation'' and the ``independent representation'' by examining mutation signatures obtained by the two approaches,
+In this section, we compare the ``full model'' and the ``independent model'' by examining mutation signatures obtained by the two approaches,
 and investigate the robustness by downsampling experiments.
 The dataset used here is a list of 14717 somatic substitutions 
 collected from the study of 26 urothelial carcinomas of the upper urinary tract (UTUC) \cite{pmid23926200},
 where they found a novel mutation signature: 
-T $>$ A substitutions at CpTpG sites with a strong strand specificity caused by aristolochic acids (AAs).
+T $>$ A substitutions at CpTpG sites with a strong strand specificity caused by aristolochic acids (AA).
 
-First, we performed the proposed method,
-considering substitution patterns, up to $\pm 2$ sites and strand directions as mutation features.
-For the full representations, we assign one integer for each combination of these features, and thus $L = 1, \bm{M} = (3072)$.
-For the independent representation, $L = 6, \bm{M} = (6, 4, 4, 4, 4, 2)$.
+We performed the proposed method considering substitution patterns, up to $\pm 2$ sites and strand directions as mutation features.
+For the full model, we assign one integer for each combination of these features, and thus $L = 1, \bm{M} = (3072)$.
+For the independent model, $L = 6, \bm{M} = (6, 4, 4, 4, 4, 2)$.
 
-First, performed on various number of mutation signatures $K$, we observed how the detected mutation signatures changes (See Supplementary Figure 3).
-See Supplementary Figure 4 for the values of likelihood and bootstrap-errors.
-For $K = 2$ including a back-ground signatures., a mutation signature which seem to correspond to AA  (T $>$ A substitutions at CpTpG sites with strong transcription direction) was observed.
-For $K = 3$, an additional mutation signature corresponding APOBEC enzyme (C $>$ Y at TpCpN sites) was observed
-in addition to the AA mutation signature.
+First, performing on various number of mutation signatures $K$ (including a background signature) on the independent model, 
+we observed how the detected mutation signatures change (See Supplementary Figure 3).
+For $K = 2$, a mutation signature which seem to correspond to AA  (T $>$ A substitutions at CpTpG sites with strong transcription direction) was observed (Supplementary Figure 3 (a)).
+For $K = 3$, an additional mutation signature corresponding APOBEC enzyme (C $>$ [AGT] at TpCpN sites) was observed
+in addition to the AA mutation signature (Figure \ref{UTUC:APOBEC_ind5_sig}, \ref{UTUC:AA_ind5_sig}, Supplementary Figure 3 (b)).
 For $K = 4$, an additional signature (T $>$ A at NpTpN sites with strong transcription direction) 
-that is similar to the AA signature was observed. 
-When we check the correlation of estimated membership parameter for each cancer genome, 
-strong correlation between the AA signature (CpTpG $>$ CpApG) can be observed ($R = 0.77$, see Supplementary Figure 5). 
+that is somewhat similar to the AA signature was observed (Supplementary Figure 3 (c)). 
+When we checked the correlation of estimated membership parameter for each cancer genome, 
+strong correlation between the AA signature (CpTpG $>$ CpApG) and that additional AA-like signature could be observed ($R = 0.77$, see Supplementary Figure 5). 
 This additional signature may be just making up for the residual of the AA signature 
-which the original AA signature could not explain due to a slight deviance of probabilistic model.
-Similar results were obtained when using full the representation model ($L = 1, \bm{M} = (3072)$).
-Therefore, $K = 3$ seems to be one reasonable choice in terms of the interpretability
-(Fig. \ref{UTUC:APOBEC_full5_sig}, \ref{UTUC:AA_full5_sig}).
+which the original AA signature could not explain due to a slight deviance of the probabilistic model.
+The values of likelihood continued increasing as the $K$ increase, while the bootstrap-errors started to increase at $K = 5$ (See Supplementary Figure 4).
+The strong correlation among estimated membership parameters started to be shown at $K = 4$.
+Considering all these factors together, $K = 3$ seems to be a reasonable choice in terms of the interpretability,
+and we adopted $K = 3$ in the following.
 
-For the independent representation model, we could observed the depletion of G base at the $-2$ sites,
+
+For the independent model, we could observed the depletion of G base at the $-2$ site,
 which is consistent to the previous study \cite{pmid23318258} and the result in the next subsection.
-On the other hand, for the full representation model, this tendency was rather mild.
-Inferred AA mutation signature had no clear characteristics at two bases 5' and 3' to the mutated site 
-compared to the APOBEC mutation signature.
+On the other hand, for the full representation model, this tendency was rather mild (Figure \ref{UTUC:APOBEC_full5_sig}, \ref{UTUC:AA_full5_sig}, Supplementary Figure 6).
+Inferred AA mutation signature had no clear characteristics at two bases 5' and 3' to the mutated site compared to the APOBEC mutation signature.
 
 
-Next, setting the number of mutation signatures $K = 3$, assuming that the mutation signatures obtained using whole 14717 substitutions as a gold standard, 
+Assuming that the mutation signatures obtained using whole 14717 substitutions as a gold standard, 
 we performed the proposed method on down-sampled data (1\%, 2.5\%, 5\%, 10\%, 25\%, 50\%), 
 and compared obtained signatures with the gold standard.
-For measuring the deviations of the mutation signature, the cosine distance is used on the $\prod_{l=1}^L M_l$ dimensional vector space $f_{i, \bm{m}} = \prod_{l=1}^L f_{k,l,m_l}$,
-so that the comparison between the full representation and the independent representation become possible for the same number of adjacent bases.
+For measuring the deviations of the mutation signature, the cosine similarity was used on the $\prod_{l=1}^L M_l$ dimensional vector space $f_{i, \bm{m}} = \prod_{l=1}^L f_{k,l,m_l}$,
+so that the comparison between the full model and the independent model become possible.
 Trials for downsampling experiment for each ratio and model were repeated for 100 times.
 
-As the Fig. \ref{UTUC:APOBEC_downsampling} shows,  the independent representation could recover the original signatures even when about 90 \% of the data was removed.
+As the Figure \ref{UTUC:APOBEC_downsampling} and \ref{UTUC:AA_downsampling} shows, 
+the independent representation could recover the original signatures even when, e.g, about 90 \% of the data was removed.
 In this experiment, the AA signature was more robust than the APOBEC signature.
-This is because the number of T $>$ A substitutions at GpTpC sites are more frequent in this dataset.
-These results indicate that while both the estimation under the full representation and the independent representation could efficiently extract known mutation signatures,
-and the estimation under the independent representation is more robust than the full representation.
-
+We believe that this is because the number of T $>$ A substitutions at GpTpC sites are far more frequent in this dataset.
+These results indicate that the independent model can give more robust estimates than the full model.
 
 
 \subsection*{Application to pan-cancer somatic mutation data}
@@ -717,41 +714,43 @@ The estimated mutation signatures across cancer types were clustered by Frobeniu
 
 The Figure \ref{nature2013_sig_summary},  \ref{nature2013_sig_member} shows the summary of the obtained mutation signatures.
 In total, 27 mutation signatures were extracted.
-The signature 1 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and related to deamination of 5-methyl-cytosine.
-The signature 2 (T $>$ [GT] at TpCpN sites) was observed in 12 cancer types, and related to the activity of APOBEC family.
-The signature 6 and the signature 7 (C $>$ T at TpCpG and C $>$ A at TpCpT, respectively) were observed in colorectal and uterine cancers,
+The signature 6 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and related to deamination of 5-methyl-cytosine.
+The signature 13 (T $>$ [AGT] at TpCpN sites) was observed in 11 cancer types, and related to the activity of APOBEC family.
+The signature 7 and the signature 1 (C $>$ T at TpCpG and C $>$ A at TpCpT, respectively) were observed in colorectal and uterine cancers,
 and associated with deregulated activity of the error-prone polymerase Pol $\epsilon$.
 Interestingly, for representing the signature for the Pol $\epsilon$ dysfunction, which was represented by one signature in the previous study,
 the proposed method utilized two mutation signatures for compensating simplified representation powers.
-The signature 10 (C $>$ T at NpCp[CT]) were observed in melanomas and glioblastomas, 
+The signature 8 (C $>$ T at NpCp[CT]) were observed in melanomas and glioblastomas, 
 and seems to be associated with temozolomide, an anticancer drug.
-The signature 13 (C $>$T at [CT]pCpC) were observed in head and neck cancers and melanomas, and probably related to ultraviolet light.
-The signature 19 (C $>$ T at GpCp[CG]) were observed in small-cell lung cancers and stomach cancers,
+The signature 9 (C $>$T at [CT]pCpC) were observed in head and neck cancers and melanomas, and probably related to ultraviolet light.
+The signature 10 (C $>$ T at GpCp[CG]) were observed in small-cell lung cancers and stomach cancers,
 and seems to be the same with the ``signature 15'' in the previous study, whose function is still not clear.
 
 
-Furthermore, a number of prominent mutation signatures observed in one cancer type 
+In addition to the above signatues, a number of prominent mutation signatures observed in one cancer type 
 had common characteristics with those observed in the previous study:
-the signature 9 (T $>$ G at CpTpT) observed in oesophagus cancers, 
-the signature 11 (C $>$ A at [CT]pCpT) observed in low grade gliomas,
-the signature 16 (T $>$ C at NpTpA) observed in liver cancers, 
-the signature 22 (C $>$ A at NpCp[AT]) observed in neuroblastomas,
-the signature 24 (C $>$ T at [CG]pCp[CT]) observed in pilocytic astrocytomas, 
-and the signature 26 (T $>$ C at GpTpN) in stomach cancers.
-These results indicate that the proposed method can capture 
-many of prominent mutation signatures detected in the previous study.
+the signature 20 (T $>$ [CG] at CpTpT) observed in oesophagus cancers, 
+the signature 2 (C $>$ A at [CT]pCpT) observed in low grade gliomas,
+the signature 5 (C $>$ A at NpCp[AT]) observed in neuroblastomas,
+the signature 12 (C $>$ T at [CG]pCp[CT]) observed in pilocytic astrocytomas, 
+and the signature 18 (T $>$ C at GpTpN) in stomach cancers.
 
 
 Many of the signatures captured in this study 
 had prominent features at the two bases 5' and 3' to the mutated sites.
-For the signature 2, the signatures captured different cancer types are highly consistent (Supplementary Figrue 6),
-and they consistently showed depletion of G base at two bases 5' to the mutated site,
+For the signature 13, the signatures captured in 11 different cancer types are highly consistent (Figure \ref{APOBEC_sig_list}),
+and they consistently showed depletion of G base at two bases 5' to the mutated site (Figure \ref{APOBEC_twofive}),
 backing up the result obtained from UCUT data in the previous subsection and the previous study  \cite{pmid23318258}.
-For the signature 6 and signature 7 (Supplementary Figrue 7, 8), 
+For the Pol $\epsilon$ signatures (signature 7 and signature 1), 
 signatures for the two different cancer types consistently showed abundance of T base at two bases 5' to the mutated site,
-and abundance of T bases at two bases 5' and 3' to the mutated site, respectively.
-For the signature 19, depletion of C base at two bases 5' to the mutated site is consistently observed (Supplementary Figrue 9).
-Therefore, the proposed method can capture the characteristic features at the two bases 5' and 3' to the mutated sites.
+and abundance of T bases at two bases 5' and 3' to the mutated site, respectively (Figures \ref{POLE1_sig_list} and \ref{POLE2_sig_list}).
+For the signature 19, depletion of C base at two bases 5' to the mutated site is consistently observed (Figure \ref{LMST_sig_list}).
+Although, as far as we know, there was no literature showing the characteristics of mutation signatures at $\pm 2$ sites,
+Considering from the robustness shown in the APOBEC signature, many of  the characteristics inferred here might be true.
+
+There results indicate that the proposed method can capture not only many of the prominent mutation signatures observed in the previous study,
+but also novel characteristics for $\pm 2$ sites.
+
 
 
 
@@ -917,20 +916,23 @@ population structure model & the $j$-th locus genotype & the allele freq.  & the
 \centering
 \subfigure[APOBEC signature in the previous study]{%
   \includegraphics[width=15cm,height=4cm]{example96_APOBEC.eps}
-  \label{UTUC:APOBEC_full5_sig}}
+  \label{APOBEC_nature2013_sig}}
   
 \subfigure[POLE signature in the previous study]{%
   \includegraphics[width=15cm,height=4cm]{example96_POLE.eps}
-  \label{UTUC:AA_full5_sig}}
+  \label{POLE_nature2013_sig}}
   
-\caption{The APOBEC signature extracted in the previous study (Signature 2 in \cite{pmid23945592}).
-The barplot is divided by 6 substitution patterns.
-In each division, 16 bars shows joint probability of 16 patterns of immediate 5' and 3' bases combinations 
-(ApNpA, ApNpC, ApNpG, ApNpT, CpNpA, $\cdots$, TpTpT) and substitution patterns.
-The strong intensities of the last four bars for the substitution patterns with original base C 
+\caption{The APOBEC and POLE signatures extracted in the previous study (Signature 2 and 10 in \cite{pmid23945592}, respectively).
+The barplots are divided by 6 substitution patterns.
+In each division, 16 bars show joint probabilities of 16 combinations of the immediate 5' and 3' bases  
+(ApNpA, ApNpC, ApNpG, ApNpT, CpNpA, $\cdots$, TpTpT).
+(a) The strong intensities of the last four bars for the three substitution patterns with original bases C 
 indicates that the immediate 5' base is mostly confined to T in this signature.
+Also, the frequency of the immediate 3' bases for the mutation patterns at TpCpN sites are mostly proportional across three major substitution patterns (C $>$ A, C $>$ G and C $>$ T).
+(b) The strong intensities on TpCpT $>$ TpApT and TpCpG $>$ TpTpG are observed. This is a little complex in the sense that 
+the immediate 3' base and the substitution pattern are not independent.
 }
-\label{APOBEC_example}
+\label{nature2013_example}
 \end{figure*}
 
 \clearpage
@@ -945,7 +947,7 @@ indicates that the immediate 5' base is mostly confined to T in this signature.
 \end{minipage}
 \begin{minipage}{0.4\textwidth}
 
-\begin{center}
+\begin{flushleft}
 \makeatletter
  \def\@captype{table}
 \makeatother
@@ -989,13 +991,30 @@ plus strand & minus strand  \\
 
 % \caption{sample}
 % \label{label 2}
-\end{center}
+\end{flushleft}
 \end{minipage}
 \caption{An example of a mutation signature and its visualization in the proposed approach.
 Here, mutation features (substitution patterns, two 5' and 3' bases and strand direction) 
-are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).}
+are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).
+In the bottom, the size of each box represents the frequencies of bases (A, C, G and T) at the flanking sites.
+In the top, the height of each box represents the conditional frequencies of mutated bases for each original base (C and T).
+In the upper right, the height of the $+$ (non-coding strand) and $-$ (coding strand) boxes represents the frequencies of  stranded direction of mutations.
+}
 \label{mutSig_example}
 
+\end{figure*}
+
+
+\clearpage
+
+\begin{figure*}[b]
+\centering
+\includegraphics[width=16cm,height=6cm]{simulation_result.eps}
+\caption{The accuracy of the proposed approach for the simulated data 
+when changing the number of samples, mutations, 
+and the amounts of dispersion parameters ($\alpha$ and $\gamma$) for the mutation features and signature distribution parameters.
+}
+\label{sim_facet}
 \end{figure*}
 
 
@@ -1003,14 +1022,6 @@ are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).}
 \begin{figure*}[ht]
 \centering
 
-\subfigure[APOBEC signature for the full model]{%
-  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_APOBEC_full.eps}
-  \label{UTUC:APOBEC_full5_sig}}
-\quad
-\subfigure[AA signature for the full model]{%
-  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_AA_full.eps}
-  \label{UTUC:AA_full5_sig}}
-  
 \subfigure[APOBEC signature for the independent model]{%
   \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_APOBEC_ind.eps}
   \label{UTUC:APOBEC_ind5_sig}}
@@ -1019,6 +1030,13 @@ are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).}
   \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_AA_ind.eps}
   \label{UTUC:AA_ind5_sig}}
   
+  \subfigure[APOBEC signature for the full model]{%
+  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_APOBEC_full.eps}
+  \label{UTUC:APOBEC_full5_sig}}
+\quad
+\subfigure[AA signature for the full model]{%
+  \includegraphics[height=5cm,width=7.5cm,clip]{UTUC_AA_full.eps}
+  \label{UTUC:AA_full5_sig}}
   
 \subfigure[APOBEC signature stability]{%
   \includegraphics[height=5.5cm,width=7.5cm,clip]{UTUC_downsampling_APOBEC.eps}
@@ -1028,8 +1046,8 @@ are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).}
   \includegraphics[height=5.5cm,width=7.5cm,clip]{UTUC_downsampling_AA.eps}
   \label{UTUC:AA_downsampling}}
 %
-\caption{The mutation signatures for UTUC data, and the results of downsampling experiments. 
-A total of 3072 elements in the full model mutation signatures were shown divided by substitution patterns and strand directions.}
+\caption{The mutation signatures for the UTUC data, and the results of downsampling experiments. 
+3072 elements in the full model mutation signatures were shown divided by 6 substitution patterns and strand directions.}
 \label{UTUC}
 \end{figure*}
 
@@ -1038,21 +1056,8 @@ A total of 3072 elements in the full model mutation signatures were shown divide
 
 \begin{figure*}[b]
 \centering
-\includegraphics[width=16cm,height=6cm]{simulation_result.eps}
-\caption{The accuracy of the proposed approach for the simulated data when changing
-the number of samples and mutations, 
-and the amounts of dispersion parameters for the mutation features and signature distribution parameters.
-}
-\label{sim_facet}
-\end{figure*}
-
-
-\clearpage
-
-\begin{figure*}[b]
-\centering
 \includegraphics[width=16cm,height=17.5cm]{AlexandrovEtAl_mergedSignature.eps}
-\caption{The summary of mutation signatures obtained using the proposed method,
+\caption{The summary of mutation signatures obtained in a reanalysis of the data of the previous study \cite{pmid23945592} using the proposed method,
 where the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features.
 }
 \label{nature2013_sig_summary}
@@ -1063,7 +1068,7 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
 \begin{figure*}[b]
 \centering
 \includegraphics[width=15cm,height=15cm]{corrplot.eps}
-\caption{The summary of membership of each mutation signature across cancer types.}
+\caption{The summary of membership of each mutation signature across 30 cancer types obtained using the proposed method.}
 \label{nature2013_sig_member}
 \end{figure*}
 
@@ -1074,40 +1079,61 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
 
 \begin{figure*}[b]
 
-\subfigure[APOBEC signature list]{%
-  \includegraphics[width=16cm,height=7.5cm]{signatureList_APOBEC.eps}
+\subfigure[APOBEC signatures obtained in each cancer type]{%
+  \includegraphics[width=15cm,height=7.5cm]{signatureList_APOBEC.eps}
   \label{APOBEC_sig_list}}
   
-\subfigure[POLE signature in the previous study]{%
-  \includegraphics[width=7.5cm,height=7.5cm]{APOBEC_two5prime.eps}
-  \label{APOBEC_twofive}}
-  
-\caption{The intensities at two 5' base to the mutated site for 14 mutation signatures categorized as signature 2}
-\label{nature2013_sig_apobec}
-\end{figure*}
-
-
-\begin{figure*}[b]
-
-\subfigure[POLE1 signature list]{%
-  \includegraphics[width=8cm,height=2.5cm]{signatureList_POLE1.eps}
+\subfigure[POLE1 signatures in each cancer type]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE1.eps}
   \label{POLE1_sig_list}}
-  
-\subfigure[POLE2 signature list]{%
-  \includegraphics[width=8cm,height=2.5cm]{signatureList_POLE2.eps}
+\quad
+\subfigure[POLE2 signature in each cancer type]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE2.eps}
   \label{POLE2_sig_list}}
   
-\subfigure[UV signature list]{%
-  \includegraphics[width=8cm,height=2.5cm]{signatureList_UV.eps}
+\subfigure[UV signature in each cancer type]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_UV.eps}
   \label{UV_sig_list}}
-
-\subfigure[LMST signature list]{%
-  \includegraphics[width=8cm,height=2.5cm]{signatureList_LMST.eps}
+\quad
+\subfigure[Unknown signature obtained in lung small cell carcinomas and stomach cancers]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_LMST.eps}
   \label{LMST_sig_list}}
-      
-\caption{The intensities at two 5' base to the mutated site for 14 mutation signatures categorized as signature 2}
-\label{nature2013_sig_apobec}
+    
+\subfigure[Signature intensities at two 5' to the mutated site]{%
+  \includegraphics[width=8cm,height=5cm]{APOBEC_two5prime.eps}
+  \label{APOBEC_twofive}}
+ 
+
+   
+\caption{(a) APOBEC signatures obtained in 11 cancer types, 
+(b, c, d, e) Several signatures having prominent characteristics at 5'  or 3' to the mutated sites,
+(f) the frequencies of bases at two 5' to the mutated site. 
+}
+\label{nature2013_apobec}
 \end{figure*}
+
+
+% \begin{figure*}[b]
+
+% \subfigure[POLE1 signatures in each cancer type]{%
+%  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE1.eps}
+%   \label{POLE1_sig_list}}
+  
+% \subfigure[POLE2 signature in each cancer type]{%
+%   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE2.eps}
+%   \label{POLE2_sig_list}}
+  
+% \subfigure[UV signature in each cancer type]{%
+%   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_UV.eps}
+%   \label{UV_sig_list}}
+
+% \subfigure[Unknown signature obtained in lung small cell carcinomas and stomach cancers]{%
+%   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_LMST.eps}
+%   \label{LMST_sig_list}}
+      
+% \caption{Several signatures having prominent characteristics at 5'  or 3' to the mutated sites.}
+% \label{nature2013_sig_others}
+% \end{figure*}
 
 
 % \section*{Supporting Information Legends}
