@@ -8,6 +8,7 @@ manuscript/*.log
 manuscript/*.out
 manuscript/*.synctex.gz
 manuscript/*
+figure/result
 supp/*.pdf
 supp/*.aux
 supp/*.log
