@@ -18,7 +18,7 @@
 "Lung-Squamous", 3
 "Lymphoma-B-Cell", 4
 "Medulloblastoma", 3
-"Melanoma", 3
+"Melanoma", 4
 "Myeloma", 3
 "Neuroblastoma", 3
 "Ovary", 3
