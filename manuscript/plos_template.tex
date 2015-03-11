@@ -714,27 +714,82 @@ The estimated mutation signatures across cancer types were clustered by Frobeniu
 
 The Figure \ref{nature2013_sig_summary},  \ref{nature2013_sig_member} shows the summary of the obtained mutation signatures.
 In total, 27 mutation signatures were extracted.
-The signature 6 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and related to deamination of 5-methyl-cytosine.
-The signature 13 (T $>$ [AGT] at TpCpN sites) was observed in 11 cancer types, and related to the activity of APOBEC family.
-The signature 7 and the signature 1 (C $>$ T at TpCpG and C $>$ A at TpCpT, respectively) were observed in colorectal and uterine cancers,
-and associated with deregulated activity of the error-prone polymerase Pol $\epsilon$.
-Interestingly, for representing the signature for the Pol $\epsilon$ dysfunction, which was represented by one signature in the previous study,
-the proposed method utilized two mutation signatures for compensating simplified representation powers.
-The signature 8 (C $>$ T at NpCp[CT]) were observed in melanomas and glioblastomas, 
-and seems to be associated with temozolomide, an anticancer drug.
+By comparing the composition of nucleotides and memberships of signatures with the result of the previous study,
+we could associate many of the detected signatures with known mutational processes.
+
+The signature 13 (T $>$ [AGT] at TpCpN sites) was observed in 12 cancer types, and related to the activity of APOBEC family.
+The composition of nucleotides in estimated signatures in 12 different cancer types are highly consistent (Figure \ref{APOBEC_sig_list}) except for the on in B-cell lymphoma,
+and almost of of them showed slightly higher abundance of A and T bases and depletion of G base at $-2$ positions (Figure \ref{APOBEC_twofive}).
+This fact backs up the results obtained from UCUT data in the previous subsection and the previous study \cite{pmid23318258},
+and implies the robustness of the proposed approach.
+In terms of transcribed strand-specificity, the tendency is not consistent, implying that there is no significant strand-specificity in APOBEC signatures.
+
+
+The signature 1 and 8 (C $>$ A at TpCpT and C $>$ T at TpCpG, respectively) were observed in colorectal and uterine cancers,
+are probably associated with deregulated activity of the error-prone polymerase Pol $\epsilon$.
+The proposed method used two signatures for representing the signature for the Pol $\epsilon$ dysfunction, 
+while was represented by one signature in the previous study.
+Interestingly, signature 1 showed transcription biases whereas signature 8 did not.
+This phenomena are consistent for both colorectal and uterus cancers (Figures \ref{POLE1_sig_list} and \ref{POLE2_sig_list}).
+C $>$A at TpCpT mutations were shown to be enriched in leading strands of replication forks.
+whereas, there is no mention about the replication strand-specificity of C $>$ T at TpCpG mutations \cite{pmid25228659}.
+Although replication strand biases is different from the transcription strand biases, these two biases may have strong corelation,
+considering the fact that replication origins prefer transcription start sites \cite{pmid23187890}.
+Therefore, the transcription strand bias observed in the signature 1 may actually come from replication strand biases.
+
+Furthermore, both the signature 1 and 8 signatures showed strong abundance of T base at $-2$ positions,
+and abundance of T bases at two bases 5' and 3' to the mutated site, respectively (Figures \ref{POLE1_sig_list} and \ref{POLE2_sig_list}).
+In fact, nonsense mutations in TP53 at R231X, which are shown to be enriched in cancers having Pol $\epsilon$,
+and abundance of T bases at two bases 5' and 3' to the mutated site, respectively (Figures \ref{POLE1_sig_list} and \ref{POLE2_sig_list}).
+In the previous study of Pol $\epsilon$, a nonsense mutation in TP53 at R23X were shown to be enriched in cancers with Pol $\epsilon$ defects.
+In fact, this mutation is C $>$ T at TpTpCpGpA, the most likely patten with the signature 8.
+This implies that observing $\pm 2$ bases may be helpful for identifying the cause of mutations with higher resolution.
+
+
+The signature 18 (T $>$ C at ApTp[AG]), observed in liver cancer, shows very strong strains specificity,
+were shown to be more common in Asian cases than in other ancestries \cite{pmid25362482}, though the source of this signature is still not clear.
+
+
+The signature 3 and 5 (C $>$ A at NpCpN), which were observed in head-and-neck cancers, three types of lung cancers,
+are probably associated with tobacco smoking.
+Furthermore, the fact that the estimated signature for each cancer shows higher prevalence on coding strands is consistent with the previous study.
+
+
+The signature 7 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and related to deamination of 5-methyl-cytosine.
+The signature 9 (C $>$ T at NpCp[CT]) were observed in melanomas and glioblastomas, 
+and seems to be associated with a chemotherapy drug, temozolomide.
+
+
+
+
+
 The signature 9 (C $>$T at [CT]pCpC) were observed in head and neck cancers and melanomas, and probably related to ultraviolet light.
 The signature 10 (C $>$ T at GpCp[CG]) were observed in small-cell lung cancers and stomach cancers,
 and seems to be the same with the ``signature 15'' in the previous study, whose function is still not clear.
 
 
-In addition to the above signatues, a number of prominent mutation signatures observed in one cancer type 
-had common characteristics with those observed in the previous study:
-the signature 20 (T $>$ [CG] at CpTpT) observed in oesophagus cancers, 
-the signature 2 (C $>$ A at [CT]pCpT) observed in low grade gliomas,
-the signature 5 (C $>$ A at NpCp[AT]) observed in neuroblastomas,
-the signature 12 (C $>$ T at [CG]pCp[CT]) observed in pilocytic astrocytomas, 
-and the signature 18 (T $>$ C at GpTpN) in stomach cancers.
+The signature 2 (C $>$ A at [CT]pCpT), observed in low grade gliomas, can be related to the one detected in the same cancer type in the previous study, but slightly different. 
+This seems to be because the corresponding signature in the previous study shows very complex pattern (C $>$ A at NpCpT or C $>$ T at GpTpN).
+Actually, the mutation related to this signature is mostly coming from one cancer with a very high mutation rate.
+When we re-analyze the data removing this sample, the signature 2 disappeared.
+We suspect that the low-grade-glioma specific signature detected in the previous study may be aggregation of multiple signatures,
+but cannot be decomposed due to the lack of samples having these signatures.
+Therefore, we need to be more careful for the signature 2 and the corresponding signature in the previous study.
 
+The signature 3 (C $>$ A at CpCpG), observed in several cancers,
+Actually, this signature correspond to the one that could not be validated in the previous study,
+and the pattern 
+
+
+In addition to the above signatures, a number of prominent mutation signatures observed in one cancer type 
+had common characteristics with those observed in the previous study:
+the signature 21 (T $>$ [CG] at CpTpT) observed in oesophagus cancers, 
+the signature 2 (C $>$ A at [CT]pCpT) observed in low grade gliomas,
+the signature 6 (C $>$ A at NpCp[AT]) observed in neuroblastomas,
+the signature 12 (C $>$ T at [CG]pCp[CT]) observed in pilocytic astrocytomas, 
+and the signature 19 (T $>$ C at GpTpN) in stomach cancers.
+
+Although, our method detected most of the 
 
 Many of the signatures captured in this study 
 had prominent features at the two bases 5' and 3' to the mutated sites.
@@ -1083,6 +1138,10 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
   \includegraphics[width=15cm,height=7.5cm]{signatureList_APOBEC.eps}
   \label{APOBEC_sig_list}}
   
+\subfigure[Smoking signature  in each cancer type]{%
+  \includegraphics[width=15cm,height=2.5cm]{signatureList_LUNG.eps}
+  \label{LUNG_sig_list}}
+  
 \subfigure[POLE1 signatures in each cancer type]{%
   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE1.eps}
   \label{POLE1_sig_list}}
@@ -1099,9 +1158,9 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_LMST.eps}
   \label{LMST_sig_list}}
     
-\subfigure[Signature intensities at two 5' to the mutated site]{%
-  \includegraphics[width=8cm,height=5cm]{APOBEC_two5prime.eps}
-  \label{APOBEC_twofive}}
+% \subfigure[Signature intensities at two 5' to the mutated site]{%
+% \includegraphics[width=8cm,height=5cm]{APOBEC_two5prime.eps}
+ % \label{APOBEC_twofive}}
  
 
    
