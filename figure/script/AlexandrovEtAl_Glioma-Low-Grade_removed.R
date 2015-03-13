@@ -5,8 +5,11 @@ G <- readMPFile("../../AlexandrovEtAl/result/MPFormat/Glioma-Low-Grade.mp.txt.gz
 ##########
 # membership plot
 load("../../AlexandrovEtAl/result/Param_ind5_dir/Glioma-Low-Grade.3.Rdata");
-visMembership(G, resultForSave[[1]], ylog = TRUE, colourBrewer = "Set2", toSample = 100);
+visMembership(G, resultForSave[[1]], ylog = FALSE, colourBrewer = "Set2", toSample = 100);
 ggsave("../../supp/Glioma-Low-Grade.membership.eps", height = 4, width = 15, pointsize = 9);
+
+visMembership(G, resultForSave[[1]], ylog = TRUE, colourBrewer = "Set2", toSample = 100);
+ggsave("../../supp/Glioma-Low-Grade.membership_log.eps", height = 4, width = 15, pointsize = 9);
 ##########
 
 
