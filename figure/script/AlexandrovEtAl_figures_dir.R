@@ -354,9 +354,9 @@ for (i in 1:length(importantSigs)) {
     theme(text = element_text(size=20)) +
     theme(axis.text.x= element_text(angle=45,hjust=1));
 
-  outputName <- paste("../../manuscript/", names(importantSigs)[i], "_two5prime.eps", sep="");
+  outputName <- paste("../../supp/", names(importantSigs)[i], "_two5prime.eps", sep="");
   
-  ggsave(outputName, width=length(types) * 1.2 + 3, height=8, units="in");
+  ggsave(outputName, width=length(types) * 1.0 + 2.5, height = 6, units="in");
 
   
 }
