@@ -1,15 +1,35 @@
 library(pmsignature)
 
+# dummy signature estimation for generating class
+inputFile <- system.file("extdata/Nik_Zainal_2012.mutationPositionFormat.txt", package="pmsignature");
+G <- readMPFile(inputFile, numBases = 3, type = "full");
+Param <- getPMSignature(G, K = 2);
+
+# reading the signature from Alexandrov et al. Nature 2013
+nature2013_sig_raw <- read.table("../data/AlexandrovEtAl_signatures.txt", header=T, sep="\t");
+nature2013_sig <- t(nature2013_sig_raw[,4:30]);
+colnames(nature2013_sig) <- nature2013_sig_raw[,3];
+
+Param@signatureFeatureDistribution[1,1,] <- nature2013_sig[which(rownames(nature2013_sig) == "Signature.14"),];
+Param@signatureFeatureDistribution[2,1,] <- nature2013_sig[which(rownames(nature2013_sig) == "Signature.14"),];
+
+visPMSignature(Param, 1)
+ggsave("../../supp/example96_Glioma-Low-Grade.eps", width=12, height=3, units="in");
+
+
+##########
+
 G <- readMPFile("../../AlexandrovEtAl/result/MPFormat/Glioma-Low-Grade.mp.txt.gz", numBases = 5, trDir = TRUE);
+
 
 ##########
 # membership plot
 load("../../AlexandrovEtAl/result/Param_ind5_dir/Glioma-Low-Grade.3.Rdata");
 visMembership(G, resultForSave[[1]], ylog = FALSE, colourBrewer = "Set2", toSample = 100);
-ggsave("../../supp/Glioma-Low-Grade.membership.eps", height = 4, width = 15, pointsize = 9);
+ggsave("../../supp/Glioma-Low-Grade_membership.eps", height = 4, width = 12, pointsize = 9);
 
 visMembership(G, resultForSave[[1]], ylog = TRUE, colourBrewer = "Set2", toSample = 100);
-ggsave("../../supp/Glioma-Low-Grade.membership_log.eps", height = 4, width = 15, pointsize = 9);
+ggsave("../../supp/Glioma-Low-Grade_membership_log.eps", height = 4, width = 12, pointsize = 9);
 ##########
 
 
@@ -39,12 +59,35 @@ for (l1 in 1:length(Params)) {
    
   for (l2 in 1:l1) {
     aInd <- which(alignOrder[[l1]] == l2);
-    visPMSignature(Params[[l1]], aInd);
+    visPMSignature(Params[[l1]], aInd, charSize = 1);
   }
   
-  outputName <- paste("../../supp/Glioma-Low-Grade.removed_signature_K", (l1 + 1), ".eps", sep="");
-  dev.copy2eps(file=outputName, height = 3, width = 15, pointsize = 9);
+  outputName <- paste("../../supp/Glioma-Low-Grade_removed_signature_K", (l1 + 1), ".eps", sep="");
+  dev.copy2eps(file=outputName, height = 2.5, width = 15, pointsize = 9);
 }
+
+
+##########
+# original signature
+
+#' create the matrix showing the relationships between cancer type 
+#' and the specified numer of mutation signatures
+type2sigNum <- read.table("../data/AlexandrovEtAl_sigNum.txt", sep=",", header=FALSE);
+
+K <- type2sigNum[type2sigNum[,1] == "Glioma-Low-Grade", 2];
+inputRdata <- paste("../../AlexandrovEtAl/result//Param_ind5_dir/Glioma-Low-Grade.", K, ".Rdata", sep="");
+  
+load(inputRdata);
+
+mat <- matrix(c(1:(K - 1), rep(0, K - 1)), 1, 4, byrow = TRUE);
+layout(mat);
+
+for (k in 1:(K - 1)) {
+  visPMSignature(resultForSave[[1]], k, charSize = 1);
+}
+
+outputName <- paste("../../supp/Glioma-Low-Grade_original_signature_K", (K - 1), ".eps", sep = "");
+dev.copy2eps(file=outputName, height = 2.5, width = 15, pointsize = 9);
 
 
 

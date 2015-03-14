@@ -37,18 +37,18 @@ for (i in 1:length(oxidation_types)) {
   inputMPdata <- paste("../../AlexandrovEtAl/result/MPFormat/", oxidation_types[i], ".mp.txt.gz", sep = "");
   inputRdata <- paste("../../AlexandrovEtAl/result//Param_ind5_dir/", oxidation_types[i], ".", K, ".Rdata", sep="");
         
-  G <- readMPFile(inputMPdata, numBases = 5, trDir = TRUE);
+  # G <- readMPFile(inputMPdata, numBases = 5, trDir = TRUE);
   load(inputRdata);
-  visMembership(G, resultForSave[[1]], toSample = 100, colourBrewer = "Set2");
-  ggsave(paste("../../supp/", oxidation_types[i], "_oxidation_membership.eps", sep=""), height = 4, width = 15, pointsize = 9);
+  # visMembership(G, resultForSave[[1]], toSample = 100, colourBrewer = "Set2");
+  # ggsave(paste("../../supp/", oxidation_types[i], "_oxidation_membership.eps", sep=""), height = 4, width = 12, pointsize = 9);
 
   oxInd <- checkOxidationInd(resultForSave[[1]])
   
   tempMar <- par("mar");
-  par(mar = 0.4 * tempMar);
+  par(mar = 0.2 * tempMar);
   
-  visPMSignature(resultForSave[[1]], oxInd, charSize = 0.7);
-  dev.copy2eps(file=paste("../../supp/", oxidation_types[i], "_oxidation_signature.eps", sep=""), height = 2.4, width = 3.75);    
+  visPMSignature(resultForSave[[1]], oxInd, charSize = 0.8);
+  dev.copy2eps(file=paste("../../supp/", oxidation_types[i], "_oxidation_signature.eps", sep=""), height = 3.0, width = 5);    
 
   par(.pardefault);
   

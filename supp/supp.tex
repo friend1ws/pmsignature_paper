@@ -240,5 +240,135 @@ when changing the number of mutation signatures $K$.}
 \end{figure}
 
 
+\clearpage
+
+\begin{figure*}
+
+% \subfigure[POLE1 signatures in each cancer type]{%
+%  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE1.eps}
+%   \label{POLE1_sig_list}}
+  
+% \subfigure[POLE2 signature in each cancer type]{%
+%   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE2.eps}
+%   \label{POLE2_sig_list}}
+  
+% \subfigure[UV signature in each cancer type]{%
+%   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_UV.eps}
+%   \label{UV_sig_list}}
+
+% \subfigure[Unknown signature obtained in lung small cell carcinomas and stomach cancers]{%
+%   \includegraphics[width=7.5cm,height=2.5cm]{signatureList_LMST.eps}
+%   \label{LMST_sig_list}}
+      
+% \caption{Several signatures having prominent characteristics at 5'  or 3' to the mutated sites.}
+% \label{nature2013_sig_others}
+% \end{figure*}
+
+
+\clearpage
+
+
+\begin{figure}
+\centering
+
+\subfigure[The low grade glioma specific signature in the previous study (the ``Signature 14'' in \cite{pmid23945592})]{%
+  \includegraphics[height=3cm,width=12cm,clip]{example96_Glioma-Low-Grade.eps}
+  \label{LGG_nature2013_sig}}
+  
+\subfigure[Estimated membership parameter by the proposed method]{%
+  \includegraphics[height=4cm,width=12cm,clip]{Glioma-Low-Grade_membership.eps}
+  \label{LGG_membership}}
+\quad
+\subfigure[Estimated membership parameter by the proposed method in log scale]{%
+  \includegraphics[height=4cm,width=12cm,clip]{Glioma-Low-Grade_membership_log.eps}
+  \label{LGG_membership_log}}
+
+  \caption{(a) The barplot is divided by 6 substitution patterns. In each division, 
+16 bars show joint probabilities of 16 combinations of the immediate 5' and 3' bases.
+(b, c) We have selected top 100 cancer samples according to the number of mutation.
+The height of bar shows (the logarithm of) the number of mutations for each sample,
+and the ratio of colored division shows the ratio of estimated membership parameters for each signature and sample.
+The low grade glioma specific signature detected by the proposed method is the signature 2.
+We can see that the mutations corresponding to signature 2 is mostly from the sample with an extremely high mutation rate.
+}
+
+\end{figure}
+
+\clearpage
+
+\begin{figure}
+\centering
+
+\subfigure[The result for the original data ($K = 2$)]{%
+  \includegraphics[height=2.5cm,width=15cm,clip]{Glioma-Low-Grade_original_signature_K2.eps}
+  \label{LGG_roriginal_sigK2_sig}}
+  
+\subfigure[The result for the data without the hyper-mutated sample ($K = 2$)]{%
+  \includegraphics[height=2.5cm,width=15cm,clip]{Glioma-Low-Grade_removed_signature_K2.eps}
+  \label{LGG_removed_sigK2_sig}}
+  
+  
+\subfigure[The result for the data without the hyper-mutated sample ($K = 3$)]{%
+  \includegraphics[height=2.5cm,width=15cm,clip]{Glioma-Low-Grade_removed_signature_K3.eps}
+  \label{LGG_removed_sigK3_sig}}
+  
+
+\subfigure[The result for the data without the hyper-mutated sample ($K = 4$)]{%
+  \includegraphics[height=2.5cm,width=15cm,clip]{Glioma-Low-Grade_removed_signature_K4.eps}
+  \label{LGG_removed_sigK4_sig}}
+  
+\subfigure[The result for the data without the hyper-mutated sample ($K = 5$)]{%
+  \includegraphics[height=2.5cm,width=15cm,clip]{Glioma-Low-Grade_removed_signature_K5.eps}
+  \label{LGG_removed_sigK5_sig}}
+  
+  \caption{(a) The signatures obtained for the original data. The first (from the left) signature seems to be deamination of 5-methyl-cytosine. 
+  The second signature is the low grade glioma signature. 
+  (b, c, d, e) The signature obtained for the data without the hyper-mutated case for several number of mutation signatures ($K$, including the background signature).
+  Although the signature related to deamination of 5-methyl-cytosine remained, low grade glioma specific signature could not be observed.}
+
+\end{figure}
+
+\clearpage
+
+
+\begin{figure}
+\centering
+
+\subfigure[The signature 2 detected in kidney clear cell carcinomas]{%
+  \includegraphics[height=3cm,width=4.8cm,clip]{Kidney-Clear-Cell_oxidation_signature.eps}
+  \label{LGG_membership}}
+\quad
+\subfigure[The signature 1 detected in lung adenocarcinomas]{%
+  \includegraphics[height=3cm,width=4.8cm,clip]{Lung-Adeno_oxidation_signature.eps}
+  \label{LGG_membership_log}}
+\quad
+\subfigure[The signature 1 detected in melanomas]{%
+  \includegraphics[height=3cm,width=4.8cm,clip]{Melanoma_oxidation_signature.eps}
+  \label{LGG_membership_log}}  
+  
+\subfigure[Estimated membership parameter for kidney clear cell carcinomas]{%
+  \includegraphics[height=4cm,width=12cm,clip]{Kidney-Clear-Cell_oxidation_membership.eps}
+  \label{LGG_nature2013_sig}}
+  
+\subfigure[Estimated membership parameter for lung adenocarcinomas]{%
+  \includegraphics[height=4cm,width=12cm,clip]{Lung-Adeno_oxidation_membership.eps}
+  \label{LGG_membership}}
+\quad
+\subfigure[Estimated membership parameter for melanomas]{%
+  \includegraphics[height=4cm,width=12cm,clip]{Melanoma_oxidation_membership.eps}
+  \label{LGG_membership_log}}
+
+  \caption{(a, b, c) The putative oxidative artifact signatures estimated for each cancer.
+  We can observe consistent abundance of the base C at the $-2 $ position.
+  (d, e, f) For each cancer type, 
+We have selected top 100 cancer samples according to the number of mutation.
+The height of bar shows the number of mutations for each sample,
+and the ratio of colored division shows the ratio of estimated membership parameters for each signature and sample.
+We can see that the signature corresponding to putative oxidative artifacts concentrates on a small number of samples.}
+
+\end{figure}
+
+
+
 \end{document}
 
