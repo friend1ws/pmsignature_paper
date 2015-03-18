@@ -48,7 +48,7 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
     for(w in 1:4) {
       endx <- startx + A[l,w]
       polygon(c(startx, endx, endx, startx), c(0, 0, sizes[l], sizes[l]), col = baseCol[w], border=F);
-      if (endx - startx > 1 / 4 & sizes[l] > 0.5) {
+      if (endx - startx > 1 / 4 & sizes[l] > 0.5 & charSize > 0) {
         text(0.5 * (endx + startx), 0.5 * sizes[l], num2base[w], col="white", cex=charSize)
       }
       startx <- endx;
@@ -63,7 +63,7 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
     for(ww in 1:4) {
       endy <- starty + B[w,ww];
       polygon(c(startx, endx, endx, startx), c(starty, starty, endy, endy), col=baseCol[ww], border=F);
-      if ((endy - starty > 1 / 4) & (endx - startx > 1 / 4)) {
+      if ((endy - starty > 1 / 4) & (endx - startx > 1 / 4) & charSize > 0) {
         text(0.5 * (endx + startx), 0.5 * (endy + starty), num2base[ww], col="white", cex=charSize)
       }
       starty <- endy;
@@ -105,7 +105,7 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
     starty <- 2;
     endy <- starty + v3[1];
     polygon(c(startx, endx, endx, startx), c(starty, starty, endy, endy), col=baseCol[5], border=F);
-    if (endy - starty > 1 / 8) {
+    if (endy - starty > 1 / 8 & charSize > 0) {
       text(0.5 * (startx + endx), 0.5 * (starty + endy), "+", col="white", cex=charSize)
     }
     
@@ -114,7 +114,7 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
     starty <- 2;
     endy <- starty + v3[2];
     polygon(c(startx, endx, endx, startx), c(starty, starty, endy, endy), col=baseCol[6], border=F);
-    if (endy - starty > 1 / 8) {
+    if (endy - starty > 1 / 8 & charSize > 0) {
       text(0.5 * (startx + endx), 0.5 * (starty + endy), "-", col="white", cex=charSize)
     }
     

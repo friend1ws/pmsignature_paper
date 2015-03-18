@@ -179,10 +179,10 @@ colnames(sig2type) <- type2sigNum[,1];
 myCol <- colorRampPalette(c("#F8F8FF", "#F8F8FF", "#F8F8FF", "#6B8E23"));
 
 #' Export Width 800, Height 800
-corrplot(sig2type, is.corr=FALSE, bg="#F8F8FF", col=myCol(200), tl.col="black", tl.cex=1.2, tl.srt=90, cl.pos="n");
+corrplot(sig2type, is.corr=FALSE, bg="#F8F8FF", col=myCol(200), tl.col="black", tl.cex=1.0, tl.srt=90, cl.pos="n");
 
 outputName <- "../../manuscript/corrplot.eps"
-dev.copy2eps(file=outputName, height = 15, width = 15, pointsize = 18);
+dev.copy2eps(file=outputName, height = 15, width = 15, pointsize = 12);
 par(.pardefault);
 
 ##########
@@ -308,6 +308,38 @@ for (i in 1:length(importantSigs)) {
 par(.pardefault);
 
 
+###
+
+importantSigs <- c(APOBEC_ind, UV_ind, LMST_ind);
+names(importantSigs) <- c("APOBEC", "UV", "LMST");
+
+par(mar=c(0, 0, 0, 0));
+par(xaxs = "i", yaxs = "i");
+
+for (i in 1:length(importantSigs)) {
+  
+
+  F <- Fs[[as.numeric(importantSigs[i])]];
+    
+  plot.new();
+  plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+  
+  # the setting of charSize is temporary... why the size changes by the number of rows.....
+  visPMS_ind(F, numBases = 5, trDir = TRUE, charSize = 0);
+       
+  
+  outputName <- paste("../methodOverview/signatureList_", names(importantSigs)[i], ".eps", sep="");
+  dev.copy2eps(file=outputName, height = 2.4, width = 3.75, pointsize = 1e-10);
+
+}
+
+par(.pardefault);
+
+
+
+###
+
+##########
 
 ##########
 
