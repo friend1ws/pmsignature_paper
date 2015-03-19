@@ -78,7 +78,7 @@ We used the notation $\tilde{Q}$ instead of $Q$
 to represent that the row vectors of $\tilde{Q}$ are not normalized to sum to one in general.
 
 For solving NMF, 
-the previous study \cite{pmid23318258} used the following updating rule \cite{Lee00algorithmsfor}:
+the previous study (Lee et al. 2000) used the following updating rule:
 \begin{equation*}
 f_{k,m} \gets f_{k,m} \frac{ ( \tilde{Q}^T G)_{k,m} }{ ( \tilde{Q}^T \tilde{Q} F  )_{k,m} },\  \
 \tilde{q}_{i,k} \gets \tilde{q}_{i,k}  \frac{ (G F^T)_{i,k} }{ ( \tilde{Q} F F^T )_{i,k} },
@@ -96,7 +96,7 @@ Therefore, the optimization problem for the existing approach is
 \end{aligned}
 \end{equation}
 
-On the other hand, there is another type of updating rule \cite{Lee00algorithmsfor}:
+On the other hand, there is another type of updating rule:
 \begin{equation*}
 f_{k,m} \gets f_{k,m} \frac{ \sum_i \tilde{q}_{i,k} g_{i,m} / ( \tilde{Q} F)_{i,m} }{ \sum_i \tilde{q}_{i,k} },
 \end{equation*}
@@ -244,33 +244,40 @@ when changing the number of mutation signatures $K$.}
 
 \begin{figure*}
 
-\subfigure[APOBEC signature intensities at two 5' to the mutated site]{%
-  \includegraphics[width=14.5cm,height=6cm]{APOBEC_two5prime.eps}
-   \label{APOBEC_two5prime}}
+\subfigure[APOBEC signatures obtained in each cancer type]{%
+  \includegraphics[width=15cm,height=7.5cm]{signatureList_APOBEC.eps}
+  \label{APOBEC_sig_list}}
   
-\subfigure[POLE1 signature intensities at two 5' to the mutated site]{%
-  \includegraphics[width=4.5cm,height=6cm]{POLE1_two5prime.eps}
-  \label{POLE1_two5prime}}
-\quad
-\subfigure[POLE2 signature intensities at two 5' to the mutated site]{%
-  \includegraphics[width=4.5cm,height=6cm]{POLE2_two5prime.eps}
-  \label{POLE2_two5prime}}
-
-\subfigure[UV signature intensities at two 5' to the mutated site]{%
-  \includegraphics[width=4.5cm,height=6cm]{UV_two5prime.eps}
-  \label{UV_two5prime}}
-\quad
-\subfigure[The signature 11 intensities at two 5' to the mutated site]{%
-  \includegraphics[width=4.5cm,height=6cm]{LMST_two5prime.eps}
-  \label{LMST_two5prime}}
+\subfigure[Smoking signature  in each cancer type]{%
+  \includegraphics[width=15cm,height=2.5cm]{signatureList_LUNG.eps}
+  \label{LUNG_sig_list}}
   
-\caption{The estimated frequencies of bases at two 5' to the mutated site for each cancer type.
-The heights of bar show the estimated frequency for bases A, C, G and T at two 5' to the mutated site.
-The error bars show standard errors estimated by bootstrap.}
-\label{two5prime}
+\subfigure[POLE1 signatures in each cancer type]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE1.eps}
+  \label{POLE1_sig_list}}
+\quad
+\subfigure[POLE2 signature in each cancer type]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE2.eps}
+  \label{POLE2_sig_list}}
+  
+\subfigure[UV signature in each cancer type]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_UV.eps}
+  \label{UV_sig_list}}
+\quad
+\subfigure[Unknown signature obtained in lung small cell carcinomas and stomach cancers]{%
+  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_LMST.eps}
+  \label{LMST_sig_list}}
+    
+% \subfigure[Signature intensities at two 5' to the mutated site]{%
+% \includegraphics[width=8cm,height=5cm]{APOBEC_two5prime.eps}
+ % \label{APOBEC_twofive}}
 
+\caption{(a) APOBEC signatures obtained in 11 cancer types, 
+(b, c, d, e) Several signatures having prominent characteristics at 5'  or 3' to the mutated sites,
+(f) the frequencies of bases at two 5' to the mutated site. 
+}
+\label{nature2013_apobec}
 \end{figure*}
-
 
 \clearpage
 
@@ -278,7 +285,7 @@ The error bars show standard errors estimated by bootstrap.}
 \begin{figure}
 \centering
 
-\subfigure[The low grade glioma specific signature in the previous study (the ``Signature 14'' in \cite{pmid23945592})]{%
+\subfigure[The low grade glioma specific signature in the previous study (the ``Signature 14'' in Alexandrov et al. (2013)]{%
   \includegraphics[height=3cm,width=12cm,clip]{example96_Glioma-Low-Grade.eps}
   \label{LGG_nature2013_sig}}
   

@@ -165,7 +165,7 @@ $\ast$ E-mail: yshira@hgc.jp
 % Please keep the abstract between 250 and 300 words
 \section*{Abstract}
 
-Thanks to the advances in  recent high throughput sequencing technologies,
+Thanks to the advances in recent high throughput sequencing technologies,
 a massive amount of somatic mutations from cancer genome sequencing data become available.
 Accordingly, it becomes possible to detect characteristic patterns of somatic mutations or ``mutation signatures'' 
 at an unprecedented resolution with the expectations of revealing novel causes and mechanisms of tumorigenesis.
@@ -174,20 +174,20 @@ Several statistical approaches for extracting characteristic mutation signatures
 However, in previous approaches,
 since the number of parameters increases exponentially as more contextual factors are taken into account,
 we could not treat many contextual factors all together because of instability of estimation results.
-Furthermore, interpretation of mutations signatures of huge dimensional vectors is often troublesome.
+Furthermore, interpretation of mutations signatures with huge dimensional vectors is often troublesome.
 
 
 In this paper, we propose a novel approach based on hierarchical probabilistic modeling.
-The proposed approach reduces the number of parameters by the independence assumption on each factor 
+The proposed approach reduces the number of parameters by an independence assumption on each factor 
 so that we can obtain more robust and interpretable estimates.
 Using synthetic and real data, we demonstrate that the proposed approach can not only give highly robust estimates,
 but also capture novel characteristics such as base frequency at the two base 5' to the mutated sites.
 In addition, we clarify the relationships between the proposed approach and the ``mixed-membership models'', 
 that have been actively studied in statistical machine learning and statistical genetics community.
 Recognizing these relationships will help us to develop a grasp of mutation signature extraction problems,
-and will allow us to utilize a lot of techniques accumulated on other fields to further improve the statistical methods.
+and will allow us to utilize a number of techniques accumulated on other fields to further improve the statistical methods.
 
-Finally, we have prepared an R package of the proposed approach (probabilistic mutation signature, pmsignature),
+We have prepared an R package of the proposed approach (probabilistic mutation signature, pmsignature),
 which is available at \url{https://github.com/friend1ws/pmsignature}.
 
 
@@ -195,18 +195,19 @@ which is available at \url{https://github.com/friend1ws/pmsignature}.
 % Author Summary not valid for PLOS ONE submissions.   
 \section*{Author Summary}
 
-It is known that the pattern of somatic mutations depends on cancer types and even individuals within the same caner type.
-For example, C $>$ A mutations are frequent in lung caner
-whereas C $>$ T and CC $>$ TT mutations are frequent in skin cancer,
-and their patterns are usually associated to some kinds of carcinogens.
+
+The pattern of somatic mutations has been known to depend on cancer types and even individuals within the same caner type.
+For example, C $>$ A mutations are frequent in lung caners
+whereas C $>$ T and CC $>$ TT mutations are frequent in skin cancers,
+and their patterns are usually associated to some kinds of carcinogens such as tobacco smoking and ultraviolets.
 However, since the cost and throughput of sequencing technologies were limited, 
-high-resolution analysis of mutation patterns was not possible.
+high-resolution analyses of mutation patterns were not possible.
 
 With the coming of high-throughput sequencing technologies, we can now obtain a massive amount of somatic mutation data from cancer genomes,
 and there is a great possibility of detecting novel mutation patterns leading to identification of novel carcinogens
-and obtaining better classification of cancer genomes based on mutation patterns differences.
-On the other hand, there is an increasing need for novel statistical method for mutation patterns analysis 
-from vast amount of somatic mutation data.
+and better classification of cancer genomes.
+On the other hand, there is an increasing need for novel statistical method for analyzing mutation patterns
+from vast amounts of somatic mutation data.
 
 In this paper, we provide a novel statistical tools for clarifying characteristic mutation patterns
 from massive amounts of cancer somatic mutation data, 
@@ -223,64 +224,64 @@ As we lead a life, DNAs within the cells throughout our body acquire a number of
 mainly caused by DNA replication errors and exposures to mutagens such as chemical substances, radioactivities and inflammatory reactions.  
 Although most mutations are harmless (called ``passenger mutations''), 
 a small portions of mutations at some specific sites in cancer genes (called ``driver mutations'') 
-confer growth activities to the cells having them over other cells,
-allowing such as autonomous proliferation and tissue invasion,
-and contribute to oncogenesis \cite{stratton2009cancer}.
-The main goal in cancer genome study has been to find the driver mutations to understand the mechanism of cancer development.
+confer growth activities to the cells over other cells,
+causing autonomous proliferation, tissue invasion, and contribute to oncogenesis \cite{stratton2009cancer}.
+The main goal in cancer genome study has been to find driver mutations to understand the mechanism of cancer development.
 On the other hand,  even passenger mutations can also give us an important information, 
 because they often show specific mutation patterns, or ``mutation signatures'', which reflect driving forces causing somatic mutations.
 Classical analyses of mutation patterns have revealed a number of relationships between mutation patterns and carcinogens.
 For example, C $>$ A mutations at CpG sites are abundant in lung cancers with smoking history,
-and these are caused by benzo(a)pyrene included in tobacco smoke \cite{pmid12379884}.
+and these are caused by benzo(a)pyrene included in tobacco smokes \cite{pmid12379884}.
 Also, C $>$ T and CC $>$ TT  mutations are abundant in ultraviolet-light-associated skin cancers, 
 and these are caused by pyrimidine dimers as a result of ultraviolet radiation \cite{pmid15748635}. 
 
 There were several problems in these classical studies \cite{pmid12379884, pmid15748635}.
 Due to limited sequencing throughput, 
-they mostly aggregated mutations collected from each individuals over the same cancer types focusing on a few cancer genes such as TP53
+they mostly aggregated mutations collected from each individual over the same cancer type focusing on a few cancer genes such as TP53
 where high mutation frequencies could be expected,
 and compared mutation patten profiles among different cancer types.
-However, many of those mutations in those cancer genes are considered to be driver mutations adding selective activities to the cells,
-which can give biased mutation profiles from those purely reflect driving forces of mutations.
-Furthermore, the mutation pattern profile not for each cancer type but for each individual could not be explored in the above approach.
+However, since many of the mutations in cancer genes are considered to be driver mutations adding selective activities to the cells,
+the resultant mutation profiles are considered to biased from those purely reflect driving forces of mutations.
+Furthermore, the mutation patterns not for each cancer type but for each individual could not be explored in the above approach.
 
 Nowadays, recent advancement in high-throughput sequencing technologies provides vast amounts of passenger mutations
 and great chances for not only identification of novel driver mutations but also investigation of sample-by-sample mutation patterns in an unbiased way. 
 A study using 21 breast cancer samples identified the association between C $>$ [AGT] mutations at TpC sites, 
-which is later proved to be caused by APOBEC proteins, and the novel phenomenon called {\it kataegis} \cite{pmid22608084}. 
-Moreover, the recent landmark study revealed a landscape of mutation signatures using from 7,034 primary cancer samples of 30 different classes \cite{pmid23945592}. 
-Furthermore, it is expected that detection of novel mutation signatures and associated mutagens can lead to identification of novel mutagens and prevention of cancer.
+which is later proved to be caused by APOBEC protein family, and a novel phenomenon called {\it kataegis} \cite{pmid22608084}. 
+Moreover, a landmark study using from 7,034 primary cancer samples of 30 different classes revealed an overview of mutation signatures in most cancer types \cite{pmid23945592}. 
+Now, there are great hopes that detection of novel mutation signatures and associated mutagens can lead to identification of novel mutagens and prevention of cancer.
 
 
 At the same time, for extracting prominent mutation signatures from vast amounts of somatic mutation data,
-there is an increasing need for novel latent variable modeling approaches.
+there is an increasing need for novel statistical approaches.
 Currently, only a few approaches have been proposed. 
 In \cite{pmid23318258}, nonnegative matrix factorization (NMF, \cite{pmid10548103}) is used for the matrix whose elements represent frequencies of mutation patterns for each sample. 
 In \cite{pmid23628380}, the number of each mutation patterns is assumed to be generated by Poisson distribution whose parameters are linear combinations of latent mutational signatures. 
 
 
-One of the major problems of the previous approach is that 
+One of the major problems of the previous approaches is that 
 the number of parameters in the model grows exponentially 
 with the number of contextual factors to take into account.
 Many of recent approaches take into account just immediate 5' and 3' bases as contextual factors in addition to substitution patterns.
 However, when considering two 5' and 3' bases to the mutated sites,
 the estimated mutation signatures often become unstable due to the curse of high dimensionality, 
 despite there is a potential need to observe two base 5' and 3' positions to the mutated sites \cite{pmid9683596}.
-Also, it is often very hard to interpret and extract important characteristics from the estimate with high-dimensional parameters.
-Furthermore, considering that latent variable modeling have enormous number of researches in statistics and machine learning, 
-there is a great possibility that we can further elaborate statistical methods for mutational signature extraction problems.
+Also, it is often very hard to interpret the estimates with high-dimensional parameters.
 
-In this paper, we present a novel probabilistic approach.
-To avoid the problem of the exponential increase of the number of parameters,
-we assumed independence among contextual factors, which can give more interpretable and robust estimation.
-We demonstrate that independence assumption can robustly capture known mutational signatures with additional contextual informations.
 
-In addition, even though it has not been widely discussed, 
-the problem of identifying mutation signatures is closely related to "mixed-membership models'' in other fields, 
-such as ``population admixture'' models \cite{pmid10835412} in the analysis of population structure, 
-and the ``latent dirichlet allocation'' (LDA) model for document clustering \cite{Blei:2003}.
-In this paper, we explicitly show the relationships between the proposed model and the mixed-membership models and discuss the relationships,
-which we believe will be highly helpful for future elaboration of the statistical method for mutation signature extraction problems.
+In this paper, we present a novel probabilistic approach based on ``mixed membership models,'' that is widely used in other fields such as population genetics and machine learning.
+Even though it has not been widely discussed, there is close relationships between the mutation signature problems and mixed membership models,
+and we believe that being aware of those relationships will be very helpful for future elaboration of the statistical methods.
+Furthermore, to avoid the problem of the exponential increase of the number of parameters,
+we assume an independence among contextual factors, which can give more interpretable and robust estimation.
+We demonstrate that the independence assumption can robustly capture known mutational signatures with additional contextual informations.
+
+% In addition, even though it has not been widely discussed, 
+% the problem of identifying mutation signatures is closely related to "mixed-membership models,''
+% that is widely used in other field such as ``population admixture'' models \cite{pmid10835412} in the analysis of population structure, 
+% and the ``latent dirichlet allocation'' (LDA) model for document clustering \cite{Blei:2003}.
+% In this paper, we explicitly show the relationships between the proposed model and the mixed-membership models and discuss the relationships,
+% which we believe will be highly helpful for future elaboration of the statistical method for mutation signature extraction problems.
 
 The R package for the proposed method,  {\bf pmsignature} ({\bf p}robabilistic {\bf m}utational signature),
 is available at \url{https://github.com/friend1ws/pmsignature}).
@@ -315,26 +316,26 @@ One of the major problems is that
 total number of mutation patterns exponentially increases
 as we increase the number of mutation features to take into account.
 For example, if we want to take account of up to $n$ bases 5' and 3' to the mutated site 
-(which we call $-n$ site and $+n$ site, respectively, in this paper) as well as 6 substitution patterns, 
+(which we call $-n$ position and $+n$ position, respectively, in this paper) as well as 6 substitution patterns, 
 the number of parameters becomes $6 \times 4^{2n} - 1$. 
 On the other hand, the mutation rates are mostly below 10 per Mb \cite{pmid23945592},
 (where about 30,000 mutations are expected in entire genomic regions).
-Therefore, considering even $\pm 2$ sites and substitution patterns (1535 parameters)
+Therefore, considering even $\pm 2$ positions and substitution patterns (1535 parameters)
 is often difficult because of instability of parameter estimation. 
 
 
-On the other hand, observing the mutation signatures observed in the previous studies, 
-many mutation signatures had clear characteristics such as:
+On the other hand, observing the mutation signatures detected in the previous studies, 
+many mutation signatures have clear characteristics such as:
 \begin{itemize}
 \item 
 A certain value of mutation features is often dominant in many known mutation signatures. 
-For example, the base T is highly dominant at the $-1$ site in the APOBEC signature, 
+For example, the base T is highly dominant at the $-1$ position in the APOBEC signature, 
 and C $>$ T substitution is highly dominant in the ultraviolet signature \cite{pmid23945592} (see Figure \ref{APOBEC_nature2013_sig}). 
 
 \item
 Proportional relationships among mutation features are often observed in many signatures as shown in the APOBEC signature, 
-where the frequencies of bases at the $+1$ site are largely proportional across 3 major substitution patterns C$>$T, C$>$G and C$>$A,
-and show consistent tendencies (A and T bases are more frequent than C and G bases).
+where the frequencies of bases at the $+1$ position are largely proportional across 3 major substitution patterns C$>$T, C$>$G and C$>$A,
+showing consistent tendencies  (A and T bases are more frequent than C and G bases).
 
 \end{itemize} 
 
@@ -342,12 +343,12 @@ These characteristics imply that the parameter spaces of mutation signatures can
 and we can potentially reduce the number of parameters by imposing additional restrictions. 
 
 In this paper, we propose to represent mutation signatures with independent multiple multi-nominal distributions
-on each mutation feature. 
-By doing this, we can reduce the number of parameters from exponential to linear with respect to the number of mutation features. 
-When we consider up to $\pm n$ sites as well as 6 substitution patterns, 
+on each mutation feature,
+and thus, we can reduce the number of parameters from exponential to linear with respect to the number of mutation features. 
+When we consider up to $\pm n$ positions as well as 6 substitution patterns, 
 the required number of parameters becomes $5 + 6n$. 
-For example, when considering $\pm 2$ sites and substitution patterns,
-the number of parameters becomes 17, which is far less compared to 1535 in the previous approach.
+For example, when considering $\pm 2$ positions and substitution patterns,
+the number of parameters becomes 17, which is far less compared to 1535 in the previous approach without the independence assumption.
 Furthermore, independence assumption enables us to come up with fairly interpretable representation for mutation signatures.
 
 It may be argued that the independence assumption does not conform to real mechanisms of mutational processes 
@@ -359,69 +360,69 @@ However, we would like to present the following justifications for the independe
 For representing the transcription factor binding motifs, the position specific weight matrix (PSWM), 
 which is equivalent to independent multiple multinomial distributions, 
 has been quite successfully utilized 
-even though it is never likely that transcription factors independently choose the bases of their binding sites. 
-This is probably because PSWM can capture important characteristics of transcription factor binding sites 
+even though it is never likely that transcription factors independently choose the nucleotides of their binding sites. 
+The success of the PSWM may be because it can capture important characteristics of transcription factor binding sites 
 in spite of the independence assumption,
 and can be represented in an intuitively interpretable way via sequencing logos \cite{pmid2172928}.
 
 \item
 As we demonstrate in later sections, 
-the proposed approach can robustly extract most of previously-collected mutation signatures even independence assumption is imposed.
+the proposed approach can robustly extract most of previously-collected mutation signatures even independence assumption is imposed,
+indicating the practical validity of the independence assumption.
 
 \item
 Although most mutation signatures show proportional relationships among mutation features, 
 a few signatures seem to violate proportional relationships and cannot be explained by independent models. 
 For example, the pol $\epsilon$ mutation signature \cite{pmid23945592} (see Figure \ref{POLE_nature2013_sig}) puts strong probability masses 
 on just two pattern TpCpT $>$ TpApT and TpCpG $>$ TpTpG, 
-and the frequencies of substitution patterns and $+1$ bases are not proportional unlike the APOBEC signature.
-However,  by using multiple mutation signatures, we can represent this phenomenon even with independence assumption.
+and the frequencies of substitution patterns and bases at the $+1$ positions are not proportional unlike the APOBEC signature.
+However, by using multiple mutation signatures, we can represent this phenomenon even under the independence assumption.
 \end{enumerate}
 
 
 \subsection*{Overview of the proposed method}
 
 The proposed method has mainly two novelties compared to existing approaches.
-The first point is the assumption of independence, where we can identify mutation signatures as multiple multinomial distribution parameters on multiple contextual factors.
+The first point is, as noted above, the assumption of independence, where we can identify mutation signatures as multiple multinomial distribution parameters on multiple contextual factors.
 We give a way of visualizing probabilistic mutation signature (see Figure \ref{mutSig_example}), 
-which is reminiscent of sequencing logos \cite{pmid2172928}. 
-This representation will help us to immediately identify which elements are strongly working on each contextual factors.
+which is somewhat reminiscent of sequencing logos \cite{pmid2172928}. 
+This representation will help us to immediately identify which elements are strongly expressed on each mutation factors.
 In this paper, we focus on substitution patterns, flanking bases (up to the $\pm 2$ positions) and transcribed directions as contextual factors of mutation patterns.
 
 
-The second novel point is that we adopt  the ``mixed membership model'' for the mutation signature problem.
-Briefly, the mixed membership model is basically clustering method, but allowing that each individual can have multiple clusters.
-The mixed membership model is widely used in many different fields such as population structure classification in population genetics and document classification problems in machine learning.
-This model is also shown to be closely related to nonnegative matrix factorization.
+The second point is that we adopt the framework of ``mixed membership models'' for the mutation signature problem.
+The mixed memberships model are basically clustering methods, but allowing that each individual can have multiple clusters,
+and widely used in many different fields such as population structure classification in population genetics \cite{pmid10835412} and document classification problems in machine learning \cite{Blei:2003}.
+This models are also shown to be closely related to nonnegative matrix factorization \cite{ding2008equivalence}.
 
-
-Suppose there are in total $K$ source of mutations (or mutation signatures) in the cohort of interest.
+The generative process of somatic mutations proposed proposed in this paper is summarized in the Figure \ref{methodOverview}.
+Suppose there are in total $K$ sources of somatic mutations (or mutation signatures) in the cohort of interest.
 For each cancer genome, somatic mutations are generated by one of the $K$ sources,
 and the ratio of the amount of contributing sources varies across cancer genomes depending on the ages, lifestyle, races and so on.
 We call this parameter as ``membership parameters.''
-
-
-Here, by convention of the mixed membership model, we assume that each mutation for each cancer genome is generated by a two step model:
-First, one of the contributing mutation signature is chosen depending on the membership parameter of that cancer genome.
+Here, by convention of the mixed membership models, we assume that each mutation for each cancer genome is generated by a two step model.
+First, one of the contributing mutation signatures is chosen depending on the membership parameter of the corresponding cancer genome.
 Then, according to the probability distribution of the selected mutation signature, 
-mutation features such as substitution patterns and flanking base pairs are generated.
+mutation features such as substitution patterns and flanking bases are generated.
 Although the mutation signatures and membership parameters are unknown,
 we can efficiently estimate these parameters by an EM-algorithm.
 
 
-To account for the intrinsic sequential context, we add background signatures.
+To account for the intrinsic sequential context, we add background signatures calculated by compositions of short nucleotides sequences in the human genome.
 See the Method section for the mathematical details, 
-detailed relationships with mixed membership models and nonnegative matrix factorizations, how to choose the number of mutation signatures and so on.
+detailed relationships with mixed membership models and nonnegative matrix factorizations, parameter estimation details, how to choose the number of mutation signatures and so on.
 
 
 \subsection*{Experiments on synthetic data}
 
 First, we would like to investigate whether the proposed approach can extract ``true'' mutation signatures or not.
-Since we can not know the true mutation signatures in real biological data, we resorted to simulation studies.
+Since we cannot know the true mutation signatures in real biological data, we resorted to simulation studies.
 
-Here, we generated a set of mutations changing the number of cancer genomes (10, 25, 50, 100), 
+Here, we assumed substitution pattens and up to $\pm 2$ flanking bases as mutation features,
+and generated a set of mutations changing the number of cancer genomes (10, 25, 50, 100), 
 and the number of mutations for each cancer genome (10, 25, 50, 100, 250, 500, 1000).
 The number of mutation signatures were set to 5 including background mutation ratio.
-The mutation feature parameters and signature distribution parameters were generated by Dirichlet distribution,
+The mutation feature parameters and membership parameters were generated by Dirichlet distribution,
 
 \begin{equation*}
  f_{k,l,m_l} \sim \text{Dir} (\alpha \bm{1} ),\ k = 1, \cdots, K,\  l = 1, \cdots, L.
@@ -430,43 +431,41 @@ The mutation feature parameters and signature distribution parameters were gener
  q_{i, k} \sim \text{Dir} (\gamma \bm{1} ),\ i = 1, \cdots, I,
  \end{equation*}
 where the $\alpha$ and $\gamma$ represent the amounts of dispersion 
-for the mutation features parameters and signature distribution parameters, respectively.
-When these values are smaller, only a fewer components can have larger probability masses.
-and the rest will have much smaller masses.  
-When these are large, all the components tend to have evenly-distributed probability masses.
+for the mutation signature parameters and membership parameters, respectively.
+When these values are smaller, only a fewer components can have larger probability masses and the rest will have much smaller masses.
+On the other hand, when these are large, all the components tend to have evenly-distributed probability masses.
  
-As Figure \ref{sim_facet} shows, we could estimate the mutation signatures very accurately overall.
-(see Supplementary Figure 1 for an example).
+As Figure \ref{sim_facet} shows, we could estimate the mutation signatures very accurately overall (see Supplementary Figure 1 for an example).
 In most cases, the log-likelihood stopped increasing at five mutation signatures, 
 whereas the standard error of the estimated parameters started increasing past five mutation signatures (see Supplementary Figure 2),
 indicating that true number of mutation signatures can be recovered by observing the trade-off between likelihood and standard-errors at least in an ideal case.
 
 As expected, as we increase the number of either cancer genomes or mutations, the accuracy of the estimates increased.
-Also, as we increase the value of $\alpha$, then the accuracy of the estimated signatures got worse.
+Also, as we increase the value of $\alpha$, then the accuracy of the estimated signatures became worse.
 However, even we increase the value of $\gamma$, the accuracy of the estimate signatures did not changed much.
 Therefore, the dispersion of mutation feature parameters influences the accuracy of mutation signatures
-more sensitively than signature distribution parameters.
+more sensitively than that of membership parameters.
 
 
 \subsection*{Experiments using cancer genomes from urothelial carcinoma of the upper urinary tract}
 
-In this section, we compare the ``full model'' and the ``independent model'' by examining mutation signatures obtained by the two approaches,
-and investigate the robustness by downsampling experiments.
+In this subsection, we compare  the ``independent model,'' where the independence assumption are imposed among mutation features
+and the ``full model,'' where no independence assumption are imposed (see Method section for the mathematical detail)
+by examining mutation signatures obtained by the two approaches and investigating the robustness by downsampling experiments.
 The dataset used here is a list of 14717 somatic substitutions 
 collected from the study of 26 urothelial carcinomas of the upper urinary tract (UTUC) \cite{pmid23926200},
 where they found a novel mutation signature: 
 T $>$ A substitutions at CpTpG sites with a strong strand specificity caused by aristolochic acids (AA).
 
-We performed the proposed method considering substitution patterns, up to $\pm 2$ sites and strand directions as mutation features.
-For the full model, we assign one integer for each combination of these features, and thus $L = 1, \bm{M} = (3072)$.
-For the independent model, $L = 6, \bm{M} = (6, 4, 4, 4, 4, 2)$.
+We performed the proposed method considering substitution patterns, up to $\pm 2$ positions and strand directions as mutation features.
+For the full model, the number of parameters per mutation signature is 3071, where as it is 18 for the independent model.
 
 First, performing on various number of mutation signatures $K$ (including a background signature) on the independent model, 
-we observed how the detected mutation signatures change (See Supplementary Figure 3).
-For $K = 2$, a mutation signature which seem to correspond to AA  (T $>$ A substitutions at CpTpG sites with strong transcription direction) was observed (Supplementary Figure 3 (a)).
+we observed how the detected mutation signatures change (see Supplementary Figure 3).
+For $K = 2$, a mutation signature which seem to correspond to AA  (T $>$ A substitutions at CpTpG sites with strong transcription strand specificity) was observed (Supplementary Figure 3 (a)).
 For $K = 3$, an additional mutation signature corresponding APOBEC enzyme (C $>$ [AGT] at TpCpN sites) was observed
 in addition to the AA mutation signature (Figure \ref{UTUC:APOBEC_ind5_sig}, \ref{UTUC:AA_ind5_sig}, Supplementary Figure 3 (b)).
-For $K = 4$, an additional signature (T $>$ A at NpTpN sites with strong transcription direction) 
+For $K = 4$, an additional signature (T $>$ A at NpTpN sites with strong strand specificity) 
 that is somewhat similar to the AA signature was observed (Supplementary Figure 3 (c)). 
 When we checked the correlation of estimated membership parameter for each cancer genome, 
 strong correlation between the AA signature (CpTpG $>$ CpApG) and that additional AA-like signature could be observed ($R = 0.77$, see Supplementary Figure 5). 
@@ -478,21 +477,24 @@ Considering all these factors together, $K = 3$ seems to be a reasonable choice 
 and we adopted $K = 3$ in the following.
 
 
-For the independent model, we could observed the depletion of G base at the $-2$ site,
+For the independent model, we could observed the depletion of G base at the $-2$ position,
 which is consistent to the previous study \cite{pmid23318258} and the result in the next subsection.
-On the other hand, for the full representation model, this tendency was rather mild (Figure \ref{UTUC:APOBEC_full5_sig}, \ref{UTUC:AA_full5_sig}, Supplementary Figure 6).
-Inferred AA mutation signature had no clear characteristics at two bases 5' and 3' to the mutated site compared to the APOBEC mutation signature.
+On the other hand, for the full model, this tendency was rather mild (Figure \ref{UTUC:APOBEC_full5_sig}, \ref{UTUC:AA_full5_sig}, Supplementary Figure 6).
+Inferred AA mutation signature had no clear characteristics at the $-2$ position compared to the APOBEC mutation signature.
 
 
 Assuming that the mutation signatures obtained using whole 14717 substitutions as a gold standard, 
 we performed the proposed method on down-sampled data (1\%, 2.5\%, 5\%, 10\%, 25\%, 50\%), 
 and compared obtained signatures with the gold standard.
-For measuring the deviations of the mutation signature, the cosine similarity was used on the $\prod_{l=1}^L M_l$ dimensional vector space $f_{i, \bm{m}} = \prod_{l=1}^L f_{k,l,m_l}$,
+For measuring the deviations of the mutation signature, the cosine similarity was used on the dimensional vector space full model,
 so that the comparison between the full model and the independent model become possible.
 Trials for downsampling experiment for each ratio and model were repeated for 100 times.
 
+% For measuring the deviations of the mutation signature, the cosine similarity was used on the $\prod_{l=1}^L M_l$ dimensional vector space $f_{i, \bm{m}} = \prod_{l=1}^L f_{k,l,m_l}$,
+
 As the Figure \ref{UTUC:APOBEC_downsampling} and \ref{UTUC:AA_downsampling} shows, 
-the independent representation could recover the original signatures even when, e.g, about 90 \% of the data was removed.
+the independent model could mostly recover the original signatures even when, e.g, about 90 \% of the data was removed,
+whereas the full model could not recover, especially, the APOBEC signature.
 In this experiment, the AA signature was more robust than the APOBEC signature.
 We believe that this is because the number of T $>$ A substitutions at GpTpC sites are far more frequent in this dataset.
 These results indicate that the independent model can give more robust estimates than the full model.
@@ -518,26 +520,26 @@ we could associate many of the detected signatures with known mutational process
 
 The signature 1 and 8 (C $>$ A at TpCpT and C $>$ T at TpCpG, respectively) observed in colorectal and uterine cancers
 are arguably associated with deregulated activity of the error-prone polymerase Pol $\epsilon$.
-The proposed method uses two signatures for representing the signature for the Pol $\epsilon$ dysfunction, 
-while was represented by one signature in the previous study.
+In the proposed method, the signature for the Pol $\epsilon$ dysfunction was represented by two signatures
+while it was represented by one signature in the previous study.
 Interestingly, the signature 1 shows transcription biases whereas the signature 8 does not.
-This phenomena are consistent for both colorectal and uterus cancers (Figures \ref{POLE1_sig_list} and \ref{POLE2_sig_list}).
-C $>$A at TpCpT mutations were shown to be enriched in leading strands of replication forks.
-whereas, there is no mention about the replication strand-specificity of C $>$ T at TpCpG mutations \cite{pmid25228659}.
-Although the replication strand bias is different from the transcription strand bias, these two biases may have strong correlation
-through the fact that replication origins prefer transcription start sites \cite{pmid23187890}.
-Therefore, the transcription strand bias observed in the signature 1 may actually come from the replication strand biases.
+This phenomena are consistent for both colorectal and uterus cancers (Supplementary Figures 7(c, d)).
+C $>$A at TpCpT mutations were shown to be enriched in leading strands of replication forks,
+whereas there is no mention about the replication strand-specificity of C $>$ T at TpCpG mutations \cite{pmid25228659}.
+Although the replication strand bias is a different phenomenon from the transcription strand bias, these two biases may have strong correlation
+through the fact that replication origins prefer transcription start sites \cite{pmid23187890},
+and the transcription strand bias observed in the signature 1 may actually come from the replication strand biases.
 
-Furthermore, both the signature 1 and 8 signatures shows strong abundance of the T base at the $-2$ position,
-and the signature 1 also shows a little abundance of the T base at the $+2$ position.
- (Figures \ref{POLE1_sig_list} and \ref{POLE2_sig_list}, Supplementary Figure 7(b, c)).
+Furthermore, both the signature 1 and 8 signatures show higher frequency of the T base at the $-2$ position,
+and the signature 1 also shows a little higher frequency of the T base at the $+2$ position.
+ (Figures \ref{POLE1_two5prime} and \ref{POLE2_two5prime}, Supplementary Figure 7(c, d)).
 In the previous study of Pol $\epsilon$  \cite{pmid25228659}, 
-a nonsense mutation in TP53 at R23X were shown to be enriched in cancers with Pol $\epsilon$ defects.
-In fact, the pattern of this mutation is C $>$ T at TpTpCpGpA, that is the most likely patten with the signature 8.
-This implies that observing $\pm 2$ bases may be helpful for identifying the cause of mutations with higher resolution.
+a nonsense mutation R23X of TP53 was shown to be enriched in cancers with Pol $\epsilon$ defects.
+In fact, the pattern of this mutation is C $>$ T at TpTpCpGpA, that is the most consistent patten with the signature 8.
+Therefore, observing $\pm 2$ bases may be helpful for identifying the cause of mutations with higher resolution.
 
 
-The signature 2 (C $>$ A at [CT]pCpT) observed in low grade gliomas
+The signature 2 (C $>$ A at [CT]pCpT) observed solely in low grade gliomas
 can be related to the one detected in the same cancer type in the previous study, but slightly different (see Supplementary Figure 8 (a)). 
 This seems to be because the corresponding signature in the previous study shows very complex patterns (C $>$ A at NpCpT or C $>$ T at GpTpN).
 Actually, the mutation related to this signature is mostly coming from one sample with an extremely high mutation rate (Supplementary Figure 8 (b,c)), 
@@ -548,39 +550,39 @@ Therefore, we need more number of samples to validate the authenticity of the si
 
 
 The signature 4 (C $>$ A at CpCpG) observed in kidney clear cell carcinomas, lung adenocarcinomas and melanomas 
-shows remarkably high ratio of base C at the $-2$ position (see Supplementary Figure 10 (a,b,c)).
+shows remarkably high ratio of the base C at the $-2$ position (see Supplementary Figure 10 (a,b,c)).
 However, for each cancer type, only a few samples support this signature (see Supplementary Figure 10 (d, e, f)).
 Also, this signature seems to correspond to the ``signatures R2''  detected in kidney clear cell carcinomas, lung adenocarcinomas, lung squamous carcinomas and melanomas (see supplementary figures of the previous study \cite{pmid23318258})
 that could not be validated in the previous study,
-meaning that significant ratios of somatic mutations corresponding to that signature could not be validated by re-sequencing or visual inspection of BAM files using genomic viewers.
-Actually, the pattern of this signature largely matches to that of the putative artifact suggested in \cite{pmid23303777}, 
-that is caused by oxidation of DNA during acoustic shearings, 
+meaning that most of somatic mutations corresponding to that signature could not be validated by re-sequencing or visual inspection of BAM files using genomic viewers.
+Actually, the pattern of this signature largely matches to that of the putative artifact caused by oxidation of DNA during acoustic shearings \cite{pmid23303777}, 
 and we guess that this signature is the same as what is observed in that study.
-Although this signature may be from the artifacts, 
-knowing higher resolution of the artifact signature is very helpful to accurately remove false positive mutations.
+Although this signature may come from the artifacts, 
+collecting artifact signatures with a higher resolution will be very helpful to accurately remove false positive mutations.
 
 
 The signature 13 (T $>$ [AGT] at TpCpN sites) was observed in 12 cancer types, and surely related to the activity of APOBEC family.
-The composition of nucleotides of estimated signatures in 12 different cancer types are highly consistent (Figure \ref{APOBEC_sig_list}) except for the on in B-cell lymphoma,
-and almost of of them showed slightly higher abundance of A and T bases and depletion of G base at the $-2$ position (Figure \ref{APOBEC_twofive}, Supplementary Figure 7(a)).
+The composition of nucleotides for estimated signatures in 12 different cancer types is highly consistent (Supplementary Figure 7(a)) except for the one in B-cell lymphoma,
+and almost all of them showed slightly higher abundance of the A and T bases and depletion of the G base at the $-2$ position (Figure \ref{APOBEC_two5prime}, Supplementary Figure 7(a)).
 This fact backs up the results obtained from UCUT data in the previous subsection and the previous study \cite{pmid23318258},
 and indicates the robustness of the proposed approach.
 The estimated transcribed strand specificities varied across cancer types, implying that there is no significant strand-specificity in APOBEC signatures.
-The Signature 15 and 16 may also be delated to the APOBEC signatures although the estimated forms are slightly different,
+The Signature 15 and 16 may also be related to the APOBEC signatures although the estimated forms are slightly different,
 and are not merged to the cluster of signature 13 by the specified criteria.
 
 
 The signature 3 and 5 (C $>$ A at NpCpN) observed in head-and-neck cancers and three types of lung cancers are probably associated with tobacco smoking.
-The estimated signature in each cancer type shows higher mutation prevalence on the template strand, which is consistent with the previous study \cite{pmid12379884, pmid23318258}.
+The estimated signature in each cancer type shows higher mutation prevalence on the template strand (Supplementary Figure 7(b)), 
+which is consistent with the previous study \cite{pmid12379884, pmid23318258}.
 The signature 6 (C $>$ A at NpCp[AT]) observed in neuroblastomas matches the pattern of that detected in the same cancer type in the previous study.
 The signature 7 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and arguably related to deamination of 5-methyl-cytosine.
 The signature 9 (C $>$ T at NpCp[CT]) were observed in melanomas and glioblastomas, and are probably associated with a chemotherapy drug, temozolomide.
-The signature 10 (C $>$T at [CT]pCpC) were observed in head and neck cancers and melanomas, and probably related to ultraviolet light.
-Observed consistent strand specificities (Figure \ref{UV_sig_list}) matches to the previous results \cite{pmid23318258}.   
-Also, higher frequencies of T base at the $\pm 2$ position are consistently observed (Figure \ref{UV_sig_list}, Supplementary Figure 7(d)).
+The signature 10 (C $>$T at [CT]pCpC) were observed in head and neck cancers and melanomas, and probably related to ultraviolet light,
+and consistent strand specificities among the two cancer types (Supplementary Figure 7(e)) matches to the previous results \cite{pmid23318258}.   
+In addition, higher frequencies of the T base at the $\pm 2$ position are consistently observed (Figure \ref{UV_two5prime}, Supplementary Figure 7(e)).
 The signature 11 (C $>$ T at GpCp[CG]) were observed in small-cell lung cancers and stomach cancers,
 and seems to be the same with the ``signature 15'' in the previous study, whose function is still not clear,
-and the abundance of G base at the $\pm 2$ position is consistently observed (Figure \ref{LMST_sig_list}, Supplementary Figure 7(e)).
+and the abundance of G base at the $\pm 2$ position is consistently observed (Figure \ref{LMST_two5prime}, Supplementary Figure 7(f)).
 
 
 The signature 18 (T $>$ C at ApTp[AG]) observed in liver cancers has been shown to be more common in Asian cases than in other ancestries \cite{pmid25362482}, 
@@ -589,9 +591,11 @@ In this signature, we can observe a very strong strand specificity as shown in \
  indicating the evidence of transcription-coupled nucleotide excision repairs.
 The signature 20 (T $>$ C at [AC]pTpN) observed in thyroid cancers also shows a very strong strand specificity 
 and a sign of transcription-coupled nucleotide excision repairs.
-Actually, this signature does not match to any of signatures in the previous paper \cite{pmid23318258}.
+Actually, this signature does not match to any of signatures in the previous paper \cite{pmid23318258} and possibly a novel signature.
 This may be because the mutation ratio of thyroid cancer is low and the signature is too week to detect for the previous methods.
 %% download the TCGA data and check the visualization of the mutation position for this data.
+
+
 The unknown signatures 12 (C $>$ T at [CG]pCp[CT]), 19 (T $>$ C at GpTpN) and 21 (T $>$ [CG] at CpTpT) observed in pilocytic astrocytomas, stomach cancers and oesophagus cancers, respectively,
 coincides well with the those detected in the same cancer types in the previous study \cite{pmid23318258}.
 We could observe several interesting characteristics at the $\pm 2$ positions for these signatures,
@@ -599,7 +603,7 @@ which should be validated by more number of samples from different cohorts and c
 
 
 In summary, the propose method can capture many of the prominent mutation signatures observed in the previous study.
-Also, the propose method detected several novel characteristics at the $\pm 2$ position that is consistent across multiple cancer types,
+Also, the propose method detected several novel characteristics at the $\pm 2$ position that are consistent across multiple cancer types,
 suggesting the existence of more hidden characteristics at the distant position from the mutated site.
 
 
@@ -607,33 +611,33 @@ suggesting the existence of more hidden characteristics at the distant position 
 
 
 In this paper, we proposed a novel method for extracting mutation signatures from a set of somatic point substitutions.
-The proposed model utilizes the framework of mixed membership models, 
+The proposed model utilizes the framework of mixed membership models
 that have been deeply investigated in statistical genetics and machine learning fields.
 We believe that there is a great possibility of improvement by learning the past experiences from those fields (see Method section for detail).
 
 
-Even though the proposed method impose an independence assumptions among each contextual factor,
+Even though the proposed method impose an independence assumption among contextual factors,
 the proposed method could capture many of the previously detected mutation signatures.
-Also, we have shown that the proposed method with the independence assumption is gives more robust estimates compared to that without the independence assumption.
+Also, we have shown that the proposed method with the independence assumption gives more robust estimates compared to that without the independence assumption.
 In addition, the estimated mutation signatures with the independence assumption can be relatively easily visualized in an interpretable manner.
-As we have discussed, the independence assumption may not be completely consistent with the nature of DNA damages and repairs.
-Still, we have demonstrated that the model with the independence assumption is ``practically'' very helpful.
+The independence assumption may not be completely consistent with the nature of DNA damages and repairs.
+Still, we would like to argue that the model with the independence assumption is ``practically'' very helpful.
 
 
 
 We have just focused on somatic substitutions in this paper.
 However, there are a variety of mutations in cancer genomes, 
-such as insertions, deletions, double nucleotides substitutions, structural variations and copy number alterations.
+such as insertions, deletions, double nucleotides substitutions, structural variations and copy number alterations \cite{meyerson2010advances, helleday2014mechanisms}.
 Our framework can potentially treat those mutations by considering appropriate mutation features.
 For example, deletions can be represented by features such as the lengths of deletions, adjacent bases, and so on.
 However, detailed investigation on what mutation features are practical is a future problem.
 
 
 Finally, mutation ratios have been shown to be closely related to a number of genomic and epigenetic factors,
-such as GC contents, repeat sequences, chromatin accessibility and modifications, and replication timing and so on \cite{pmid22820252, pmid21953857, pmid23422670, pmid23770567}.
-Also, a recent study has shown that the epigenetic information of the cell type of origin of the corresponding tumors is the most predictive \cite{pmid25693567}.
-As a number of epigenetic data from various type of cells accumulate,
-one of the next main topic will be to integrating those epigenetic factors into the mutation signature 
+such as GC contents, repeat sequences, chromatin accessibility and modifications, replication timing and so on \cite{pmid22820252, pmid21953857, pmid23422670, pmid23770567}.
+Also, a recent study has shown that the epigenetic information of the cell type of origin of the corresponding tumors is the most predictive \cite{pmid25693567} for regional mutation ratios.
+Nowadays, a number of epigenetic data from various type of cells have been accumulating,
+and one of the next main topic will be to integrate those epigenetic factors into the mutation signature 
 and to understand how these epigenetic factors influence on DNA damage and repair mechanisms.
 
 
@@ -670,9 +674,9 @@ Let  $\bm{f}_{k, l} = (f_{k, l, 1}, \cdots, f_{k, l, M_l }) \in \Delta^{M_l}$ de
 the multinomial distribution parameter of $k$-th mutation signature and the $l$-th mutation feature, 
 then the probabilistic distribution of $k$-th signature corresponds to $\{ \bm{f}_{k, l} \}_{l=1, \cdots, L}$.
  
-Therefore, each probabilistic mutation signature, in general, consists of multiple multinomial distribution parameters.
-We give a way of visualizing probabilistic mutation signature (see Figure \ref{mutSig_example}), 
-which is reminiscent of sequencing logos \cite{pmid2172928}. 
+% Therefore, each probabilistic mutation signature, in general, consists of multiple multinomial distribution parameters.
+% We give a way of visualizing probabilistic mutation signature (see Figure \ref{mutSig_example}), 
+% which is reminiscent of sequencing logos \cite{pmid2172928}. 
 
 
 
@@ -687,14 +691,14 @@ Suppose each mutation feature vector (such as substitution patterns, adjacent ba
 is re-labeled as a single-valued mutation feature by some lexicographical order (see Table \ref{tab_rep}),
 then each mutation signature becomes one multinomial distribution. 
 We call this representation and mutational process modeling as ``full representation,'' and ``full model.''
-In this case, when taking account of 6 substitution patterns and $\pm 2$ sites,
+In this case, when taking account of 6 substitution patterns and $\pm 2$ positions,
 $\bm{M} = (1536)$.
-On the other hand, the usual representation, where each mutation feature has its corresponding value and individual multinomial distribution,
+On the other hand, the representation where each mutation feature has its corresponding value and individual multinomial distribution
 is called as ``independent representation,'' and ``independent model.''
 
 The full representation model potentially represent complicated mutational processes
 (e.g., a situation where C $>$ A is frequent at ApCpG sites and C $>$ T is frequent at TpCpA sites) with one signature.
-However, when many mutation contextual factors are taken into account and the number of free parameters get huge,
+However, when many mutation contextual factors are taken into account and the number of free parameters becomes huge,
 estimated results tend to be unstable and unreliable.
 Furthermore, there is a great risk that we over-interpreting the seemingly complex estimated results.
 
@@ -879,7 +883,7 @@ First, a number of large scale cancer genome sequencing projects have been launc
 and we need to improve the parameter estimation so that those large scale data can be handled.
 A number of  past parameter estimation techniques proposed for mixed-membership models can be tailored for the proposed model.
 EM-algorithm (or its variant, called tempered EM algorithm) have been adopted in classical topic models 
-for document classification (\cite{Hofmann:1999}) and population structure estimation (\cite{tang2005estimation}).
+for document classification \cite{Hofmann:1999} and population structure estimation \cite{tang2005estimation}.
 In the population structure estimation problem, \cite{pmid19648217} has proposed 
 a fast block relaxation scheme using sequential quadratic programming for block updates
 with a quasi-Newton acceleration of convergence \cite{zhou2011quasi}, demonstrating a great improvement over EM-algorithm.
@@ -904,9 +908,9 @@ which is a natural extension of topic models to nonparametric Bayesian framework
 
 
 Finally, utilizing other metrics than Euclidean distance and Kullback-Leibler Divergence might be worth investigating.
-For nonnegative matrix factorization, 
-the metric called $\beta$ divergence \cite{basu1998robust, eguchi2001robustifying}, 
-has been successfully utilized in many research fields (reviewed in \cite{fevotte2011algorithms}).
+For nonnegative matrix factorization, the metric called $\beta$ divergence \cite{basu1998robust, eguchi2001robustifying}, 
+has been successfully utilized in many research fields (reviewed in \cite{fevotte2011algorithms}),
+and evaluating these metrics on mutation signature problems will be an interesting future tasks.
 
 
 
@@ -916,11 +920,12 @@ has been successfully utilized in many research fields (reviewed in \cite{fevott
 
 \section*{Acknowledgments}
 
-The first author would like to thank to Dr. Daichi Mochihashi for helpful discussion and comments on earlier version on the proposed method.
-Many of the contents in this paper is deeply influenced by what was going on at Matthew Stephens Laboratory,
+The first author would like to thank to Dr. Daichi Mochihashi for helpful discussion and comments on the earlier version on the proposed method.
+He also thanks to Dr. Hiromichi Suzuki for helpful feedbacks for R packages.
+This paper is a product deeply influenced by what was going on at Matthew Stephens Laboratory,
 when the first author stayed at the University of Chicago as a visiting scholar.
-The first author would like to thank to the members in Matthew Stephens and John Novembre Laboratory, especially Dr. John Novembre,
-Dr. Jacob Degner for helpful discussion and comments.
+The first author would like to thank to Dr. John Novembre,
+Dr. Jacob Degner and all the members in Matthew Stephens and John Novembre Laboratory for helpful discussion and comments.
 
 % \section*{References}
 
@@ -1051,7 +1056,9 @@ the immediate 3' base and the substitution pattern are not independent.
 \label{nature2013_example}
 \end{figure*}
 
+
 \clearpage
+
 
 \begin{figure*}
 
@@ -1126,6 +1133,23 @@ whose sequences are copied during the synthesis of mRNA.
 
 \clearpage
 
+
+\begin{figure*}
+\includegraphics[width=450pt]{methodOverview.pdf}
+\caption{Suppose there are three types of mutation sources (mutation signatures) such as ultraviolet, tobacco smoking chemicals and transcription coupled repairs.
+Each cancer genome has ratios showing which types of mutation sources are contributing to its mutations (membership parameters).
+The generative model of the pattern of each mutation is:
+first, one of the mutation signatures is chosen according to the membership parameter.
+Second, according to the selected mutation signature, mutation features such as substitution pattens and flanking bases are generated 
+by the corresponding multinomial distributions for that mutation signature.
+}
+\label{methodOverview}
+\end{figure*}
+
+
+
+\clearpage
+
 \begin{figure*}[b]
 \centering
 \includegraphics[width=16cm,height=6cm]{simulation_result.eps}
@@ -1178,6 +1202,8 @@ and the amounts of dispersion parameters ($\alpha$ and $\gamma$) for the mutatio
 \includegraphics[width=16cm,height=17.5cm]{AlexandrovEtAl_mergedSignature.eps}
 \caption{The summary of mutation signatures obtained in a reanalysis of the data of the previous study \cite{pmid23945592} using the proposed method,
 where the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features.
+First, the mutation signatures were estimated with respect to each cancer type,
+then the similar signatures (the sum of the square distances between the parameters is below 0.6) emerged across different cancer types were merged.
 }
 \label{nature2013_sig_summary}
 \end{figure*}
@@ -1192,49 +1218,40 @@ where the substitution patterns and two 5' and 3' bases from the mutated sites a
 \end{figure*}
 
 
-
 \clearpage
 
 
+
+% \begin{figure*}[b]
+
 \begin{figure*}[b]
 
-\subfigure[APOBEC signatures obtained in each cancer type]{%
-  \includegraphics[width=15cm,height=7.5cm]{signatureList_APOBEC.eps}
-  \label{APOBEC_sig_list}}
+\subfigure[APOBEC signature intensities at two 5' to the mutated site]{%
+  \includegraphics[width=14.5cm,height=6cm]{APOBEC_two5prime.eps}
+   \label{APOBEC_two5prime}}
   
-\subfigure[Smoking signature  in each cancer type]{%
-  \includegraphics[width=15cm,height=2.5cm]{signatureList_LUNG.eps}
-  \label{LUNG_sig_list}}
-  
-\subfigure[POLE1 signatures in each cancer type]{%
-  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE1.eps}
-  \label{POLE1_sig_list}}
+\subfigure[POLE1 signature intensities at two 5' to the mutated site]{%
+  \includegraphics[width=4.5cm,height=6cm]{POLE1_two5prime.eps}
+  \label{POLE1_two5prime}}
 \quad
-\subfigure[POLE2 signature in each cancer type]{%
-  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_POLE2.eps}
-  \label{POLE2_sig_list}}
-  
-\subfigure[UV signature in each cancer type]{%
-  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_UV.eps}
-  \label{UV_sig_list}}
-\quad
-\subfigure[Unknown signature obtained in lung small cell carcinomas and stomach cancers]{%
-  \includegraphics[width=7.5cm,height=2.5cm]{signatureList_LMST.eps}
-  \label{LMST_sig_list}}
-    
-% \subfigure[Signature intensities at two 5' to the mutated site]{%
-% \includegraphics[width=8cm,height=5cm]{APOBEC_two5prime.eps}
- % \label{APOBEC_twofive}}
- 
+\subfigure[POLE2 signature intensities at two 5' to the mutated site]{%
+  \includegraphics[width=4.5cm,height=6cm]{POLE2_two5prime.eps}
+  \label{POLE2_two5prime}}
 
-   
-\caption{(a) APOBEC signatures obtained in 11 cancer types, 
-(b, c, d, e) Several signatures having prominent characteristics at 5'  or 3' to the mutated sites,
-(f) the frequencies of bases at two 5' to the mutated site. 
-}
-\label{nature2013_apobec}
+\subfigure[UV signature intensities at two 5' to the mutated site]{%
+  \includegraphics[width=4.5cm,height=6cm]{UV_two5prime.eps}
+  \label{UV_two5prime}}
+\quad
+\subfigure[The signature 11 intensities at two 5' to the mutated site]{%
+  \includegraphics[width=4.5cm,height=6cm]{LMST_two5prime.eps}
+  \label{LMST_two5prime}}
+  
+\caption{The estimated frequencies of bases at two 5' to the mutated site for each cancer type.
+The heights of bar show the estimated frequency for bases A, C, G and T at two 5' to the mutated site.
+The error bars show standard errors estimated by bootstrap.}
+\label{two5prime}
+
 \end{figure*}
-
 
 % \begin{figure*}[b]
 

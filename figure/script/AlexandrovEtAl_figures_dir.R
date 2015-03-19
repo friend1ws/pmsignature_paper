@@ -295,7 +295,7 @@ for (i in 1:length(importantSigs)) {
   
   
   
-  outputName <- paste("../../manuscript/signatureList_", names(importantSigs)[i], ".eps", sep="");
+  outputName <- paste("../../supp/signatureList_", names(importantSigs)[i], ".eps", sep="");
   
   if (length(types) > 4) {
     dev.copy2eps(file=outputName, height = ceiling(length(types) / 4) * 2.4, width = 15);
@@ -309,28 +309,41 @@ par(.pardefault);
 
 
 ###
+# for method overview figure
 
-importantSigs <- c(APOBEC_ind, UV_ind, LMST_ind);
-names(importantSigs) <- c("APOBEC", "UV", "LMST");
+for (k in 1:length(Fs)) {
+  if (Fs[[k]][1,5] > 0.6 & Fs[[k]][3,1] > 0.25 & Fs[[k]][6,2] > 0.7) {
+    TCR_ind <- k;
+  }
+}
+  
+  
+importantSigs2 <- c(LUNG1_ind, UV_ind, TCR_ind);
+names(importantSigs2) <- c("LUNG1", "UV", "TCR");
 
 par(mar=c(0, 0, 0, 0));
 par(xaxs = "i", yaxs = "i");
 
-for (i in 1:length(importantSigs)) {
+for (i in 1:length(importantSigs2)) {
   
 
-  F <- Fs[[as.numeric(importantSigs[i])]];
+  F <- Fs[[as.numeric(importantSigs2[i])]];
     
   plot.new();
   plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
   
   # the setting of charSize is temporary... why the size changes by the number of rows.....
   visPMS_ind(F, numBases = 5, trDir = TRUE, charSize = 0);
-       
-  
-  outputName <- paste("../methodOverview/signatureList_", names(importantSigs)[i], ".eps", sep="");
+  outputName <- paste("../methodOverview/signatureList_", names(importantSigs2)[i], "_nonBase.eps", sep="");
   dev.copy2eps(file=outputName, height = 2.4, width = 3.75, pointsize = 1e-10);
+  
+  plot.new();
+  plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
 
+  # the setting of charSize is temporary... why the size changes by the number of rows.....
+  visPMS_ind(F, numBases = 5, trDir = TRUE, charSize = 0.6 + 0.1333);
+  outputName <- paste("../methodOverview/signatureList_", names(importantSigs2)[i], ".eps", sep="");
+  dev.copy2eps(file=outputName, height = 2.4, width = 3.75, pointsize = 1e-10);
 }
 
 par(.pardefault);
@@ -386,7 +399,7 @@ for (i in 1:length(importantSigs)) {
     theme(text = element_text(size=20)) +
     theme(axis.text.x= element_text(angle=45,hjust=1));
 
-  outputName <- paste("../../supp/", names(importantSigs)[i], "_two5prime.eps", sep="");
+  outputName <- paste("../../manuscript/", names(importantSigs)[i], "_two5prime.eps", sep="");
   
   ggsave(outputName, width=length(types) * 1.0 + 2.5, height = 6, units="in");
 
