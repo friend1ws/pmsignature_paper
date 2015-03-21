@@ -1,15 +1,14 @@
 *.Rhistory
 */script/log
-manuscript/*.pdf
 manuscript/*.aux
 manuscript/*.bbl
 manuscript/*.blg
 manuscript/*.log
 manuscript/*.out
 manuscript/*.synctex.gz
-manuscript/*
+manuscript/*-eps-converted-to.pdf
 figure/result
-supp/*.pdf
 supp/*.aux
 supp/*.log
 supp/*.synctex.gz
+supp/*-eps-converted-to.pdf
