@@ -3,7 +3,7 @@
 # functions for drawing figures for the Alexandrov et al analysis data
 
 
-visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale = 0) {
+visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale = TRUE, alpha = 2, charLimit = 0.25) {
   
   if (is.na(baseCol)) {
     gg_color_hue6 <- hcl(h = seq(15, 375, length = 7), l=65, c=100)[1:6]
@@ -39,8 +39,22 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
   # frame();
   # plot.window(xlim=c(-0.05, 1.25 * numBases + 0.05), ylim=c(-0.25, 3.25));
   
-  sizes <- 0.5 * (2 - apply(A, MARGIN = 1, FUN = function(x) {-sum(x * log2(x), na.rm = TRUE)}));
-  sizes <- sizes ** scale
+  renyi = function(p, tAlpha = alpha) {
+    if (tAlpha == 1) {
+      return(- sum(p * log2(p), na.rm = TRUE));
+    } else {
+      return( log(sum(p^tAlpha)) / (1 - tAlpha));
+    }
+  }
+  
+  # sizes <- 0.5 * (2 - apply(A, MARGIN = 1, FUN = function(p, alpha = scale) {-sum(x * log2(x), na.rm = TRUE)}));
+  # sizes <- sizes ** scale
+  
+  if (scale == FALSE) {
+    sizes <- rep(1, numBases)
+  } else {
+    sizes <- 0.5 * (2 - apply(A, MARGIN = 1, FUN = renyi));
+  }
   
   startx <- 0;
   for(l in 1:numBases) {
@@ -48,7 +62,7 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
     for(w in 1:4) {
       endx <- startx + A[l,w]
       polygon(c(startx, endx, endx, startx), c(0, 0, sizes[l], sizes[l]), col = baseCol[w], border=F);
-      if (endx - startx > 1 / 4 & sizes[l] > 0.5 & charSize > 0) {
+      if (endx - startx > charLimit & sizes[l] > 0.5 & charSize > 0) {
         text(0.5 * (endx + startx), 0.5 * sizes[l], num2base[w], col="white", cex=charSize)
       }
       startx <- endx;
@@ -63,7 +77,7 @@ visPMS_ind <- function(vF, numBases, baseCol = NA, trDir, charSize = 1.2, scale 
     for(ww in 1:4) {
       endy <- starty + B[w,ww];
       polygon(c(startx, endx, endx, startx), c(starty, starty, endy, endy), col=baseCol[ww], border=F);
-      if ((endy - starty > 1 / 4) & (endx - startx > 1 / 4) & charSize > 0) {
+      if ((endy - starty > charLimit) & (endx - startx > charLimit) & charSize > 0) {
         text(0.5 * (endx + startx), 0.5 * (endy + starty), num2base[ww], col="white", cex=charSize)
       }
       starty <- endy;
@@ -147,7 +161,7 @@ convertFMatrixToVector <- function(Fmat, fdim) {
 }
 
 # get the mutation signature of the specified cancer type and index
-getF <- function(type, K, index, trDir = FALSE) {
+getF <- function(type, K, index, trDir = TRUE) {
   
   if (trDir ==  TRUE) {
     inputName <- paste("../../AlexandrovEtAl/result/Param_ind5_dir/", type, ".", as.character(K), ".Rdata", sep="");

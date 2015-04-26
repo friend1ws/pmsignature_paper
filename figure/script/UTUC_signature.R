@@ -1,5 +1,7 @@
 library(pmsignature);
 
+source("AlexandrovEtAl_function.R");
+
 load("../../UTUC/result/Param_full/3.Rdata");
 Param_full <- resultForSave[[1]];
 
@@ -19,14 +21,14 @@ load("../../UTUC/result/Param_ind/3.Rdata");
 Param_ind <- resultForSave[[1]];
 
 if (sum(Param_ind@signatureFeatureDistribution[1,1,1:3]) > 0.75 & Param_ind@signatureFeatureDistribution[2,1,4] > 0.75) {
-  visPMSignature(Param_ind, 1, charSize = 1);
+  visPMSignature(Param_ind, 1, charSize = 1, isScale = TRUE, alpha = 2);
   dev.copy2eps(file="../../manuscript/UTUC_APOBEC_ind.eps", height = 5, width = 7.5);
-  visPMSignature(Param_ind, 2, charSize = 1);
+  visPMSignature(Param_ind, 2, charSize = 1, isScale = TRUE, alpha = 2);
   dev.copy2eps(file="../../manuscript/UTUC_AA_ind.eps", height = 5, width = 7.5);
 } else {
-  visPMSignature(Param_ind, 2, charSize = 1);
+  visPMSignature(Param_ind, 2, charSize = 1, isScale = TRUE, alpha = 2);
   dev.copy2eps(file="../../manuscript/UTUC_APOBEC_ind.eps", height = 5, width = 7.5);
-  visPMSignature(Param_ind, 1, charSize = 1);
+  visPMSignature(Param_ind, 1, charSize = 1, isScale = TRUE, alpha = 2);
   dev.copy2eps(file="../../manuscript/UTUC_AA_ind.eps", height = 5, width = 7.5);
 } 
 

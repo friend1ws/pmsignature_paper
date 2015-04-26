@@ -407,5 +407,54 @@ for (i in 1:length(importantSigs)) {
 }
 
 
+##########
+# don't change the scale
+
+#' generate the figure of mutation signatures
+
+par(mar=c(0, 0, 0, 0));
+par(bg = rgb(0.9, 0.9, 0.9));
+par(xaxs = "i", yaxs = "i");
+par(mfrow=c(ceiling(length(Fs) / 4), 4));
+
+curSig <- 1;
+for (i in newOrder) {
+  # for (i in 1:length(Fs)) {
+  plot.new();
+  plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+  polygon(c(-0.25, 6.25, 6.25, -0.25), c(-0.25, -0.25, 3.75, 3.75), col = "white", border = FALSE);
+  visPMS_ind(Fs[[i]], numBases = 5, trDir = TRUE, charSize = 1, scale = FALSE);
+  # visPMS_ind5_mod3(Fs[[i]], 1 / 100000);
+  mtext(paste("signature", curSig),
+        outer = FALSE,      # 作図領域の外の余白に書く
+        side = 3,          # 上の余白に書く
+        cex = 1,         # 字の大きさ
+        line = -1.5,          # 外に向かって 0.5行離れたところに書く．
+        col = "black")    
+  curSig <- curSig + 1;
+  
+}
+
+i <- max(newOrder);
+edgeFlag <- 1;
+if (i < ceiling(length(Fs) / 4) * 4) {
+  i <- i + 1;
+  for (j in i:(ceiling(length(Fs) / 4) * 4)) {
+    plot.new();
+    plot.window(xlim=c(-0.3, 6.3), ylim=c(-0.3, 3.8));
+    if (edgeFlag == 1) {
+      polygon(c(-0.25, 6.3, 6.3, -0.25), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);
+      edgeFlag <- 0;
+    } else {
+      polygon(c(-0.3, 6.3, 6.3, -0.3), c(-0.3, -0.3, 3.75, 3.75), col = "white", border = FALSE);      
+    }
+  }
+}
+
+
+outputName <- "../../supp/AlexandrovEtAl_mergedSignature_unchanged.eps";
+dev.copy2eps(file=outputName, height = ceiling(length(Fs) / 4) * 2.5, width = 16, pointsize = 18);
+par(.pardefault);
+
 
 
