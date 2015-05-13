@@ -64,5 +64,5 @@ ggplot(summary_simulation.result, aes(x=factor(mutNum), y=cosine_similality, yma
         panel.grid.major.x = element_line(colour="grey60", linetype="dashed"),
         strip.text= element_text(face="bold", size=rel(1.2)));
 
-ggsave("../../manuscript/simulation_result.eps", width=15, height=6);
+ggsave("../../supp/simulation_result.eps", width=15, height=6);
 

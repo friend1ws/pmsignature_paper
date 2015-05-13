@@ -27,7 +27,9 @@ if (Param@signatureFeatureDistribution[1, 1, 5] > 0.6) {
   visPMSignature(Param, 2, isScale = TRUE, alpha = 2);
 }
 
-ggsave("../../manuscript/example18_TCR.eps", width=12, height=5, units="in");
+
+outputName <- "../../manuscript/example18_TCR.eps";
+dev.copy2eps(file=outputName, height = 6.66, width = 10);
 
 
 
