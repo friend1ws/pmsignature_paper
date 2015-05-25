@@ -1,0 +1,129 @@
+\documentclass{article}
+\textheight24cm\textwidth16cm\topmargin-1cm
+\oddsidemargin0cm\evensidemargin0cm
+
+\usepackage{amsmath,amssymb}
+% \usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+\usepackage{url}
+\usepackage{bm}
+\usepackage{setspace} 
+\usepackage{subfigure}
+
+% \usepackage{algorithmic}
+% \usepackage{algorithm}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newcommand{\proof}{\noindent Proof.\ \ }
+% \renewcommand{\algorithmiccomment}[1]{// #1}
+
+
+%\pagestyle{empty}
+
+
+\begin{document}
+
+% \baselineskip 6.5mm
+
+\vspace*{1.0cm}
+{\LARGE \bf Relationship with nonnegative matrix factorization}
+\vspace*{0.25cm}
+
+
+First, for ease of explanation, let assume that the full representation'' representation ($L = 1$) is used.
+Suppose that each $\bm{m}$ has unique appropriate index from 1 to  $| \bm{M} | = \prod_{l=1}^L M_l$ (the number of possible mutation patterns),
+so that $\bm{m}$ can be indices of matrices.
+
+Let $G = \{ g_{i, \bm{m}} \}$ denote the $I \times | \bm{M} | $ matrix, 
+where $g_{i, \bm{m}}$ is the number of mutations whose mutation patters are equal to $\bm{m}$ in the $i$-th cancer genome.
+Nonnegative matrix factorization aims to find low rank decomposition, 
+$G \sim \tilde{Q} F$,
+where $\tilde{Q} = \{ \tilde{q}_{i,k} \}$ and $F = \{ f_{k, \bm{m}} \}$ are nonnegative matrix, 
+and row vectors of $F$ are often restricted to be sum to one. 
+We used the notation $\tilde{Q}$ instead of $Q$
+to represent that the row vectors of $\tilde{Q}$ are not normalized to sum to one in general.
+
+For solving NMF, 
+the previous study (Lee et al. 2000) used the following updating rule:
+\begin{equation*}
+f_{k,m} \gets f_{k,m} \frac{ ( \tilde{Q}^T G)_{k,m} }{ ( \tilde{Q}^T \tilde{Q} F  )_{k,m} },\  \
+\tilde{q}_{i,k} \gets \tilde{q}_{i,k}  \frac{ (G F^T)_{i,k} }{ ( \tilde{Q} F F^T )_{i,k} },
+\end{equation*}
+that reduces the {\it Euclidean distance} $|| G - \tilde{Q} F ||$. 
+Therefore, the optimization problem for the existing approach is
+\begin{equation}
+\begin{aligned}
+& \text{minimize}
+& & ||G - \tilde{Q} F || \\
+& \text{subject to}
+& & \sum_{ \bm{m} } f_{k, \bm{m}} =  1, \; k = 1, \cdots, K \\ &
+& & f_{k, \bm{m}} \geq 0, \; k = 1, \cdots, K,\ \bm{m} \in M \\ & 
+& & \tilde{q}_{i, k} \geq 0, \; i = 1, \cdots, I,\ k = 1, \cdots, K.
+\end{aligned}
+\end{equation}
+
+On the other hand, there is another type of updating rule:
+\begin{equation*}
+f_{k,m} \gets f_{k,m} \frac{ \sum_i \tilde{q}_{i,k} g_{i,m} / ( \tilde{Q} F)_{i,m} }{ \sum_i \tilde{q}_{i,k} },
+\end{equation*}
+\begin{equation*}
+\tilde{q}_{i,k} \gets \tilde{q}_{i,k}  \frac{ \sum_m f_{k,m} g_{i,m} / ( \tilde{Q} F)_{i,m} }{ \sum_m f_{k,m} }.
+\end{equation*}
+that reduces the Kullback-Liebler Divergence:
+\begin{equation*}
+KL(G ||  \tilde{Q} F) = \sum_{i,m} \Bigl( g_{i,m} \log  \frac{ g_{i,m} }{ (\tilde{Q} F)_{i,m} } - g_{i,m} + ( \tilde{Q} f )_{i,m} \Bigr).
+\end{equation*}
+
+In general cases including the independent representation, 
+there is restrictions $f_{k, \bm{m}} = \prod_l f_{k, l, m_l}$ by smaller set of parameters.
+Let us consider the following optimization problem with the Kullback-Liebler Divergence and the restrictions on $F$:
+\begin{equation}
+\begin{aligned}
+& \text{minimize}
+& & KL(G ||  \tilde{Q} F) \\
+& \text{subject to}
+& & f_{k, \bm{m}} = \prod_l f_{k, l, m_l}, \; k = 1, \cdots, K,\ \bm{m} \in M \\ & 
+& & f_{k, l, p} \geq 0, \; k = 1, \cdots, K,\ \bm{m} \in M \\ & 
+& & \tilde{q}_{i, k} \geq 0, \; i = 1, \cdots, I,\ k = 1, \cdots, K.
+\end{aligned}
+\label{KL}
+\end{equation}
+
+In fact, this is equivalent to the proposed method, whose optimization problem can be written as:
+\begin{equation}
+\begin{aligned}
+& \text{maximize}
+& & L(Q, F | G) \bigl(= \sum_{i,m}  g_{i,m} \log (Q F)_{i,m} \bigr)  \\
+& \text{subject to}
+& & f_{k, \bm{m}} = \prod_l f_{k, l, m_l}, \; k = 1, \cdots, K,\ \bm{m} \in M \\ & 
+& & f_{k, l, p} \geq 0, \; k = 1, \cdots, K,\ \bm{m} \in M \\ & 
+& & \sum_k  q_{i, k} =  1, \; i = 1, \cdots, I \\ &
+& & q_{i, k} \geq 0, \; i = 1, \cdots, I,\ k = 1, \cdots, K.
+\end{aligned}
+\label{likelihood}
+\end{equation}
+
+\begin{prop}
+When $(Q, F) = (Q^*, F^*)$ is an optimal solution of the optimization problem (\ref{likelihood}), 
+then $(\tilde{Q}, F) = (R^* Q^*, F^*)$ is an optimal solution of the optimization problem (\ref{KL}).
+On the other hand, when $(\tilde{Q}, F) = (\tilde{Q}^*, F^*)$ is an optimal solution of the optimization problem (\ref{KL}),
+then $(Q, F) = (R^{*-1} \tilde{Q}^*, F^*)$ is an optimal solution of the optimization problem (\ref{likelihood}),
+where $R^* = \text{diag} (r_1^*, \cdots, r_I^*), r_i^* = \sum_{\bm{m}} g_{i,\bm{m}}, i = 1, \cdots, I$.
+\end{prop}
+\proof
+This is because
+\begin{equation*}
+KL(G ||  \tilde{Q} F) = -  \sum_i \Bigl( ( \sum_{m} g_{i, m} ) \log \tilde{r}_i - \tilde{r}_i \Bigr)  - L(Q, F | G) + \text{(constant value)},
+\end{equation*}
+where $Q$ is row-normalized matrix for $\tilde{Q}$, $\tilde{r}_i = \sum_k q_{i, k}$ for each $i$, 
+and $( \sum_{m} g_{i, m} ) \log \tilde{r}_i - \tilde{r}_i$ takes its maximum at $\tilde{r}_i = r_i^*$.
+\hfill $\square$
+
+
+\end{document}

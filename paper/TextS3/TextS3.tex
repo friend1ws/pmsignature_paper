@@ -1,0 +1,65 @@
+\documentclass{article}
+\textheight24cm\textwidth16cm\topmargin-1cm
+\oddsidemargin0cm\evensidemargin0cm
+
+\usepackage{amsmath,amssymb}
+% \usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+\usepackage{url}
+\usepackage{bm}
+\usepackage{setspace} 
+\usepackage{subfigure}
+
+% \usepackage{algorithmic}
+% \usepackage{algorithm}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newcommand{\proof}{\noindent Proof.\ \ }
+% \renewcommand{\algorithmiccomment}[1]{// #1}
+
+
+%\pagestyle{empty}
+
+
+\begin{document}
+
+% \baselineskip 6.5mm
+
+\vspace*{1.0cm}
+{\LARGE \bf Derivation of EM algorithm}
+\vspace*{0.25cm}
+
+
+The complete log-likelihood including missing data $\{ \bm{z}_i \}$ for the proposed model is
+\begin{equation*}
+\sum_{i = 1}^I \sum_{j=1}^J \sum_{k=1}^K I(z_{i,j} = k) \Bigl( \sum_{l = 1}^L \log f_{k, l, x_{i,j,l}} + \log q_{i,k} \Bigr).
+\end{equation*}
+Here, we introduce the variable for conditional probability for $z_{i,j}$ given the parameters and the mutation features $\bm{x}_{i,j}$,
+\begin{equation*}
+\theta_{i,k, \bm{m}} = \Pr \bigl( z_{i,j} = k \big| \bm{x}_{i, j} = \bm{m}, \{ \bm{f}_{k, l} \}, \{  \bm{q}_i \} \bigr)
+\end{equation*}
+Note that this conditional probability just depends on the value of mutation feature $\bm{m} = (m_1, \cdots, m_L)$, not on the index $j$.
+Then, the expected complete log-likelihood augmented by Lagrange multipliers is calculated as
+\begin{equation*}
+\sum_{i=1}^I \sum_{\bm{m}} g_{i, \bm{m} } \sum_{k=1}^K \theta_{i, k, \bm{m}}   \Bigl( \sum_{l = 1}^L \log f_{k, l, m_l} + \log q_{i,k} \Bigr)
++ \sum_{k=1}^K \sum_{l=1}^L \tau_{k,l} \bigl( 1 - \sum_{p=1}^{M_l} f_{k,l,p} \bigr)
++ \sum_{i=1}^I \rho_i \bigl( 1 - \sum_{k=1}^K q_{i,k} \bigr).
+\end{equation*}
+Differentiating it leads to following stationary equations: 
+\begin{align*}
+\sum_{i=1}^I \sum_{\bm{m}: m_l = p} g_{i, \bm{m}} \theta_{i,k,\bm{m}} - \tau_{k,l} f_{k,l,p} & = 0,\ (p=1, \cdots, M_l, k=1, \cdots, K,\ l=1, \cdots, L)., \\
+\sum_{\bm{m}} g_{i,\bm{m}} \theta_{i,k,\bm{m}} - \rho_i q_{i, k} & = 0,\ (k = 1, \cdots, K, i = 1, \cdots, I).
+\end{align*}
+Then, by eliminating Lagrange multipliers, updating rules can be obtained.
+
+
+
+
+\end{document}
+

@@ -1,0 +1,65 @@
+\documentclass{article}
+\textheight24cm\textwidth16cm\topmargin-1cm
+\oddsidemargin0cm\evensidemargin0cm
+
+\usepackage{amsmath,amssymb}
+% \usepackage[dvipdfmx]{graphicx}
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+\usepackage{url}
+\usepackage{bm}
+\usepackage{setspace} 
+\usepackage{subfigure}
+
+% \usepackage{algorithmic}
+% \usepackage{algorithm}
+
+\newtheorem{thm}{Theorem}
+\newtheorem{dfn}[thm]{Definition}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{prop}[thm]{Proposition}
+\newtheorem{cor}[thm]{Corollary}
+\newcommand{\proof}{\noindent Proof.\ \ }
+% \renewcommand{\algorithmiccomment}[1]{// #1}
+
+
+%\pagestyle{empty}
+
+
+\begin{document}
+
+% \baselineskip 6.5mm
+
+\vspace*{1.0cm}
+{\LARGE \bf Supplementary Table1}
+\vspace*{0.25cm}
+
+
+
+\begin{table}[!ht]
+
+\begin{center}
+\begin{tabular}{|c|c|c|} \hline
+mutation pattern & full model & independent model \\ \hline
+$L$ & 1  & 3  \\
+$\bm{M}$ & (96)  & (6, 4, 4) \\  \hline
+ApCpA $\to$ ApCpA & (1)  & (1, 1, 1)  \\ 
+ApCpC $\to$ ApApC & (2)  & (1, 1, 2)  \\ 
+ApCpG $\to$ ApApG & (3)  & (1, 1, 3)  \\
+ApCpT $\to$ ApApT & (4)  & (1, 1, 4)  \\
+CpCpA $\to$ CpApA & (5)  & (1, 2, 1) \\
+$\cdots$ & $\cdots$ & $\cdots$ \\
+ApCpA $\to$ ApGpA & (17)  & (2, 1, 1) \\
+$\cdots$ & $\cdots$ & $\cdots$ \\
+TpTpT $\to$ TpGpT & (96)  & (6, 4, 4) \\ \hline
+\end{tabular}
+\end{center}
+\label{tab_rep}
+\end{table}
+
+
+
+
+\end{document}
+

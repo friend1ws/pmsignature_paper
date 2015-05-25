@@ -1,0 +1,159 @@
+\relax 
+\providecommand\hyper@newdestlabel[2]{}
+\providecommand\HyperFirstAtBeginDocument{\AtBeginDocument}
+\HyperFirstAtBeginDocument{\ifx\hyper@anchor\@undefined
+\global\let\oldcontentsline\contentsline
+\gdef\contentsline#1#2#3#4{\oldcontentsline{#1}{#2}{#3}}
+\global\let\oldnewlabel\newlabel
+\gdef\newlabel#1#2{\newlabelxx{#1}#2}
+\gdef\newlabelxx#1#2#3#4#5#6{\oldnewlabel{#1}{{#2}{#3}}}
+\AtEndDocument{\ifx\hyper@anchor\@undefined
+\let\contentsline\oldcontentsline
+\let\newlabel\oldnewlabel
+\fi}
+\fi}
+\global\let\hyper@last\relax 
+\gdef\HyperFirstAtBeginDocument#1{#1}
+\providecommand\HyField@AuxAddToFields[1]{}
+\providecommand\HyField@AuxAddToCoFields[2]{}
+\bibstyle{plos2015}
+\citation{stratton2009cancer}
+\citation{pmid12379884}
+\citation{pmid15748635}
+\citation{pmid23389445,pmid23852168,pmid23852170}
+\citation{pmid22608084}
+\citation{pmid23945592}
+\citation{pmid23318258,pmid23628380}
+\citation{pmid9683596}
+\citation{pmid10835412}
+\citation{Blei:2003}
+\citation{eddelbuettel2011rcpp}
+\citation{pmid23945592,pmid23318258}
+\citation{pmid23318258,pmid23628380}
+\citation{pmid2172928}
+\@writefile{toc}{\contentsline {section}{\numberline {1}Result}{4}{section.1}}
+\citation{pmid25362482,pmid23318258}
+\citation{pmid2172928}
+\citation{rrnyi1961measures}
+\@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces {\bf  Examples of visualizations and parameter values for the mutation signatures of the unconstrained (full) model and our independent model, where substitution patterns, two 5' and 3' bases and transcription strand direction are considered as mutation features.} (A) The barplots are divided by 6 substitution patterns and transcription strand direction. In each division, 256 bars show joint probabilities of up to two base 5' and 3' bases (ApApNpApA, ApApNpApC, ApApNpApG, ApApNpApT, $\cdots  $, TpTpNpTpT). (B, C) An example mutation signature representation and parameter values from our independent model, where mutation features (substitution patterns, two 5' and 3' bases and strand direction) are assumed to be independent ($L=6$, $\bm  {M} = (6, 4, 4, 4, 4, 2)$). In the bottom five rectangles, the width of each box represents the frequencies of bases (A, C, G and T) at the substitution and flanking site. To highlight the most informative flanking sites, the heights of flanking site boxes are scaled by ($1 + 0.5 \times \qopname  \relax o{log}\DOTSB \sum@ \slimits@ _{n = A,C,G,T} f_n^2$, where $f_n$ is the parameter for each base), which can be interpreted as ($1 - 0.5 \times \text  {R\'enyi entropy}$) \cite  {rrnyi1961measures}. This is analogous to the information content scaling used in sequencing logos. In the top rectangle, the height of each box represents the conditional frequencies of mutated bases for each original base (C and T). In the upper right, the height of the $+$ box represents the frequencies of mutations in the coding strand (or the plus strand, the sense strand and the untranscribed strand) whose nucleotide sequences directly corresponds to mRNA, whereas the height of $-$ box represents those in the template strand (or the minus strand, the antisense strand, the transcribed strand and the noncoding strand) whose sequences are copied during the synthesis of mRNA. \relax }}{5}{figure.caption.5}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{mutSig_example}{{1}{5}{{\bf Examples of visualizations and parameter values for the mutation signatures of the unconstrained (full) model and our independent model, where substitution patterns, two 5' and 3' bases and transcription strand direction are considered as mutation features.} (A) The barplots are divided by 6 substitution patterns and transcription strand direction. In each division, 256 bars show joint probabilities of up to two base 5' and 3' bases (ApApNpApA, ApApNpApC, ApApNpApG, ApApNpApT, $\cdots $, TpTpNpTpT). (B, C) An example mutation signature representation and parameter values from our independent model, where mutation features (substitution patterns, two 5' and 3' bases and strand direction) are assumed to be independent ($L=6$, $\bm {M} = (6, 4, 4, 4, 4, 2)$). In the bottom five rectangles, the width of each box represents the frequencies of bases (A, C, G and T) at the substitution and flanking site. To highlight the most informative flanking sites, the heights of flanking site boxes are scaled by ($1 + 0.5 \times \log \sum _{n = A,C,G,T} f_n^2$, where $f_n$ is the parameter for each base), which can be interpreted as ($1 - 0.5 \times \text {R\'enyi entropy}$) \cite {rrnyi1961measures}. This is analogous to the information content scaling used in sequencing logos. In the top rectangle, the height of each box represents the conditional frequencies of mutated bases for each original base (C and T). In the upper right, the height of the $+$ box represents the frequencies of mutations in the coding strand (or the plus strand, the sense strand and the untranscribed strand) whose nucleotide sequences directly corresponds to mRNA, whereas the height of $-$ box represents those in the template strand (or the minus strand, the antisense strand, the transcribed strand and the noncoding strand) whose sequences are copied during the synthesis of mRNA. \relax }{figure.caption.5}{}}
+\citation{pmid10835412}
+\citation{Blei:2003}
+\citation{pmid23628380}
+\@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces {\bf  An overview of the generative model of somatic mutations proposed in this paper.} Suppose there are three types of mutation sources (mutation signatures) such as ultraviolet, tobacco smoking chemicals and transcription coupled repairs. Each cancer genome has ratios showing which types of mutation sources are contributing to its mutations (membership parameters). The generative model of the pattern of each mutation is: first, one of the mutation signatures is chosen according to the membership parameter. Second, each mutation feature such as substitution patterns and flanking bases is generated by the corresponding multinomial distributions for the selected mutation signature. \relax }}{6}{figure.caption.7}}
+\newlabel{methodOverview}{{2}{6}{{\bf An overview of the generative model of somatic mutations proposed in this paper.} Suppose there are three types of mutation sources (mutation signatures) such as ultraviolet, tobacco smoking chemicals and transcription coupled repairs. Each cancer genome has ratios showing which types of mutation sources are contributing to its mutations (membership parameters). The generative model of the pattern of each mutation is: first, one of the mutation signatures is chosen according to the membership parameter. Second, each mutation feature such as substitution patterns and flanking bases is generated by the corresponding multinomial distributions for the selected mutation signature. \relax }{figure.caption.7}{}}
+\citation{pmid23926200}
+\citation{pmid23318258}
+\citation{pmid23945592}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces {\bf  The mutation signatures for the UCUT data, and the results of down-sampling experiments.} 3072 elements in the full model mutation signatures were shown divided by 6 substitution patterns and strand directions. (A, B) APOBEC and AA signature for the independent model. (C, D) APOBEC and AA signature for the full model. (E, F) APOBEC and AA signature stability (the mean cosine similarity for each donw-sampling ratio).\relax }}{7}{figure.caption.9}}
+\newlabel{UCUT}{{3}{7}{{\bf The mutation signatures for the UCUT data, and the results of down-sampling experiments.} 3072 elements in the full model mutation signatures were shown divided by 6 substitution patterns and strand directions. (A, B) APOBEC and AA signature for the independent model. (C, D) APOBEC and AA signature for the full model. (E, F) APOBEC and AA signature stability (the mean cosine similarity for each donw-sampling ratio).\relax }{figure.caption.9}{}}
+\citation{pmid23945592}
+\citation{pmid23945592}
+\citation{pmid25228659}
+\citation{pmid23187890}
+\citation{pmid25228659}
+\citation{pmid23318258}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces {\bf  The summary of mutation signatures across 30 cancer types \cite  {pmid23945592} obtained using the proposed method.} Here, the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features. First, mutation signatures were estimated separately in each cancer type, and then similar signatures were merged (see text). \relax }}{8}{figure.caption.11}}
+\newlabel{nature2013_sig_summary}{{4}{8}{{\bf The summary of mutation signatures across 30 cancer types \cite {pmid23945592} obtained using the proposed method.} Here, the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features. First, mutation signatures were estimated separately in each cancer type, and then similar signatures were merged (see text). \relax }{figure.caption.11}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces {\bf  The summary of membership of each mutation signature across 30 cancer types obtained using the proposed method.}\relax }}{8}{figure.caption.12}}
+\newlabel{nature2013_sig_member}{{5}{8}{{\bf The summary of membership of each mutation signature across 30 cancer types obtained using the proposed method.}\relax }{figure.caption.12}{}}
+\citation{pmid23318258}
+\citation{pmid23303777}
+\citation{pmid23318258}
+\citation{pmid23318258}
+\citation{pmid23318258}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces {\bf  The estimated frequencies of bases at two 5' to the mutated site for each cancer type.} The bar heights show the estimated frequency for bases A, C, G and T at two 5' to the mutated site. The error bars show bootstrapped standard errors. (A, B, C, D, E) The intensities of signature 13 (APOBEC signature), signature 1 (the first POL $\epsilon $ signature), signature 8 (the second POL $\epsilon $ signature), signature 10 (ultraviolet signature) and signature 11, respectively, at two 5' to the mutated site. intensities at two 5' to the mutated site. \relax }}{9}{figure.caption.13}}
+\newlabel{two5prime}{{6}{9}{{\bf The estimated frequencies of bases at two 5' to the mutated site for each cancer type.} The bar heights show the estimated frequency for bases A, C, G and T at two 5' to the mutated site. The error bars show bootstrapped standard errors. (A, B, C, D, E) The intensities of signature 13 (APOBEC signature), signature 1 (the first POL $\epsilon $ signature), signature 8 (the second POL $\epsilon $ signature), signature 10 (ultraviolet signature) and signature 11, respectively, at two 5' to the mutated site. intensities at two 5' to the mutated site. \relax }{figure.caption.13}{}}
+\citation{pmid23318258}
+\citation{pmid12379884,pmid23318258}
+\citation{pmid25362482}
+\citation{pmid25362482,pmid23318258}
+\citation{pmid12930761}
+\citation{hoyer2004non,engelhardt2010analysis}
+\citation{kulesza2012determinantal,kwok2012priors}
+\citation{Hofmann:1999,tang2005estimation}
+\citation{zhou2011quasi}
+\citation{pmid10835412,pmid14872004}
+\citation{Blei:2003,teh2006collapsed,raj2014variational}
+\citation{teh2006hierarchical}
+\citation{meyerson2010advances,helleday2014mechanisms}
+\citation{pmid22820252,pmid21953857,pmid23422670,pmid23770567}
+\citation{pmid25693567}
+\citation{varadhan2008simple}
+\citation{efron1994introduction}
+\citation{akaike1974new}
+\citation{schwarz1978estimating}
+\citation{pmid10835412}
+\citation{alexander2011enhancements}
+\citation{pmid23628380}
+\citation{pmid23318258}
+\citation{pmid23945592,pmid23318258}
+\citation{Hofmann:1999,Blei:2003}
+\citation{pmid10835412,pmid19648217}
+\citation{ding2008equivalence}
+\citation{pmid22608084,pmid23318258,pmid23945592}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces  {\bf  Relationships among mutation signature model, topic models, and population structure models.} \relax }}{14}{table.caption.22}}
+\newlabel{tab_pop}{{1}{14}{{\bf Relationships among mutation signature model, topic models, and population structure models.} \relax }{table.caption.22}{}}
+\newlabel{simulation}{{1}{14}{S1 Text}{section*.24}{}}
+\newlabel{UCUT_supp}{{1}{14}{S2 Text}{section*.25}{}}
+\newlabel{EM_math}{{1}{14}{S3 Text}{section*.26}{}}
+\newlabel{NMF_math}{{1}{14}{S4 Text}{section*.27}{}}
+\newlabel{mfexample}{{1}{14}{S1 Table}{section*.28}{}}
+\newlabel{nature2013_sigNum}{{1}{14}{S2 Table}{section*.29}{}}
+\newlabel{UCUT_APOBEC_twoFivePrime}{{1}{14}{S1 Figure}{section*.30}{}}
+\newlabel{nature2013_sig_list}{{1}{15}{S2 Figure}{section*.31}{}}
+\newlabel{LGG_membership}{{1}{15}{S3 Figure}{section*.32}{}}
+\newlabel{LGG_signatures}{{1}{15}{S4 Figure}{section*.33}{}}
+\newlabel{oxidation}{{1}{15}{S5 Figure}{section*.34}{}}
+\bibdata{plos_template}
+\bibcite{stratton2009cancer}{1}
+\bibcite{pmid12379884}{2}
+\bibcite{pmid15748635}{3}
+\bibcite{pmid23389445}{4}
+\bibcite{pmid23852168}{5}
+\bibcite{pmid23852170}{6}
+\bibcite{pmid22608084}{7}
+\bibcite{pmid23945592}{8}
+\bibcite{pmid23318258}{9}
+\bibcite{pmid23628380}{10}
+\bibcite{pmid9683596}{11}
+\bibcite{pmid10835412}{12}
+\bibcite{Blei:2003}{13}
+\bibcite{eddelbuettel2011rcpp}{14}
+\bibcite{pmid2172928}{15}
+\bibcite{pmid25362482}{16}
+\bibcite{rrnyi1961measures}{17}
+\bibcite{pmid23926200}{18}
+\bibcite{pmid25228659}{19}
+\bibcite{pmid23187890}{20}
+\bibcite{pmid23303777}{21}
+\bibcite{pmid12930761}{22}
+\bibcite{hoyer2004non}{23}
+\bibcite{engelhardt2010analysis}{24}
+\bibcite{kulesza2012determinantal}{25}
+\bibcite{kwok2012priors}{26}
+\bibcite{Hofmann:1999}{27}
+\bibcite{tang2005estimation}{28}
+\bibcite{zhou2011quasi}{29}
+\bibcite{pmid14872004}{30}
+\bibcite{teh2006collapsed}{31}
+\bibcite{raj2014variational}{32}
+\bibcite{teh2006hierarchical}{33}
+\bibcite{meyerson2010advances}{34}
+\bibcite{helleday2014mechanisms}{35}
+\bibcite{pmid22820252}{36}
+\bibcite{pmid21953857}{37}
+\bibcite{pmid23422670}{38}
+\bibcite{pmid23770567}{39}
+\bibcite{pmid25693567}{40}
+\bibcite{varadhan2008simple}{41}
+\bibcite{efron1994introduction}{42}
+\bibcite{akaike1974new}{43}
+\bibcite{schwarz1978estimating}{44}
+\bibcite{alexander2011enhancements}{45}
+\bibcite{pmid19648217}{46}
+\bibcite{ding2008equivalence}{47}
+\newlabel{LastPage}{{}{18}{}{page.18}{}}
+\xdef\lastpage@lastpage{18}
+\xdef\lastpage@lastpageHy{18}
