@@ -6,7 +6,8 @@ if (!file.exists("../result/SText2")) {
   dir.create("../result/SText2")
 }
 
-# You may need to modify the size of device...
+#' You may need to modify the size of device...
+#' I'm searching for the better way (e.g., set the size of device in advance)
 source("subscript_SText2/UCUT_variousK.R")
 
 # generating statistics for the estimation results such as
