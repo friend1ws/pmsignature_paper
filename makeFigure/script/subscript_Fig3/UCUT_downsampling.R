@@ -13,7 +13,7 @@ Sig <- rep(0, 200 * 6 * 2);
 Type[1:1200] <- "full";
 for (i in 1:6) {
   Inds <- 1:100 + 200 * (i - 1);
-  a <- read.table(paste("../../UTUC/result/cosineDist_full/3_", ratio[i], ".txt", sep=""), sep="\t", header=TRUE);
+  a <- read.table(paste("../../analysis/UCUT/result/cosineDist_full/3_", ratio[i], ".txt", sep=""), sep="\t", header=TRUE);
   Ratio[Inds] <- ratio[i];
   Ratio[Inds + 100] <-ratio[i];                       
   Dist[Inds] <- a[,"AA"];
@@ -26,7 +26,7 @@ for (i in 1:6) {
 Type[1201:2400] <- "ind";
 for (i in 1:6) {
   Inds <- 1:100 + 200 * (i - 1) + 1200;
-  a <- read.table(paste("../../UTUC/result/cosineDist_ind/3_", ratio[i], ".txt", sep=""), sep="\t", header=TRUE);
+  a <- read.table(paste("../../analysis/UCUT/result/cosineDist_ind/3_", ratio[i], ".txt", sep=""), sep="\t", header=TRUE);
   Ratio[Inds] <- ratio[i];
   Ratio[Inds + 100] <-ratio[i];                       
   Dist[Inds] <- a[,"AA"];
@@ -39,7 +39,7 @@ for (i in 1:6) {
 UTUC.downsampling <- data.frame(type=Type, ratio=Ratio, distance=Dist, signature=Sig);
 summary_UTUC.downsampling <- UTUC.downsampling %>% group_by(type, ratio, signature) %>% summarise(cosine_similality = mean(distance), seDist = sd(distance));
 
-summary.AA <- summary_UTUC.downsampling %.% filter(signature=="AA");
+summary.AA <- summary_UTUC.downsampling %>% filter(signature=="AA");
 summary.AA$seDist_max <- sapply(summary.AA$cosine_similality + summary.AA$seDist, min, 1) - summary.AA$cosine_similality;
 summary.AA$seDist_min <- - sapply(summary.AA$cosine_similality - summary.AA$seDist, max, 0) + summary.AA$cosine_similality;
 
@@ -60,7 +60,7 @@ ggplot(summary.AA, aes(x=ratio, y=cosine_similality, colour=type, group=type, fi
         legend.text = element_text(size = rel(1.5)),
         legend.title = element_text(size = rel(1.5)));
 
-ggsave("../../manuscript/UTUC_downsampling_AA.eps", width=7.5, height=5.5, units = "in");
+ggsave("../result/Fig3/UTUC_downsampling_AA.eps", width=7.5, height=5.5, units = "in");
 
 
 summary.APOBEC <- summary_UTUC.downsampling %>% filter(signature=="APOBEC");
@@ -85,7 +85,7 @@ ggplot(summary.APOBEC, aes(x=ratio, y=cosine_similality, colour=type, group=type
         legend.text = element_text(size = rel(1.5)),
         legend.title = element_text(size = rel(1.5)));
 
-ggsave("../../manuscript/UTUC_downsampling_APOBEC.eps", width=7.5, height=5.5, units = "in");
+ggsave("../result/Fig3/UTUC_downsampling_APOBEC.eps", width=7.5, height=5.5, units = "in");
 
 
 
