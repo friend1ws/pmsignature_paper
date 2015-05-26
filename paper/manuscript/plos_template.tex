@@ -242,7 +242,7 @@ understanding of mutation signature extraction problems,
 and suggests ways to further improve the statistical methods.
 
 Our methods are implemented in an R package 
-pmsignature (\url{https://github.com/friend1ws/pmsignature})
+{\bf pmsignature} (\url{https://github.com/friend1ws/pmsignature})
 and a web application available at \url{https://friend1ws.shinyapps.io/pmsignature_shiny/}.
 
 
@@ -377,15 +377,17 @@ computational and statistical methods for cancer mutation signature detection.
 
 Software implementing the proposed methods is available in an R package 
 {\bf pmsignature} ({\bf p}robabilistic {\bf m}utation signature),
-at \url{https://github.com/friend1ws/pmsignature}).
+at \url{https://github.com/friend1ws/pmsignature}.
 The core part of the estimation process is implemented in C++ by way of the Rcpp package \cite{eddelbuettel2011rcpp},
 which enables handling millions of somatic mutations from thousands of cancer genomes using a standard desktop computer.
 In addition, a web-based application of our method is available at 
-\url{https://friend1ws.shinyapps.io/pmsignature_shiny/}
+\url{https://friend1ws.shinyapps.io/pmsignature_shiny/}.
 
 
 % Results and Discussion can be combined.
-\section*{Methods Overview}
+% \section*{Methods Overview}
+\section{Result}
+
 
 \subsection*{New model for mutation signatures}
 
@@ -480,7 +482,7 @@ We particularly note how the key elements of this mutation signature are more im
 \caption{{\bf Examples of visualizations and parameter values for the mutation signatures of the unconstrained (full) model and our independent model, 
 where substitution patterns, two 5' and 3' bases and transcription strand direction are considered as mutation features.}
 (A) The barplots are divided by 6 substitution patterns and transcription strand direction.
-In each division, 256 bars show joint probabilities of up to two base 5' and 3' bases with substitution patterns and transcription strands
+In each division, 256 bars show joint probabilities of up to two base 5' and 3' bases
 (ApApNpApA, ApApNpApC, ApApNpApG, ApApNpApT, $\cdots$, TpTpNpTpT).
 (B, C) An example mutation signature representation and parameter values from our independent model, where mutation features (substitution patterns, two 5' and 3' bases and strand direction) 
 are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).
@@ -506,7 +508,9 @@ whose sequences are copied during the synthesis of mRNA.
 
 %In this paper, we focus on substitution patterns, flanking bases (up to the $\pm 2$ positions) and transcribed directions as contextual factors of mutation patterns.
 
-\subsection*{Mathematical specification, and connection with mixed-membership models}
+% \subsection*{Mathematical specification, and connection with mixed-membership models}
+\subsection*{An overview of mathematical specification of mutation signatures and the generative model of somatic mutations}
+
 % yshira20150421 I think the title of the section should change (because this is not "detail").
 
 Suppose each somatic mutation has $L$ mutation features, $\bm{m} = (m_1, m_2, \cdots, m_L)$, 
@@ -540,12 +544,16 @@ Thus,
 \end{enumerate}
 
 This generative model is summarized in Fig. \ref{methodOverview}.
+This model is essentially a ``mixed-membership model", also known as an ``admixture model" \cite{pmid10835412} or ``latent Dirichlet allocation" \cite{Blei:2003}. For example,
+the membership proportions for each sample are analogous to admixture proportions in an admixture model; the mutation signatures are analogous to 
+populations, and the mutation signature-specific parameters are analogous to population-specific allele frequencies.
+
 The key parameters in this model
 are the membership proportions for each sample, $\bm{q}_i$, and the mutation signature parameters, $\bm{F}_k$. 
 We estimate these parameters by maximizing likelihood using an EM algorithm. 
 A simulation study demonstrates that the estimation method can reproduce the mutation signature very accurately 
 provided enough mutations and samples are available (see S1 Text). 
-See Methods for more details, how to select $K$, etc.
+See Methods for more detailed models, parameter estimation, further discussion on relationships with mixed membership models, how to select $K$, etc.
 
 
 \begin{figure}[h]
@@ -555,8 +563,8 @@ Suppose there are three types of mutation sources (mutation signatures) such as 
 Each cancer genome has ratios showing which types of mutation sources are contributing to its mutations (membership parameters).
 The generative model of the pattern of each mutation is:
 first, one of the mutation signatures is chosen according to the membership parameter.
-Second, according to the selected mutation signature, mutation features such as substitution pattens and flanking bases are generated 
-by the corresponding multinomial distributions for that mutation signature.
+Second, each mutation feature such as substitution patterns and flanking bases is generated 
+by the corresponding multinomial distributions for the selected mutation signature.
 }
 \label{methodOverview}
 \end{figure}
@@ -573,13 +581,9 @@ $\{ \bm{F}_{0} \} \in \Delta^{M_1 \times \cdots \times M_L}$,
 which is designed to capture biases in intrinsic genome sequence composition and is calculated from the composition of consecutive nucleotides of the human genome sequence 
 (See Methods for the detail).
 
-This model is essentially a ``mixed-membership model", also known as an ``admixture model" \cite{pmid10835412} or ``Latent Dirichlet Allocation" \cite{Blei:2003}. For example,
-the membership proportions for each sample are analogous to admixture proportions in an admixture model; the mutation signatures are analogous to 
-populations, and the mutation signature-specific parameters are analogous to population-specific allele frequencies
-(see Relationship with mixed-membership models in Methods for further discussion).
 
 % Results and Discussion can be combined.
-\section*{Results}
+% \section*{Results}
 
 
 \subsection*{Robustness experiments using cancer genomes from urothelial carcinoma of the upper urinary tract}
@@ -587,7 +591,7 @@ populations, and the mutation signature-specific parameters are analogous to pop
 Here we compare our new ``independent model'' for 
 mutation signatures, which assumes independence
 among mutation features,
-with the ``full model'', which corresponds to existing approaches. We compare mutation signatures obtained by the two approaches and investigate the robustness of each approach by downsampling experiments.
+with the ``full model'', which corresponds to existing approaches. We compare mutation signatures obtained by the two approaches and investigate the robustness of each approach by down-sampling experiments.
 
 The data consist of 14717 somatic substitutions 
 collected from a study of 26 urothelial carcinomas of the upper urinary tract (UCUT) \cite{pmid23926200}.
@@ -600,25 +604,22 @@ we selected $K=3$ signatures for these analyses (see S2 Text).
 
 The inferred APOBEC signature under the independent model
 shows a clear depletion of G base at the $-2$ position,
-which is consistent to the previous study \cite{pmid23318258} and results in the next subsection ((Figs. 3A and 3B)).
+which is consistent to the previous study \cite{pmid23318258} and results in the next subsection (Figs. 3A and 3B).
 In contrast, for the full model, this tendency is rather mild (Figs. 3C, 3D and S1).
 The inferred AA mutation signature has no clear characteristics at the $-2$ position.
 These results suggest that our independent model has the potential
 to identify signatures in more detail and with less data than existing approaches based on the full model.
 
 \begin{figure}[h]
-\caption{{\bf The mutation signatures for the UCUT data, and the results of downsampling experiments.}
+\caption{{\bf The mutation signatures for the UCUT data, and the results of down-sampling experiments.}
 3072 elements in the full model mutation signatures were shown divided by 6 substitution patterns and strand directions.
-(A) APOBEC signature for the independent model.
-(B) AA signature for the independent model.
-(C) APOBEC signature for the full model.
-(D) AA signature for the full model.
-(E) APOBEC signature stability.
-(F) AA signature stability.}
+(A, B) APOBEC and AA signature for the independent model.
+(C, D) APOBEC and AA signature for the full model.
+(E, F) APOBEC and AA signature stability (the mean cosine similarity for each donw-sampling ratio).}
 \label{UCUT}
 \end{figure}
 
-To investigate this further we performed downsampling experiments.
+To investigate this further we performed down-sampling experiments.
 Using the mutation signatures obtained using all 14717 substitutions as a gold standard, 
 we assessed performance of the proposed method on down-sampled data consisting of $r\%$ of the original data, where  $r=(1\%, 2.5\%, 5\%, 10\%, 25\%, 50\%)$.
 To measure robustness we used the cosine similarity on the 
@@ -666,7 +667,7 @@ provides a comprehensive discussion of these findings.
 \begin{figure}[h]
 \centering
 % \includegraphics[width=16cm,height=17.5cm]{AlexandrovEtAl_mergedSignature.eps}
-\caption{{\bf The summary of mutation signatures obtained in a reanalysis of the data of the previous study \cite{pmid23945592} using the proposed method.}
+\caption{{\bf The summary of mutation signatures across 30 cancer types \cite{pmid23945592} obtained using the proposed method.}
 Here, the substitution patterns and two 5' and 3' bases from the mutated sites are taken into account as mutation features.
 First, mutation signatures were estimated separately in each cancer type, and then similar signatures were merged (see text).
 }
@@ -727,11 +728,9 @@ into signatures may be helpful for identifying underlying mechanisms.
 \caption{{\bf The estimated frequencies of bases at two 5' to the mutated site for each cancer type.}
 The bar heights show the estimated frequency for bases A, C, G and T at two 5' to the mutated site.
 The error bars show bootstrapped standard errors.
-(A) The signature 13 (APOBEC signature)  intensities at two 5' to the mutated site.
-(B) The signature 1 (the first POL $\epsilon$ signature) intensities at two 5' to the mutated site.
-(C) The signature 8 (the second POL $\epsilon$ signature) intensities at two 5' to the mutated site.
-(D) The signature 10 (ultraviolet signature) intensities at two 5' to the mutated site.
-(E) The signature 11 intensities at two 5' to the mutated site.
+(A, B, C, D, E) The intensities of signature 13 (APOBEC signature), signature 1 (the first POL $\epsilon$ signature),
+signature 8 (the second POL $\epsilon$ signature), signature 10 (ultraviolet signature) and signature 11, respectively, at two 5' to the mutated site.
+intensities at two 5' to the mutated site.
 }
 \label{two5prime}
 \end{figure}
@@ -740,7 +739,8 @@ The error bars show bootstrapped standard errors.
 
 %XX this is important that it is drive by a single sample, but maybe just because yuichi looked more carefully and not new method XX
 Signature 2 (C $>$ A at [CT]pCpT) is observed solely in low grade gliomas, and
-appears related to, but slightly different from, the signature previously detected in the same cancer types (``signature 14'' \cite{pmid23318258}). Indeed, the corresponding signature in the previous study shows very complex patterns (C $>$ A at NpCpT or C $>$ T at GpTpN). Further investigation
+appears related to, but slightly different from, the signature previously detected in the same cancer types (``signature 14'', \cite{pmid23318258}). 
+Indeed, the corresponding signature in the previous study shows very complex patterns (C $>$ A at NpCpT or C $>$ T at GpTpN). Further investigation
 revealed that this signature is driven by 
 a single sample with an extremely high mutation rate (see Figs. S3A and S3B), and signature 2 disappeared when we removed this sample (see Fig. S4).
 It may be that the complex low-grade-glioma specific signature detected in the previous study is driven by the same single sample.
@@ -852,8 +852,8 @@ for short deletions (a few bases) it may be fruitful to include the actual delet
 We have detected a number of mutation signatures having transcription strand biases, 
 which are naturally considered to be associated with transcription activities.
 Therefore, to further understand the effect of transcription activities on mutational mechanisms, 
-our framework will be helpful: by allowing for including gene expression or RNA polymerase II occupancies 
-to mutation features, the relationships of strand biases and transcription activities will be clarified.
+we can include gene expression or RNA polymerase II occupancies to mutation features, 
+so that the relationships of strand biases and transcription activities will be clarified.
 
 
 Although we believe our new methods already provide
@@ -918,7 +918,7 @@ convergence of this EM algorithm (SQUAREM implements a general approach to accel
 To address potential problems with convergence to local minima,
 we apply the EM algorithm several times (10 times in this paper) using different initial points,
 and use the estimate with the largest log-likelihood.
-See S3 for the derivation of the above updating procedures.
+See S3 Text for the derivation of the above updating procedures.
 
 
 \subsection*{Background signatures}
@@ -1059,7 +1059,7 @@ population structure model & the $j$-th locus genotype & the allele freq.  & the
 As pointed out by \cite{ding2008equivalence}, there is a  close relationships between mixed-membership models and nonnegative matrix factorization,
 which has been successfully used in the previous studies for mutational signature problems \cite{pmid22608084, pmid23318258, pmid23945592}.
 In fact, the proposed method can be seen as non-negative matrix factorization with additional restrictions.
-See S4 Text  for details of the relationship between the proposed approach and nonnegative matrix factorization.
+See S4 Text for details of the relationship between the proposed approach and nonnegative matrix factorization.
 
 
 
@@ -1082,7 +1082,7 @@ See S4 Text  for details of the relationship between the proposed approach and n
 
 \subsection*{S1 Table}
 \label{mfexample}
-{\bf Example of representation for mutation patterns (substitution patterns and one 5' and 3' bases)}
+{\bf Example of representation for mutation patterns (substitution patterns and one 5' and 3' bases).}
 In the independent representation, the elements of vector show substitution patterns, 5' adjacent bases and 3' adjacent bases, respectively.
 For substitution pattens, 1 to 6 values are assigned to C$>$A, C$>$G, C$>$T, T$>$A, T$>$C and T$>$G in this order.
 For 5' and 3' adjacent bases, 1 to 4 values are assigned to A, C, G and T.
@@ -1090,21 +1090,21 @@ Note that the original base is fixed to C or T to remove the redundancy of compl
 
 \subsection*{S2 Table}
 \label{nature2013_sigNum}
-{\bf The number of mutation signatures selected for each cancer type.}
+{\bf The number of mutation signatures selected for each cancer type for each cancer type in the Alexandrov et al. (2013) data.}
 
 \subsection*{S1 Figure}
 \label{UCUT_APOBEC_twoFivePrime}
-{\bf The frequencies of bases at two 5' to the mutated site for the APOBEC mutation signatures obtained in UTUC data using the independent and full models.}
+{\bf The frequencies of bases at two 5' to the mutated site for the APOBEC mutation signatures obtained in UCUT data using the independent and full models.}
 
 \subsection*{S2 Figure}
 \label{nature2013_sig_list}
 {\bf The list of several signatures extracted in each cancer type in the Alexandrov et al. (2013) data.}
-(A) APOBEC signatures obtained in each cancer type.
+(A) APOBEC signatures (signature 13) obtained in each cancer type.
 (B) Smoking signature in each cancer type.
 (C) The first Pol $\epsilon$ signature (signature 1)  in each cancer type.
 (D) The second Pol $\epsilon$ signature (signature 8) in each cancer type.
-(E) The ultraviolet signature in each cancer type.
-(F) Unknown signature obtained in lung small cell carcinomas and stomach cancers.
+(E) The ultraviolet signature i(signature 10) n each cancer type.
+(F) Unknown signature (signature 11) obtained in lung small cell carcinomas and stomach cancers.
 
 
 \subsection*{S3 Figure}
@@ -1121,8 +1121,8 @@ We can see that the mutations corresponding to signature 2 is mostly from the sa
 \subsection*{S4 Figure}
 \label{LGG_signatures}
 {\bf The signatures obtained for the original data and for the data without the hyper-mutated case.}
-(A) The result for the original data ($K = 3$). The first (from the left) signature seems to be deamination of 5-methyl-cytosine. 
-  The second signature is the low grade glioma signature.
+(A) The result for the original data ($K = 3$). The first (from the left) signature seems to be one from deamination of 5-methyl-cytosine. 
+The second signature is the low grade glioma signature.
 (B, C, D, E) The result for the data without the hyper-mutated sample for $K = 2, 3, 4$ and $5$, respectively.
 Although the signature related to deamination of 5-methyl-cytosine remained, low grade glioma specific signature could not be observed.
 
@@ -1142,8 +1142,8 @@ We can see that the signature corresponding to putative oxidative artifacts conc
 \section*{Acknowledgments}
 
 We thank to Dr. Daichi Mochihashi for helpful discussion and comments on an earlier version of the method;
-Dr. Hiromichi Suzuki for helpful feedback on the R packages;
-Dr. Ziyue Gao for helpful comments on the manuscript.
+Dr. Hiromichi Suzuki for many helpful feedback on the R packages;
+Dr. Ziyue Gao for reading the manuscript and providing many helpful comments.
 
 This project was deeply influenced by the broader intellectual and academic environment surrounding Matthew Stephens's Laboratory,
 when the first author stayed at the University of Chicago as a visiting scholar. The first author thanks Dr. John Novembre,
