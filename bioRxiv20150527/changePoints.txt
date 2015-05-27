@@ -1,0 +1,7 @@
+
+changes from submission2015
+
+1. modified Text layout
+2. comment out several lines in Header and Footer with logo
+3. included \includegraphics (actually included figures in the manuscripts) in figures
+4. comment out adjustwidth in the table (and slightly modified the text lines in the table).
