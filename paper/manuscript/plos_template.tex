@@ -158,6 +158,8 @@
 \newcommand{\lorem}{{\bf LOREM}}
 \newcommand{\ipsum}{{\bf IPSUM}}
 
+\DeclareMathOperator{\Tr}{Tr}
+
 %% END MACROS SECTION
 
 
@@ -646,7 +648,7 @@ For each cancer type we selected the number of signatures $K$ by fitting the mod
 The selected values of $K$ are given in S2 Table.
 Also, we simply removed somatic mutations located in an intergenic region to include transcription strand biases as mutation features.
 Finally, we merged similar mutation signatures across different cancer types 
-(when their Frobenius Distance were $<$ $0.6$). 
+(when their Frobenius Distance were $<$ $0.6$, where Frobenius Distance between two matrices ($\bm{F}_1$, $\bm{F}_2$) is $\sqrt{ \Tr  (\bm{F}_1 -  \bm{F}_2 )  (\bm{F}_1 -  \bm{F}_2 )^t }$).
 % XXX WHAT KIND OF CLUSTERING?
  % (see Supplementary Material for the values of the log-likelihoods and bootstrap errors for each cancer type).
 
