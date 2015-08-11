@@ -41,9 +41,9 @@ for (k in 1:4) {
   }
 }
 
-visPMSignature(Param, POLE1)
+visPMSignature(Param, POLE1, isScale = TRUE)
 ggsave("../result/Fig_revise1/POLE_pmsignature_1.eps", width=5, height=3, units="in")
 
-visPMSignature(Param, POLE2)
+visPMSignature(Param, POLE2, isScale = TRUE)
 ggsave("../result/Fig_revise1/POLE_pmsignature_2.eps", width=5, height=3, units="in")
 
