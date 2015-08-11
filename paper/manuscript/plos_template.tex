@@ -286,7 +286,7 @@ can provide insights into the forces that cause somatic mutations.
 %Classical analyses of mutation patterns have revealed a number of relationships between mutation patterns and carcinogens.
 For example, classical studies of mutation patterns
 revealed that C $>$ A mutations are abundant in lung cancers in patients with smoking history,
-and these are caused by benzo(a)pyrene included in tobacco smokes \cite{pmid12379884}.
+and these are caused by benzo(a)pyrene included in tobacco smoke \cite{pmid12379884}.
 Also, C $>$ T and CC $>$ TT  mutations are abundant in ultraviolet-light-associated skin cancers, 
 and these are caused by pyrimidine dimers as a result of ultraviolet radiation \cite{pmid15748635}. 
 
@@ -615,7 +615,7 @@ to identify signatures in more detail and with less data than existing approache
 3072 elements in the full model mutation signatures were shown divided by 6 substitution patterns and strand directions.
 (A, B) APOBEC and AA signature for the independent model.
 (C, D) APOBEC and AA signature for the full model.
-(E, F) APOBEC and AA signature stability (the mean cosine similarity for each donw-sampling ratio).}
+(E, F) APOBEC and AA signature stability (the mean cosine similarity for each down-sampling ratio).}
 \label{UCUT}
 \end{figure}
 
@@ -642,7 +642,8 @@ We believe that this is because the number of T $>$ A substitutions at GpTpC sit
 To provide a more comprehensive practical illustration of
 our method, we applied it to somatic mutation data from 30 cancer types \cite{pmid23945592}.
 We applied the method to each cancer type separately to assess similarity of estimated signatures across cancer types.
-For each cancer type we selected the number of signatures $K$ by fitting the model with increasing $K$ and examining the log-likelihood, bootstrap errors, and correlation of membership parameters.The selected values of $K$ are given in S2 Table.
+For each cancer type we selected the number of signatures $K$ by fitting the model with increasing $K$ and examining the log-likelihood, bootstrap errors, and correlation of membership parameters.
+The selected values of $K$ are given in S2 Table.
 Also, we simply removed somatic mutations located in an intergenic region to include transcription strand biases as mutation features.
 Finally, we merged similar mutation signatures across different cancer types 
 (when their Frobenius Distance were $<$ $0.6$). 
