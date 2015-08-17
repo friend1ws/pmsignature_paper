@@ -2,12 +2,12 @@
 # data generated in "../../analysis/AlexandrovEtAl/result/" is necessary.
 
 
-if (!file.exists("../result/SFig3")) {
-  dir.create("../result/SFig3")
+if (!file.exists("../result/SFig4")) {
+  dir.create("../result/SFig4")
 }
 
-if (!file.exists("../result/SFig4")) {
-dir.create("../result/SFig4")
+if (!file.exists("../result/SFig5")) {
+dir.create("../result/SFig5")
 }
 
 
@@ -27,7 +27,7 @@ Param@signatureFeatureDistribution[1,1,] <- nature2013_sig[which(rownames(nature
 Param@signatureFeatureDistribution[2,1,] <- nature2013_sig[which(rownames(nature2013_sig) == "Signature.14"),];
 
 visPMSignature(Param, 1, isScale = TRUE)
-ggsave("../result/SFig3/example96_Glioma-Low-Grade.eps", width=12, height=3, units="in");
+ggsave("../result/SFig4/example96_Glioma-Low-Grade.eps", width=12, height=3, units="in");
 
 
 ##########
@@ -39,10 +39,10 @@ G <- readMPFile("../../analysis/AlexandrovEtAl/result/MPFormat/Glioma-Low-Grade.
 # membership plot
 load("../../analysis/AlexandrovEtAl/result/Param_ind5_dir/Glioma-Low-Grade.3.Rdata");
 visMembership(G, resultForSave[[1]], ylog = FALSE, colourBrewer = "Set2", toSample = 100);
-ggsave("../result/SFig3/Glioma-Low-Grade_membership.eps", height = 4, width = 12, pointsize = 9);
+ggsave("../result/SFig4/Glioma-Low-Grade_membership.eps", height = 4, width = 12, pointsize = 9);
 
 visMembership(G, resultForSave[[1]], ylog = TRUE, colourBrewer = "Set2", toSample = 100);
-ggsave("../result/SFig3/Glioma-Low-Grade_membership_log.eps", height = 4, width = 12, pointsize = 9);
+ggsave("../result/SFig4/Glioma-Low-Grade_membership_log.eps", height = 4, width = 12, pointsize = 9);
 ##########
 
 
@@ -75,7 +75,7 @@ for (l1 in 1:length(Params)) {
     visPMSignature(Params[[l1]], aInd, charSize = 1, isScale = TRUE);
   }
   
-  outputName <- paste("../result/SFig4/Glioma-Low-Grade_removed_signature_K", (l1 + 1), ".eps", sep="");
+  outputName <- paste("../result/SFig5/Glioma-Low-Grade_removed_signature_K", (l1 + 1), ".eps", sep="");
   dev.copy2eps(file=outputName, height = 2.5, width = 15, pointsize = 9);
 }
 
@@ -99,7 +99,7 @@ for (k in 1:(K - 1)) {
   visPMSignature(resultForSave[[1]], k, charSize = 1, isScale = TRUE);
 }
 
-outputName <- paste("../result/SFig4/Glioma-Low-Grade_original_signature_K", K, ".eps", sep = "");
+outputName <- paste("../result/SFig5/Glioma-Low-Grade_original_signature_K", K, ".eps", sep = "");
 dev.copy2eps(file=outputName, height = 2.5, width = 15, pointsize = 9);
 
 

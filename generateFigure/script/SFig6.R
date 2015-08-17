@@ -2,8 +2,8 @@
 # data generated in "../../analysis/AlexandrovEtAl/result/" is necessary.
 
 
-if (!file.exists("../result/SFig5")) {
-  dir.create("../result/SFig5")
+if (!file.exists("../result/SFig6")) {
+  dir.create("../result/SFig6")
 }
 
 
@@ -49,7 +49,7 @@ for (i in 1:length(oxidation_types)) {
   G <- readMPFile(inputMPdata, numBases = 5, trDir = TRUE);
   load(inputRdata);
   visMembership(G, resultForSave[[1]], toSample = 100, colourBrewer = "Set2");
-  ggsave(paste("../result/SFig5/", oxidation_types[i], "_oxidation_membership.eps", sep=""), height = 4, width = 12, pointsize = 9);
+  ggsave(paste("../result/SFig6/", oxidation_types[i], "_oxidation_membership.eps", sep=""), height = 4, width = 12, pointsize = 9);
 
   oxInd <- checkOxidationInd(resultForSave[[1]])
   
@@ -57,7 +57,7 @@ for (i in 1:length(oxidation_types)) {
   par(mar = 0.2 * tempMar);
   
   visPMSignature(resultForSave[[1]], oxInd, charSize = 0.8, isScale = TRUE);
-  dev.copy2eps(file=paste("../result/SFig5/", oxidation_types[i], "_oxidation_signature.eps", sep=""), height = 3.0, width = 5);    
+  dev.copy2eps(file=paste("../result/SFig6/", oxidation_types[i], "_oxidation_signature.eps", sep=""), height = 3.0, width = 5);
 
   par(.pardefault);
   

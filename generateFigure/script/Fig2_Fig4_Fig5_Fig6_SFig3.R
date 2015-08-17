@@ -17,8 +17,8 @@ if (!file.exists("../result/Fig6")) {
   dir.create("../result/Fig6")
 }
 
-if (!file.exists("../result/SFig2")) {
-  dir.create("../result/SFig2")
+if (!file.exists("../result/SFig3")) {
+  dir.create("../result/SFig3")
 }
 
 
@@ -319,7 +319,7 @@ for (i in 1:length(importantSigs)) {
   
   
   
-  outputName <- paste("../result/SFig2/signatureList_", names(importantSigs)[i], ".eps", sep="");
+  outputName <- paste("../result/SFig3/signatureList_", names(importantSigs)[i], ".eps", sep="");
   
   if (length(types) > 4) {
     dev.copy2eps(file=outputName, height = ceiling(length(types) / 4) * 2.4, width = 15);
