@@ -659,7 +659,7 @@ In total, we identified 27 mutation signatures.
 Many of these signatures show reassuring similarities with
 signatures identified in previous studies. However
 signatures from our independence model, because of its ability to effectively
-and parsimoniously deal with both $\pm2$ flanking
+and parsimoniously deal with both $\pm 2$ flanking
 base context and strand bias, are often more refined, highlighting additional details or features not previously evident. By comparing the composition of nucleotides and cancer types exhibiting the signatures with results of previous studies, we were able to associate many of the detected signatures with known mutational processes.
 In addition, as we reviewed these signatures
 and compared them with previous work, we noticed connections
@@ -689,13 +689,13 @@ First, mutation signatures were estimated separately in each cancer type, and th
 Signatures 1 and 8 (C $>$ A at TpCpT and C $>$ T at TpCpG, respectively) observed in colorectal and uterine cancers
 appear likely to be associated with deregulated activity of the error-prone polymerase Pol $\epsilon$. 
 In previous analyses of these data \cite{pmid23945592}, 
-the signature for Pol $\epsilon$ dysfunction was represented by a single signature (their ``signature 10'').
+the signature for Pol $\epsilon$ dysfunction was represented by a single signature (their ``signature 10'', see Fig. S2).
 In contrast our new approach uses two signatures.
 Since these signatures are highly correlated,
 and appear connected by
 a single biological mechansim, we certainly do not argue
 that inferring them as a single signature is ``wrong". However, splitting them into two signatures does help highlight certain features. Specifically,
-signature 1 shows a transcription strand bias whereas signature 8 does not, and this is true for both colorectal and uterus cancers (Figs. S2C S2D).
+signature 1 shows a transcription strand bias whereas signature 8 does not, and this is true for both colorectal and uterus cancers (Figs. S3C and S3D).
 This strand bias may be connected with the enrichment of 
 C $>$A at TpCpT mutations in leading strands of replication forks
 observed by \cite{pmid25228659}. Although replication strand bias is different from transcription strand bias, these two biases may be connected through the fact that replication origins prefer transcription start sites \cite{pmid23187890}.
@@ -703,7 +703,7 @@ observed by \cite{pmid25228659}. Although replication strand bias is different f
 These signatures also illustrate the ability of our model
 to help highlight sequence context effects beyond the immediate flanking bases. Specifically, both signatures 1 and 8  show an elevated frequency of the T base at position $-2$,
 and signature 1 also shows slightly elevated frequency of the T base at position $+2$
- (Figs. 6B, 6C ,S6C and S6D).
+ (Figs. 6B, 6C ,S3C and S3D).
 A previous study of Pol $\epsilon$  \cite{pmid25228659} 
 found that a nonsense mutation R23X of TP53 is enriched in cancers with Pol $\epsilon$ defects.
 In fact, the pattern of this mutation is C $>$ T at TpTpCpGpA, closely matching signature 8.
@@ -745,7 +745,7 @@ Signature 2 (C $>$ A at [CT]pCpT) is observed solely in low grade gliomas, and
 appears related to, but slightly different from, the signature previously detected in the same cancer types (``signature 14'', \cite{pmid23318258}). 
 Indeed, the corresponding signature in the previous study shows very complex patterns (C $>$ A at NpCpT or C $>$ T at GpTpN). Further investigation
 revealed that this signature is driven by 
-a single sample with an extremely high mutation rate (see Figs. S3A and S3B), and signature 2 disappeared when we removed this sample (see Fig. S4).
+a single sample with an extremely high mutation rate (see Figs. S4A and S4B), and signature 2 disappeared when we removed this sample (see Fig. S5).
 It may be that the complex low-grade-glioma specific signature detected in the previous study is driven by the same single sample.
 We suggest that these signatures should be treated with caution until validated in additional samples. 
 % XXX Need to discuss this wording and what it means XXX
@@ -755,8 +755,8 @@ We suggest that these signatures should be treated with caution until validated 
 Signature 4 (C $>$ A at CpCpG) observed in kidney clear cell carcinomas, lung adenocarcinomas and melanomas 
 seems to correspond to the ``signature R2''  detected in the same cancer types (plus lung squamous carcinomas) in 
 \cite{pmid23318258} (see their Supplementary Figures).
-Again our analysis highlights additional contextual information, with a strikingly elevated frequency of base C at the $-2$ position (Figs. S5A, S5B and S5C).
-However, for each cancer type, only a few samples support this signature (see Figs. S5D, S5E and S5F),
+Again our analysis highlights additional contextual information, with a strikingly elevated frequency of base C at the $-2$ position (Figs. S6A, S6B and S6C).
+However, for each cancer type, only a few samples support this signature (see Figs. S6D, S6E and S6F),
 and the corresponding signature 
 could not be validated in the previous study: most somatic mutations corresponding to that signature could not be validated by re-sequencing or visual inspection of BAM files using genomic viewers. Again, further investigation
 yielded a potential explanation for this finding:
@@ -766,8 +766,8 @@ Although not of direct biological interest,
 identifying artefactual signatures could be helpful in removing false positive mutations.
 
 %XX highlights robustness of approach XX
-Signature 13 (T $>$ [AGT] at TpCpN sites) was observed in 12 cancer types, and is surely related to the activity of the APOBEC family. The 12 inferred signatures are highly consistent among cancer types except for B-cell lymphoma (see Fig. S2A), highlighting the robustness
-of our approach.  Almost all of them show enrichment of A and T and depletion of G base at the $-2$ position (Fig. 6A and S2A), 
+Signature 13 (T $>$ [AGT] at TpCpN sites) was observed in 12 cancer types, and is surely related to the activity of the APOBEC family. The 12 inferred signatures are highly consistent among cancer types except for B-cell lymphoma (see Fig. S3A), highlighting the robustness
+of our approach.  Almost all of them show enrichment of A and T and depletion of G base at the $-2$ position (Fig. 6A and S3A), 
 consistent with the UCUT data above and previous analyses \cite{pmid23318258}.
 The estimated transcribed strand specificities varied among cancer types, suggesting that there is not consistent strand-specificity in APOBEC signatures (and the observed variation may be due to estimation errors).
 %Yuichi is that true?
@@ -780,10 +780,10 @@ Signatures 10, 11, 12, 19 and 21 provide further examples
 of our method refining previously-observed signatures, highlighting strand biases and/or sequence context effects,
 particularly 2 bases upstream of the substitution.
 Signature 10 (C $>$T at [CT]pCpC) was observed in head and neck cancers and melanomas, and probably relates to ultraviolet light.
-Consistent strand specificities among the two cancer types (Fig. S2E) matches previous results \cite{pmid23318258}, 
-but our analysis additionally highlights elevated abundance of T at the $-2$ position (Figs. 6D and S2E). 
+Consistent strand specificities among the two cancer types (Fig. S3E) matches previous results \cite{pmid23318258}, 
+but our analysis additionally highlights elevated abundance of T at the $-2$ position (Figs. 6D and S3E). 
 Signature 11 (C $>$ T at GpCp[CG]) appears in small-cell lung cancers and stomach cancers,
-and seems to be the same as ``signature 15'' in the previous study, whose function remains unclear. Again our analysis highlights elevated abundance of G at the $-2$ position (Figs. 6E and S2F).
+and seems to be the same as ``signature 15'' in the previous study, whose function remains unclear. Again our analysis highlights elevated abundance of G at the $-2$ position (Figs. 6E and S3F).
 Signatures 12 (C $>$ T at [CG]pCp[CT]), 19 (T $>$ C at GpTpN) and 21 (T $>$ [CG] at CpTpT) observed in pilocytic astrocytomas, stomach cancers and oesophagus cancers, respectively, agree well with those detected in the same cancer types in the previous study \cite{pmid23318258}. However our analysis again refines these signatures,
 highlighting a strand bias in all three, and sequence context effects at the -2 position in Signatures 12 and 21.
 %although the causes of these signatures remain unknown.
@@ -799,7 +799,7 @@ methods to detect, perhaps because the mutation ratio of thyroid cancer is low, 
 
 The remaining signatures largely recapitulate previous results.
 Signature 3 and 5 (C $>$ A at NpCpN) observed in head-and-neck cancers and three types of lung cancers are probably associated with tobacco smoking.
-The estimated signature in each cancer type shows higher mutation prevalence on the template strand (Fig. S2B), 
+The estimated signature in each cancer type shows higher mutation prevalence on the template strand (Fig. S3B), 
 which is consistent with the previous study \cite{pmid12379884, pmid23318258}.
 Signature 6 (C $>$ A at NpCp[AT]) observed in neuroblastomas matches the pattern detected in the same cancer type in the previous study.
 Signature 7 (C $>$ T at NpCpG sites) was observed in 25 out of 30 cancer type, and arguably relates to deamination of 5-methyl-cytosine.
@@ -1100,6 +1100,12 @@ Note that the original base is fixed to C or T to remove the redundancy of compl
 {\bf The frequencies of bases at two 5' to the mutated site for the APOBEC mutation signatures obtained in UCUT data using the independent and full models.}
 
 \subsection*{S2 Figure}
+\label{nature2013_POLE}
+{\bf The pol epsilon signature (Signature 10) derived in the Alexandrov et al., (2013).}
+The barplots are divided by 6 substitution pattern. 
+In each division, 16 bars show joint probabilities of substitution pattern, 5' and 3' bases (ApNpA, ApNpC, ApNpG, ApNpT, $\cdots$, TpNpT).
+
+\subsection*{S3 Figure}
 \label{nature2013_sig_list}
 {\bf The list of several signatures extracted in each cancer type in the Alexandrov et al. (2013) data.}
 (A) APOBEC signatures (signature 13) obtained in each cancer type.
@@ -1110,7 +1116,7 @@ Note that the original base is fixed to C or T to remove the redundancy of compl
 (F) Unknown signature (signature 11) obtained in lung small cell carcinomas and stomach cancers.
 
 
-\subsection*{S3 Figure}
+\subsection*{S4 Figure}
 \label{LGG_membership}
 {\bf The estimated membership parameters of low grade gliomas.}
 (A, B) Estimated membership parameter by the proposed method in normal and log scale.
@@ -1121,7 +1127,7 @@ The low grade glioma specific signature detected by the proposed method is the s
 We can see that the mutations corresponding to signature 2 is mostly from the sample with an extremely high mutation rate.
 
 
-\subsection*{S4 Figure}
+\subsection*{S5 Figure}
 \label{LGG_signatures}
 {\bf The signatures obtained for the original data and for the data without the hyper-mutated case.}
 (A) The result for the original data ($K = 3$). The first (from the left) signature seems to be one from deamination of 5-methyl-cytosine. 
@@ -1129,7 +1135,7 @@ The second signature is the low grade glioma signature.
 (B, C, D, E) The result for the data without the hyper-mutated sample for $K = 2, 3, 4$ and $5$, respectively.
 Although the signature related to deamination of 5-methyl-cytosine remained, low grade glioma specific signature could not be observed.
 
-\subsection*{S5 Figure}
+\subsection*{S6 Figure}
 \label{oxidation}
 {\bf The putative oxidative artifact signatures and membership parameters estimated for each cancer.}
 (A) The second signature detected in kidney clear cell carcinomas.
