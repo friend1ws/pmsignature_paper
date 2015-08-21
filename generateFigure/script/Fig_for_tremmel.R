@@ -95,7 +95,10 @@ for (i in 1:length(removeList)) {
 newOrder <- sortSignature(Fs)
 
 
-
+num <- 1
 for (i in newOrder) {
   write.table(Fs[[i]], file = paste("../result/Fig_tremmel/sig_", i, ".txt", sep = ""), sep="\t", col.names = FALSE, row.names = FALSE)
+  num <- num + 1
 }
+
+
