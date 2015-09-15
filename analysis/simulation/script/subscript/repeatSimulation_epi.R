@@ -1,13 +1,13 @@
 library(pmsignature)
 
-mutationNum <- 25;
+mutationNum <- 50;
 featureNum <- as.integer(commandArgs()[5]);
 sampleNum <- as.integer(commandArgs()[6]);
 alpha <- as.numeric(commandArgs()[7]);
 gamma <- as.numeric(commandArgs()[8]);
 outputFile <- commandArgs()[9];
 
-fdim <- c(6, 4, 4, 4, 4, rep(2, featureNum));
+fdim <- c(6, 4, 4, rep(2, featureNum));
 
 Dists <- matrix(0, 100, 4);
 
