@@ -1,0 +1,14 @@
+#Reviewer 1
+
+The authors have declined to incorporate the changes that I suggested. As a consequence, I can only standby my original comments and leave the final decision to the Editor. This is somewhat disappointing as I feel the additional data would substantially elevate the authors work. I would remark that if no additions are to be made then the authors should qualify the claims in the discussion somewhat. Whilst adding additional features into the model is straightforward, the authors present no evidence to indicate that the resultant analysis would yield anything sensible.
+
+—————
+As the reviewer says, performing small analysis incorporating some epigenetic data without careful validation is “straightforward” and not so hard. We have newly included simulation study, the result of which indicate that adding epigenetic features will help improving the accuracy of mutation signature detection as well as gaining novel biological insights.
+
+There are several issues to be addressed for incorporating epigenetic data to mutation signature on real data. First, the choice of normalization methods of epigenetic data will strongly influence the result. Also, there are known relationships between epigenetic features and sequencing depth and errors (replication timing, CG contents) leading the variation in the sensitivity and false positive ratios. So we need to carefully control them.
+
+In spite of the above obstacles, many studies have partly revealed that somatic mutations (mostly structural variations so far) have some relationships with epigenetic features and people will start to try clarifying more comprehensive relationships between mutation signatures and epigenetic data in the not-so-distant future. We believe our proposed model, which gives a natural way for incorporating many additional features, will be of great help in that analysis.
+—————
+
+caption for S7 Figure:
+The accuracy of the proposed approach for the simulated data when changing the number of features starting from the case where just substation patterns and immediate 5’ and 3’ bases(M = (6, 4, 4), to 5 additional features (M = (6, 4, 4, 2, 2, 2, 2, 2) for each number of samples, dispersion parameters.  The accuracy of the estimated mutation signature improves as the number of additional features increases, indicating that incorporating additional features such as epigenetic data will be potentially beneficial.
