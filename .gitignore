@@ -7,4 +7,5 @@
 *.out
 *.synctex.gz
 *-eps-converted-to.pdf
+*.DS_Store
 *coverletter*
