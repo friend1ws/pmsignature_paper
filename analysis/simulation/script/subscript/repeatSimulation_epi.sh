@@ -2,9 +2,8 @@
 #$ -S /bin/sh
 #$ -cwd
 
-# export R_LIBS=/home/yshira/.R
-# export R_PATH=/home/yshira/local/bin
-export R_PATH=/usr/bin
+export R_PATH=/usr/local/package/r/3.2.1/bin
+export R_LIBS=~/.R
 
 FEATNUM=$1
 SAMPLENUM=$2
