@@ -295,7 +295,7 @@ and these are caused by pyrimidine dimers as a result of ultraviolet radiation \
 %There were several problems in these classical studies \cite{pmid12379884, pmid15748635}.
 The potential for classical studies to yield insights into somatic mutation processes
 were limited in several ways.
-Due to limited sequencing throughputs, most classical studies 
+Due to limited sequencing throughput, most classical studies 
 focused on a few cancer genes, such as TP53,
 where high mutation frequencies could be expected. They then
 contrasted mutation pattern profiles among different cancer types,
@@ -318,7 +318,7 @@ Moreover, a landmark study of 7,034 primary cancer samples, representing 30 diff
 To make the most of these opportunities requires the development
 of efficient and effective statistical methods for analyzing
 mutation signatures in vast amounts of somatic mutation data.
-Current statistical approaches \cite{pmid23318258,pmid23628380}, 
+Current statistical approaches \cite{pmid23318258,pmid23628380}
 %based on nonnegative matrix factorization (NMF, \cite{pmid10548103}) and Poisson models
 are an excellent starting point, 
 and have helped generate the new insights noted above.
@@ -345,13 +345,11 @@ In brief, we first simplify the modelling of mutation signatures by decomposing 
 For example, the substitution type is one feature; flanking bases are each another feature. We then exploit this 
 decomposition by using a probabilistic model for signatures that assumes independence across features. This approach substantially reduces the number of parameters associated with
 each signature, greatly facilitating the incorporation of additional relevant sequence context. 
-For example, our approach can
-incorporate both the two bases
-3' and 5' of the substitution, and transcription strand biases using only 18 parameters
+For example, our approach can incorporate the two bases 3' and 5' of the substitution and transcription strand biases using only 18 parameters
 per signature, compared with 3071 parameters per signature with current approaches. We demonstrate the benefits of this simplification in data analyses. These benefits include: more stable estimation of signatures from smaller samples, 
-refinement of the detail and resolution of many mutation signatures, and, possibly, identification of novel signatures.
+refinement of the detail and resolution of many mutation signatures, and possibly identification of novel signatures.
 
-Assuming independence among features in a signature may initially seem unnatural. However, its use here is analogous  ``position weight matrix models" which have been highly
+Assuming independence among features in a signature may initially seem unnatural. However, its use here is analogous to ``position weight matrix models" which have been highly
 successful 
 for modelling transcription factor binding motifs.
 Indeed, an important second contribution of
@@ -446,7 +444,7 @@ difficult to interpret.
 
 The first contribution of this paper is to suggest
 a more parsimonious approach to modelling 
-mutation signatures, with the benefit of producing both more stable estimates and more easily-interpretable signatures.
+mutation signatures, with the benefit of producing both more stable estimates and more easily interpretable signatures.
 In brief, we substantially reduce the number of parameters
 per signature by breaking each mutation pattern into 
 ``features", and assuming independence
@@ -469,13 +467,13 @@ Even though a PWM cannot capture complex
 higher-order dependencies, some of which likely do exist in practice, it has been a highly successful tool for motif
 analysis - likely because it can capture the most important characteristics of transcription factor binding sites 
 (that some locations will show strong preference for a particular base, whereas others will not), and also
-because it can be represented in an easily-interpretable way via sequencing logos \cite{pmid2172928}.
+because it can be represented in an easily interpretable way via sequencing logos \cite{pmid2172928}.
 For similar reasons -- in addition to the empirical
 demonstrations we present later -- we believe our mutation signature representation will prove useful for mutation signature analysis. 
 
 Fig. 1 illustrates the way that our new representation of signatures can simply capture
-a previously-identified signature \cite{pmid25362482, pmid23318258} and provides
-an easily-interpretable visualization of the signature 
+a previously identified signature \cite{pmid25362482, pmid23318258} and provides
+an easily interpretable visualization of the signature 
 that is analogous to  sequencing logos \cite{pmid2172928}.
 We particularly note how the key elements of this mutation signature are more immediately visually apparent than with visualizations of the full vector of probabilities used by existing approaches.
 
@@ -489,7 +487,9 @@ In each division, 256 bars show joint probabilities of up to two base 5' and 3' 
 (B, C) An example mutation signature representation and parameter values from our independent model, where mutation features (substitution patterns, two 5' and 3' bases and strand direction) 
 are assumed to be independent ($L=6$, $\bm{M} = (6, 4, 4, 4, 4, 2)$).
 In the bottom five rectangles, the width of each box represents the frequencies of bases (A, C, G and T) at the substitution and flanking site. 
-To highlight the most informative flanking sites, the heights of flanking site boxes are scaled by ($1 + 0.5 \times \log \sum_{n = A,C,G,T} f_n^2$, where $f_n$ is the parameter for each base), which can be interpreted as ($1 - 0.5 \times \text{R\'enyi entropy}$) \cite{rrnyi1961measures}. This is analogous to the information content scaling used in sequencing logos.
+To highlight the most informative flanking sites, the heights of flanking site boxes are scaled by 
+$1 + 0.5 \times \log \sum_{n = A,C,G,T} f_n^2$, where $f_n$ is the parameter for each base, 
+which can be interpreted as $1 - 0.5 \times \text{R\'enyi entropy}$ \cite{rrnyi1961measures}. This is analogous to the information content scaling used in sequencing logos.
 In the top rectangle, the height of each box represents the conditional frequencies of mutated bases for each original base (C and T).
 In the upper right, the height of the $+$ box represents the frequencies of mutations in the coding strand (or the plus strand, the sense strand and the untranscribed strand)
 whose nucleotide sequences directly corresponds to mRNA, 
@@ -595,18 +595,18 @@ mutation signatures, which assumes independence
 among mutation features,
 with the ``full model'', which corresponds to existing approaches. We compare mutation signatures obtained by the two approaches and investigate the robustness of each approach by down-sampling experiments.
 
-The data consist of 14717 somatic substitutions 
+The data consist of 14,717 somatic substitutions 
 collected from a study of 26 urothelial carcinomas of the upper urinary tract (UCUT) \cite{pmid23926200}.
 The original study identified a novel mutation signature in these data: 
 T $>$ A substitutions at CpTpG sites with a strong transcription strand specificity caused by aristolochic acids (AA).
 
-We consider a mutation pattern to consist of the substitution pattern, the $\pm 2$ flanking bases, and the transcription strand direction. Thus each signature is characterized by 18 parameters in our independent model, and by 3071 parameters in the full model. After analyzing the data with various number of mutation signatures $K$,
+We consider a mutation pattern to consist of the substitution pattern, the $\pm 2$ flanking bases, and the transcription strand direction. Thus each signature is characterized by 18 parameters in our independent model, and by 3071 parameters in the full model. After analyzing the data with various numbers of mutation signatures $K$,
 we selected $K=3$ signatures for these analyses (see S2 Text).
 
 
 The inferred APOBEC signature under the independent model
 shows a clear depletion of G base at the $-2$ position,
-which is consistent to the previous study \cite{pmid23318258} and results in the next subsection (Figs. 3A and 3B).
+which is consistent with the previous study \cite{pmid23318258} and results in the next subsection (Figs. 3A and 3B).
 In contrast, for the full model, this tendency is rather mild (Figs. 3C, 3D and S1).
 The inferred AA mutation signature has no clear characteristics at the $-2$ position.
 These results suggest that our independent model has the potential
@@ -648,7 +648,8 @@ For each cancer type we selected the number of signatures $K$ by fitting the mod
 The selected values of $K$ are given in S2 Table.
 Also, we simply removed somatic mutations located in an intergenic region to include transcription strand biases as mutation features.
 Finally, we merged similar mutation signatures across different cancer types 
-(when their Frobenius Distance were $<$ $0.6$, where Frobenius Distance between two matrices ($\bm{F}_1$, $\bm{F}_2$) is $\sqrt{ \Tr  (\bm{F}_1 -  \bm{F}_2 )  (\bm{F}_1 -  \bm{F}_2 )^t }$).
+(when their Frobenius distances were $<$ $0.6$, where the Frobenius distance between two matrices ($\bm{F}_1$, $\bm{F}_2$) is $\sqrt{ \Tr  \bigl( (\bm{F}_1 -  \bm{F}_2 )  (\bm{F}_1 -  \bm{F}_2 )^t \bigr) }$,
+where $\Tr$ means the trace of square matrices.
 % XXX WHAT KIND OF CLUSTERING?
  % (see Supplementary Material for the values of the log-likelihoods and bootstrap errors for each cancer type).
 
@@ -693,7 +694,7 @@ the signature for Pol $\epsilon$ dysfunction was represented by a single signatu
 In contrast our new approach uses two signatures.
 Since these signatures are highly correlated,
 and appear connected by
-a single biological mechansim, we certainly do not argue
+a single biological mechanism, we certainly do not argue
 that inferring them as a single signature is ``wrong". However, splitting them into two signatures does help highlight certain features. Specifically,
 signature 1 shows a transcription strand bias whereas signature 8 does not, and this is true for both colorectal and uterus cancers (Figs. S3C and S3D).
 This strand bias may be connected with the enrichment of 
@@ -729,11 +730,10 @@ into signatures may be helpful for identifying underlying mechanisms.
 %   \includegraphics[width=4.5cm,height=6cm]{LMST_two5prime.eps}
 %   \label{LMST_two5prime}}
 \caption{{\bf The estimated frequencies of bases at two 5' to the mutated site for each cancer type.}
-The bar heights show the estimated frequency for bases A, C, G and T at two 5' to the mutated site.
+The bar heights show the estimated frequency for bases A, C, G and T at the $-2$ position (two 5' to the mutated site).
 The error bars show bootstrapped standard errors.
-(A, B, C, D, E) The intensities of signature 13 (APOBEC signature), signature 1 (the first POL $\epsilon$ signature),
-signature 8 (the second POL $\epsilon$ signature), signature 10 (ultraviolet signature) and signature 11, respectively, at two 5' to the mutated site.
-intensities at two 5' to the mutated site.
+(A, B, C, D, E) The intensities of signature 13 (APOBEC signature), signature 1 (the first Pol $\epsilon$ signature),
+signature 8 (the second Pol $\epsilon$ signature), signature 10 (ultraviolet signature) and signature 11, respectively, at the $-2$ position.
 }
 \label{two5prime}
 \end{figure}
@@ -777,7 +777,7 @@ cluster by our specified clustering criteria.
 
 
 Signatures 10, 11, 12, 19 and 21 provide further examples
-of our method refining previously-observed signatures, highlighting strand biases and/or sequence context effects,
+of our method refining previously observed signatures, highlighting strand biases and/or sequence context effects,
 particularly 2 bases upstream of the substitution.
 Signature 10 (C $>$T at [CT]pCpC) was observed in head and neck cancers and melanomas, and probably relates to ultraviolet light.
 Consistent strand specificities among the two cancer types (Fig. S3E) matches previous results \cite{pmid23318258}, 
@@ -826,7 +826,7 @@ a wider range of contextual factors (e.g. more flanking bases) to be
 incorporated into the analysis. In addition, we provide a new
 intuitive way to visualize the inferred signatures.
 
-We have also emphasised the connection between mutation
+We have also emphasized the connection between mutation
 signature detection, and the use of mixed-membership models
 in other fields, particularly admixture analysis and document clustering.  This connection naturally raises the possibility of improving the proposed approach by learning from experiences in those other fields. For example, in admixture analysis, \cite{pmid12930761} found that the use of a correlated
 prior on allele frequencies improved sensitivity to detect
@@ -850,6 +850,9 @@ summarizing them using appropriate mutation features.
 In some cases, choice of appropriate features may need investigation. 
 For example, longer deletions could be represented by the length of deletion and the adjacent bases; 
 for short deletions (a few bases) it may be fruitful to include the actual deleted bases as part of the features.
+In addition, it may be interesting to devise a probabilistic model of mutation signature somewhere between complete independence and non-independence assumption.
+For example, assuming low-dimensional Markovian structure between adjacent bases as some transcription factor binding site modellings did \cite{pmid16108724}
+may help improving representation power of mutation signatures keeping the number of parameters moderate.
 %However, detailed investigation on what mutation features are practical is a future problem.
 
 We have detected a number of mutation signatures having transcription strand biases, 
@@ -859,18 +862,16 @@ we can include gene expression or RNA polymerase II occupancies to mutation feat
 so that the relationships of strand biases and transcription activities will be clarified.
 
 
-Although we believe our new methods already provide
-useful gains compared with existing approaches,
-the methods are perhaps even more important for their future potential to incorporate other contextual data, including epigenetic data,
-into mutation signature analysis. This is important, because
-local mutation densities are closely related to a number of genomic and epigenetic factors, such as GC content, repeat sequences, chromatin accessibility and modifications, and replication timing \cite{pmid22820252, pmid21953857, pmid23422670, pmid23770567}.
-A recent study found that epigenetic information in the cell types of origin of the corresponding tumors is the most predictive \cite{pmid25693567} for local mutation densities. A growing range of epigenetic data from many cell types are now available, and it will be interesting to integrate these epigenetic factors into mutation signature analysis to help understand how these epigenetic factors influence DNA damage and repair mechanisms. 
-Our work here provides a straightforward way to do this: epigenetic
-data can be simply added as features
-to the mutation signature. 
-We believe that 
-the value and impact of our work, and 
-specifically our proposed approach to modelling mutation signatures via independent features, will grow as more and more features
+Although we believe our new methods already provide useful gains compared with existing approaches,
+the methods are perhaps even more important for their future potential to incorporate other contextual data, including epigenetic data, into mutation signature analysis. 
+This is important, because local mutation densities are closely related to a number of genomic and epigenetic factors, 
+such as GC content, repeat sequences, chromatin accessibility and modifications, and replication timing \cite{pmid22820252, pmid21953857, pmid23422670, pmid23770567}.
+A recent study found that epigenetic information in the cell types of origin of the corresponding tumors is the most predictive \cite{pmid25693567} for local mutation densities. 
+A growing range of epigenetic data from many cell types are now available, 
+and it will be interesting to integrate these epigenetic factors into mutation signature analysis to help understand how these epigenetic factors influence DNA damage and repair mechanisms. 
+Our work here provides a straightforward way to do this: epigenetic data can be simply added as features to the mutation signature.
+In addition, a simulation study shows that the accuracy of mutation signature detection improves as we increase the number of mutation signatures (see Fig. S7).
+We believe that the value and impact of our work, and specifically our proposed approach to modelling mutation signatures via independent features, will grow as more and more features
 are incorporated into the analysis.
 
 
@@ -1073,7 +1074,7 @@ See S4 Text for details of the relationship between the proposed approach and no
 
 \subsection*{S2 Text}
 \label{UCUT_supp}
-{\bf Experiment on UCUT data with the various number of mutation signatures.}
+{\bf Experiment on UCUT data with the various numbers of mutation signatures.}
 
 \subsection*{S3 Text}
 \label{EM_math}
@@ -1101,7 +1102,7 @@ Note that the original base is fixed to C or T to remove the redundancy of compl
 
 \subsection*{S2 Figure}
 \label{nature2013_POLE}
-{\bf The pol epsilon signature (Signature 10) derived in the Alexandrov et al., (2013).}
+{\bf The Pol epsilon signature (Signature 10) derived in the Alexandrov et al., (2013).}
 The barplots are divided by 6 substitution pattern. 
 In each division, 16 bars show joint probabilities of substitution pattern, 5' and 3' bases (ApNpA, ApNpC, ApNpG, ApNpT, $\cdots$, TpNpT).
 
@@ -1147,6 +1148,15 @@ We have selected top 100 cancer samples according to the number of mutation.
 The height of bar shows the number of mutations for each sample,
 and the ratio of colored division shows the ratio of estimated membership parameters for each signature and sample.
 We can see that the signature corresponding to putative oxidative artifacts concentrates on a small number of samples.
+
+\subsection*{S7 Figure}
+\label{simu_epi}
+The accuracy of the proposed approach for the simulated data when changing the number of features starting 
+from the case where just substitution patterns and immediate 5' and 3' bases are considered ($\bm{M} = (6, 4, 4)$), to 5 additional features ($\bm{M} = (6, 4, 4, 2, 2, 2, 2, 2)$),
+for each number of samples and dispersion parameters.  
+The accuracy of the estimated mutation signature improves as the number of additional features increases, 
+indicating that incorporating additional features such as epigenetic data will be potentially beneficial.
+
 
 \section*{Acknowledgments}
 

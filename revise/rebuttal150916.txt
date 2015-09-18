@@ -1,14 +1,44 @@
-#Reviewer 1
+﻿#Reviewer 1
 
 The authors have declined to incorporate the changes that I suggested. As a consequence, I can only standby my original comments and leave the final decision to the Editor. This is somewhat disappointing as I feel the additional data would substantially elevate the authors work. I would remark that if no additions are to be made then the authors should qualify the claims in the discussion somewhat. Whilst adding additional features into the model is straightforward, the authors present no evidence to indicate that the resultant analysis would yield anything sensible.
 
-—————
+
 As the reviewer says, performing small analysis incorporating some epigenetic data without careful validation is “straightforward” and not so hard. We have newly included simulation study, the result of which indicate that adding epigenetic features will help improving the accuracy of mutation signature detection as well as gaining novel biological insights.
 
 There are several issues to be addressed for incorporating epigenetic data to mutation signature on real data. First, the choice of normalization methods of epigenetic data will strongly influence the result. Also, there are known relationships between epigenetic features and sequencing depth and errors (replication timing, CG contents) leading the variation in the sensitivity and false positive ratios. So we need to carefully control them.
 
 In spite of the above obstacles, many studies have partly revealed that somatic mutations (mostly structural variations so far) have some relationships with epigenetic features and people will start to try clarifying more comprehensive relationships between mutation signatures and epigenetic data in the not-so-distant future. We believe our proposed model, which gives a natural way for incorporating many additional features, will be of great help in that analysis.
-—————
+
+
 
 caption for S7 Figure:
 The accuracy of the proposed approach for the simulated data when changing the number of features starting from the case where just substation patterns and immediate 5’ and 3’ bases(M = (6, 4, 4), to 5 additional features (M = (6, 4, 4, 2, 2, 2, 2, 2) for each number of samples, dispersion parameters.  The accuracy of the estimated mutation signature improves as the number of additional features increases, indicating that incorporating additional features such as epigenetic data will be potentially beneficial.
+
+
+
+
+#Reviewer 2
+
+Does this discussion include implicitly PWMs with Markovian structure between the bases, rather than just independent sites?
+
+In this line (L126-130), we did mean Markovian structure. However, considering probabilistic model with Markovian structure is definitely one possibility of extention and it is worth mentioning somewhere. So, we have included a small discussion in the Discussion section.
+
+---
+Also, we can give mutation signature probabilistic models somewhere between complete independence and non-independence,
+e.g., assuming Markovian structure between adjacent bases as some transcription factor binding site modelings.
+---
+
+
+
+Kataegis occurs in some tumours -- regions with extraordinarily high mutation rates. This is not always common, or in the same region. Perhaps worth a mention?
+
+Thanks for the interesting suggestion. After this notice, we’ve got interested in checking whether the LGG cancer genome with extremely high mutations has kataegis. However, we couldn’t see the characteristic of kataegis from the so called “rain fall plot” from this sample,
+so this extremely high mutations seem to be caused by other phenomena.
+
+
+
+
+
+
+Figure R1: Two “rainfall plot”, where mutations aare ordered by the chromosome and coordinates. on the x axis from the first variant on the short arm of chromosome 1 to the last variant on the long arm of chromosome X and are colored according to mutation-type. The distance between each mutation and the one prior to it (the intermutation distance) is plotted on the vertical axis on a log scale 
+
